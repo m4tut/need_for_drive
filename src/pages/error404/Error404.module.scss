@@ -1,0 +1,12 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__content {
+    padding: 0;
+    max-width: 300px;
+  }
+}
