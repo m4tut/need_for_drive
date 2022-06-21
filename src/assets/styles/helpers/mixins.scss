@@ -42,3 +42,12 @@
     @content;
   }
 }
+
+// Cursor
+@mixin defaultCursor() {
+  cursor: url('../images/svg/cursor/default.svg'), default;
+}
+
+@mixin pointerPointer() {
+  cursor: url('../images/svg/cursor/pointer.svg'), pointer;
+}
