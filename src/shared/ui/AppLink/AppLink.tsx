@@ -16,7 +16,7 @@ interface AppLinkProps {
 }
 
 export const AppLink: FC<AppLinkProps> = ({ className, children, href, mod = 'black', disabled = false }) => {
-  function classInitLinks() {
+  function classInitLink() {
     if (disabled) {
       return styles['link--disabled'];
     }
@@ -31,7 +31,7 @@ export const AppLink: FC<AppLinkProps> = ({ className, children, href, mod = 'bl
     }
   }
   return (
-    <Link className={cn(className, styles['link'], classInitLinks())} to={href}>
+    <Link className={cn(className, styles['link'], classInitLink())} to={href}>
       {children}
     </Link>
   );

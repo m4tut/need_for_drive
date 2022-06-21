@@ -51,3 +51,23 @@
 @mixin pointerPointer() {
   cursor: url('../images/svg/cursor/pointer.svg'), pointer;
 }
+
+// Gradient Effect Button
+@mixin gradientEffect($fromColor, $toColor, $percentFrom: 0%, $percentTo: 100%) {
+  background: linear-gradient(90deg, $fromColor $percentFrom, $toColor $percentTo);
+
+  &::before {
+    background: linear-gradient(90deg, darken($fromColor, 10%) $percentFrom, darken($toColor, 10%) $percentTo);
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    background: linear-gradient(90deg, darken($fromColor, 10%) $percentFrom, darken($toColor, 10%) $percentTo);
+    opacity: 1;
+  }
+
+  &:active::after {
+    background: linear-gradient(90deg, darken($fromColor, 15%) $percentFrom, darken($toColor, 15%) $percentTo);
+    opacity: 1;
+  }
+}

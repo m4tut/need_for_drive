@@ -1,0 +1,73 @@
+.button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  padding: 14px 35px;
+  font-size: rem(18px);
+  line-height: rem(20px);
+  font-weight: 500;
+  color: $background-color-gray-light;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  &::after {
+    z-index: 10;
+    transition: opacity 0.1s ease-in;
+  }
+
+  &__content {
+    position: relative;
+    display: block;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__spin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+
+    transform: translate3d(-50%, -45%, 0);
+  }
+
+  &--disabled {
+    color: $text-color-default;
+    background-color: $background-color-gray-light;
+  }
+
+  &--green {
+    @include gradientEffect($gradient-green-from, $gradient-green-to);
+  }
+
+  &--blue {
+    @include gradientEffect($gradient-blue-from, $gradient-blue-to);
+  }
+
+  &--red {
+    @include gradientEffect($gradient-red-from, $gradient-red-to);
+  }
+
+  &--purple {
+    @include gradientEffect($gradient-purple-from, $gradient-purple-to);
+  }
+
+  &--loader {
+    pointer-events: none;
+
+    .button__content {
+      opacity: 0;
+    }
+  }
+}
