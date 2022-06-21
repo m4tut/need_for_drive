@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 // Components
 import { Container } from '~shared/layouts/Container';
-import { Link } from 'react-router-dom';
+import { AppLink } from '~shared/ui/AppLink/AppLink';
 
 // styles
 import cn from 'classnames';
@@ -17,7 +17,9 @@ const Error404: FC = () => {
       <div className={cn(styles['error__content'])}>
         <img src={error404} alt="error404" />
         <h1>ОШИБКА 404</h1>
-        <Link to="/">Вернуться на главную</Link>
+        <AppLink href="/" mod="green">
+          Вернуться на главную
+        </AppLink>
       </div>
     </Container>
   );

@@ -1,0 +1,35 @@
+.link {
+  font-size: rem(13px);
+  line-height: rem(15px);
+  font-weight: 400;
+  transition: color 0.3s;
+
+  &--disabled {
+    color: $background-color-gray;
+    pointer-events: none;
+  }
+
+  &--black {
+    color: $text-color-basic;
+
+    &:hover {
+      color: $text-color-accent-green;
+    }
+  }
+
+  &--white {
+    color: $background-color-gray-light;
+
+    &:hover {
+      color: $text-color-accent-green;
+    }
+  }
+
+  &--green {
+    color: $text-color-accent-green;
+
+    &:hover {
+      color: $text-color-gray-light;
+    }
+  }
+}

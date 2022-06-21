@@ -45,6 +45,7 @@ module.exports = {
       plugin: stylesResourcesLoader,
       options: {
         patterns: [
+          resolvePath('./src/assets/styles/helpers/functions.scss'),
           resolvePath('./src/assets/styles/helpers/mixins.scss'),
           resolvePath('./src/assets/styles/helpers/variables.scss'),
         ],
