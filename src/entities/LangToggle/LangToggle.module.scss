@@ -1,0 +1,26 @@
+.lang-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: $text-color-accent-green;
+  font-size: rem(13px);
+  line-height: rem(15px);
+  font-weight: 700;
+
+  transition: border-color 0.3s, color 0.3s;
+
+  &:hover {
+    border-color: $border-color-gray-light;
+    color: $border-color-gray-light;
+  }
+
+  &:active {
+    color: $text-color-accent-green;
+  }
+}

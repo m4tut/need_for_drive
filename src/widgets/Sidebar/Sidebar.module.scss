@@ -1,0 +1,31 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 16px;
+
+  @include mediaMin($mobile) {
+    height: 100%;
+    padding: 29px 22px;
+    background-color: $background-color-secondary;
+  }
+
+  @include mediaMin($laptop) {
+    padding: 29px 16px;
+  }
+
+  &__lang-toggle {
+    position: absolute;
+
+    @include mediaMin($mobile) {
+      left: 19px;
+      bottom: 21px;
+    }
+
+    @include mediaMin($laptop) {
+      left: 8px;
+      bottom: 15px;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+.burger-menu {
+  position: relative;
+  width: 34px;
+  height: 34px;
+
+  padding: 7px;
+
+  @include mediaMin($mobile) {
+    width: 42px;
+    height: 32px;
+    padding: 8px 5px;
+  }
+
+  @include mediaMin($laptop) {
+    width: 33px;
+    padding: 8px 4px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    z-index: 0;
+
+    @include mediaMin($mobile) {
+      left: 5px;
+    }
+
+    @include mediaMin($laptop) {
+      left: 4px;
+    }
+  }
+
+  & > span,
+  &::before,
+  &::after {
+    display: block;
+    width: 20px;
+    height: 3.2px;
+    border-radius: 4px;
+    background-color: $background-color-default;
+
+    @include mediaMin($mobile) {
+      width: 32px;
+      background-color: $background-color-basic;
+    }
+
+    @include mediaMin($laptop) {
+      width: 25px;
+    }
+  }
+
+  & > span {
+    opacity: 1;
+    transition: opacity 0s;
+    transition-delay: 0.3s;
+  }
+
+  &::before {
+    animation: beforeNotActive 0.5s linear forwards;
+  }
+
+  &::after {
+    animation: afterNotActive 0.5s linear forwards;
+  }
+
+  &--open {
+    & > span {
+      opacity: 0;
+    }
+
+    &::before {
+      animation: beforeActive 0.5s linear forwards;
+    }
+
+    &::after {
+      animation: afterActive 0.5s linear forwards;
+    }
+  }
+}
+
+@keyframes beforeActive {
+  0% {
+    top: 7px;
+    transform: rotate(0deg);
+  }
+  50% {
+    top: 15px;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 15px;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes beforeNotActive {
+  0% {
+    top: 15px;
+    transform: rotate(45deg);
+  }
+  50% {
+    top: 15px;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 7px;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes afterActive {
+  0% {
+    bottom: 7px;
+    transform: rotate(0deg);
+  }
+  50% {
+    bottom: 15px;
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 15px;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes afterNotActive {
+  0% {
+    bottom: 15px;
+    transform: rotate(-45deg);
+  }
+  50% {
+    bottom: 15px;
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 7px;
+    transform: rotate(0deg);
+  }
+}
