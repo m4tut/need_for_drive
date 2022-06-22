@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 // Components
 import { AppSpin } from '../AppSpin';
 
-// styles
+// Styles
 import cn from 'classnames';
 import styles from './AppButton.module.scss';
 

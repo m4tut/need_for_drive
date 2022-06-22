@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Container } from '~shared/layouts/Container';
 import { AppLink } from '~shared/ui/AppLink/AppLink';
 
-// styles
+// Styles
 import cn from 'classnames';
 import styles from './Error404.module.scss';
 

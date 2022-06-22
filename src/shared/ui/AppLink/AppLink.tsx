@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 // Components
 import { Link } from 'react-router-dom';
 
-// styles
+// Styles
 import cn from 'classnames';
 import styles from './AppLink.module.scss';
 

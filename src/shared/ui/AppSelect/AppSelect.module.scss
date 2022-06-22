@@ -1,0 +1,20 @@
+.select {
+  max-height: 106px;
+  border: 1px solid $border-color-gray-light;
+  padding: 8px;
+  overflow-y: auto;
+
+  font-size: rem(14px);
+  line-height: rem(16px);
+  color: $text-color-gray;
+
+  &__item {
+    & + & {
+      margin-top: 6px;
+    }
+
+    &:hover {
+      color: $text-color-accent-green;
+    }
+  }
+}

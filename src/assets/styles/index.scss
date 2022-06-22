@@ -55,6 +55,20 @@ textarea {
   outline: none;
 }
 
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: $background-color-basic;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $background-color-gray;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
 // CSSTransition Animated
 .fade-enter {
   opacity: 0;

@@ -3,7 +3,7 @@ import { FC, HTMLInputTypeAttribute, ReactNode, useState } from 'react';
 // Components
 import { CSSTransition } from 'react-transition-group';
 
-// styles
+// Styles
 import cn from 'classnames';
 import styles from './AppInput.module.scss';
 

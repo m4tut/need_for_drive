@@ -1,7 +1,7 @@
 @function rem($px) {
-  @return ($px / $font-size-default) + rem;
+  @return calc($px / $font-size-default) + rem;
 }
 
 @function em($px) {
-  @return ($px / $font-size-default) + em;
+  @return calc($px / $font-size-default) + em;
 }

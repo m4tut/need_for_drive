@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-// styles
+// Styles
 import cn from 'classnames';
 import styles from './AppSpin.module.scss';
 
