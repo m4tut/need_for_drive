@@ -13,6 +13,7 @@ $font-weight-default: 400;
 $text-color-default: #fff;
 $text-color-basic: #121212;
 $text-color-accent-green: #0ec261;
+$text-color-accent-red: #c4183c;
 $text-color-gray: #999;
 $text-color-gray-light: #eee;
 
@@ -20,18 +21,22 @@ $text-color-gray-light: #eee;
 $background-color-default: #121212;
 $background-color-basic: #fff;
 $background-color-accent-green: #0ec261;
+$background-color-accent-red: #c4183c;
 $background-color-gray: #999;
 $background-color-gray-light: #eee;
 
+// Border Color
+$border-color-gray: #999;
+
 // Gragient Color
-$gradient-green-from:#13493F;
-$gradient-green-to: #0C7B1B;
+$gradient-green-from: #13493f;
+$gradient-green-to: #0c7b1b;
 
-$gradient-blue-from:#132949;
-$gradient-blue-to: #0C7B67;
+$gradient-blue-from: #132949;
+$gradient-blue-to: #0c7b67;
 
-$gradient-red-from:#493013;
-$gradient-red-to: #7B0C3B;
+$gradient-red-from: #493013;
+$gradient-red-to: #7b0c3b;
 
-$gradient-purple-from:#281349;
-$gradient-purple-to: #720C7B;
+$gradient-purple-from: #281349;
+$gradient-purple-to: #720c7b;

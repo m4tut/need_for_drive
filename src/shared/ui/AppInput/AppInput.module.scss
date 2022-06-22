@@ -1,0 +1,63 @@
+.input {
+  position: relative;
+
+  font-size: rem(14px);
+  line-height: rem(16px);
+
+  &:hover {
+    .input__label-field > input {
+      border-color: $text-color-gray-light;
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+
+    &-field {
+      position: relative;
+      width: 100%;
+      margin-left: 8px;
+
+      & > input {
+        width: 100%;
+        border-bottom: 1px solid $border-color-gray;
+        padding: 3px 20px 3px 8px;
+
+        transition: border-color 0.3s;
+
+        &::placeholder {
+          color: $text-color-gray;
+        }
+      }
+
+      &-error {
+        position: absolute;
+        top: 100%;
+        left: 8px;
+
+        font-size: rem(12px);
+        color: $text-color-accent-red;
+      }
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+
+    padding: 6px;
+    color: $text-color-basic;
+
+    svg {
+      transition: color 0.3s;
+    }
+
+    &:hover {
+      color: $text-color-gray;
+    }
+  }
+}

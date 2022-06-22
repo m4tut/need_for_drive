@@ -13,7 +13,7 @@ interface AppButtonProps {
   className?: string;
   disabled?: boolean;
   isLoader?: boolean;
-  type?: 'button' | 'submit';
+  type?: 'submit' | 'reset' | 'button';
   mod?: 'green' | 'blue' | 'red' | 'purple';
 }
 
