@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  padding: 16px;
+
+  @include mediaMin($mobile) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 32px;
+  }
+
+  @include mediaMin($desktop) {
+    padding-left: 64px;
+  }
+
+  &__link {
+    font-size: rem(30px);
+    line-height: rem(35px);
+    font-weight: 700;
+    color: $text-color-accent-green;
+
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__city {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+
+    font-size: rem(14px);
+    color: $text-color-gray;
+
+    @include mediaMin($mobile) {
+      margin-top: 0;
+    }
+
+    &-icon {
+      width: 17px;
+      height: 20px;
+      margin-right: 7px;
+    }
+  }
+}

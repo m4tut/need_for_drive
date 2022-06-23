@@ -1,0 +1,27 @@
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+
+  @include mediaMin($laptop) {
+    grid-template-columns: 1fr 0.65fr;
+  }
+
+  @include mediaMin($desktop) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__left {
+    @include mediaMin($mobile) {
+      padding-left: 86px;
+    }
+
+    @include mediaMin($laptop) {
+      padding-left: 66px;
+    }
+  }
+
+  &__right {
+    display: none;
+  }
+}

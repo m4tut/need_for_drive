@@ -2,16 +2,21 @@ import { FC } from 'react';
 
 // Components
 import { Default } from '~shared/layouts/Default';
-import { Container } from '~shared/layouts/Container';
+import { Header } from '~widgets/Header';
+
+// Styles
+import cn from 'classnames';
+import styles from './Home.module.scss';
 
 const Home: FC = () => {
   return (
     <Default>
-      <Container>
-        <hr />
-        <h1>Index Page</h1>
-        <hr />
-      </Container>
+      <div className={cn(styles['home'])}>
+        <div className={cn(styles['home__left'])}>
+          <Header />
+        </div>
+        <div className={cn(styles['home__right'])}></div>
+      </div>
     </Default>
   );
 };
