@@ -17,7 +17,7 @@ const Error404: FC = () => {
       <div className={cn(styles['error__content'])}>
         <img src={error404} alt="error404" />
         <h1>ОШИБКА 404</h1>
-        <AppLink href="/" mod="green">
+        <AppLink href="/" variant="green">
           Вернуться на главную
         </AppLink>
       </div>

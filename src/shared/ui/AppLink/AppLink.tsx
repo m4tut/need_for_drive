@@ -11,17 +11,17 @@ interface AppLinkProps {
   className?: string;
   children: ReactNode;
   href: string;
-  mod?: 'black' | 'white' | 'green';
+  variant?: 'black' | 'white' | 'green';
   disabled?: boolean;
 }
 
-export const AppLink: FC<AppLinkProps> = ({ className, children, href, mod = 'black', disabled = false }) => {
+export const AppLink: FC<AppLinkProps> = ({ className, children, href, variant = 'black', disabled = false }) => {
   function classInitLink() {
     if (disabled) {
       return styles['link--disabled'];
     }
 
-    switch (mod) {
+    switch (variant) {
       case 'black':
         return styles['link--black'];
       case 'white':

@@ -35,7 +35,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 
   return (
     <aside className={cn(className, styles['sidebar'])}>
-      <BurgerMenu clickHandler={toggleSidebar} />
+      <BurgerMenu handleClick={toggleSidebar} />
       <CSSTransition in={isOpenSidebar} timeout={300} classNames="fade" unmountOnExit>
         <div className={cn(styles['sidebar__menu'])}>gg</div>
       </CSSTransition>

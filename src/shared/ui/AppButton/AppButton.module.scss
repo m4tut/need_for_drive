@@ -1,12 +1,15 @@
 .button {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
+
   padding: 14px 35px;
+
   font-size: rem(18px);
   line-height: rem(20px);
   font-weight: 500;
   color: $background-color-gray-light;
+
+  border-radius: 4px;
 
   &::before,
   &::after {
@@ -17,7 +20,9 @@
     top: 0;
     left: 0;
     z-index: 0;
+
     opacity: 0;
+
     transition: all 0.3s ease-in-out;
   }
   &::after {

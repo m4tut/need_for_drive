@@ -9,29 +9,29 @@ import styles from './AppButton.module.scss';
 
 interface AppButtonProps {
   children: ReactNode;
-  clickHandler: () => void;
+  handleClick: () => void;
   className?: string;
   disabled?: boolean;
   isLoader?: boolean;
   type?: 'submit' | 'reset' | 'button';
-  mod?: 'green' | 'blue' | 'red' | 'purple';
+  variant?: 'green' | 'blue' | 'red' | 'purple';
 }
 
 export const AppButton: FC<AppButtonProps> = ({
   className,
   children,
-  clickHandler,
+  handleClick,
   disabled = false,
   isLoader = false,
   type = 'button',
-  mod = 'green',
+  variant = 'green',
 }) => {
   function classInitButton() {
     if (disabled) {
       return styles['button--disabled'];
     }
 
-    switch (mod) {
+    switch (variant) {
       case 'green':
         return styles['button--green'];
       case 'blue':
@@ -52,12 +52,12 @@ export const AppButton: FC<AppButtonProps> = ({
   return (
     <button
       className={cn(className, styles['button'], classInitButton(), classInitLoader())}
-      onClick={clickHandler}
+      onClick={handleClick}
       type={type}
       disabled={disabled || isLoader}
     >
       <span className={styles['button__content']}>{children}</span>
-      {isLoader && <AppSpin className={styles['button__spin']} stroke={disabled ? '#fff' : '#f5f6f8'} />}
+      {isLoader && <AppSpin className={styles['button__spin']} color={disabled ? '#fff' : '#f5f6f8'} />}
     </button>
   );
 };

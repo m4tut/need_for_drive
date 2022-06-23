@@ -14,12 +14,12 @@ interface AppSelectProps {
   className?: string;
   selectList: ISelect[];
   isOpen: boolean;
-  changeHandler: (value: string) => void;
+  handleChange: (value: string) => void;
 }
 
-export const AppSelect: FC<AppSelectProps> = ({ className, selectList, isOpen, changeHandler }) => {
+export const AppSelect: FC<AppSelectProps> = ({ className, selectList, isOpen, handleChange }) => {
   function changeSelect(value: string) {
-    changeHandler(value);
+    handleChange(value);
   }
 
   return (

@@ -6,15 +6,15 @@ import styles from './BurgerMenu.module.scss';
 
 interface BurgerMenuProps {
   className?: string;
-  clickHandler: () => void;
+  handleClick: () => void;
 }
 
-export const BurgerMenu: FC<BurgerMenuProps> = ({ className, clickHandler }) => {
+export const BurgerMenu: FC<BurgerMenuProps> = ({ className, handleClick }) => {
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
   function onClick() {
     setIsOpenMenu(!isOpenMenu);
-    clickHandler();
+    handleClick();
   }
 
   return (

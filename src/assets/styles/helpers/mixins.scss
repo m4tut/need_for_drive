@@ -57,17 +57,17 @@
   background: linear-gradient(90deg, $fromColor $percentFrom, $toColor $percentTo);
 
   &::before {
-    background: linear-gradient(90deg, darken($fromColor, 10%) $percentFrom, darken($toColor, 10%) $percentTo);
+    background: linear-gradient(90deg, mix(black, $fromColor, 15%) $percentFrom, mix(black, $toColor, 15%) $percentTo);
   }
 
   &:hover::before,
   &:focus-visible::before {
-    background: linear-gradient(90deg, darken($fromColor, 10%) $percentFrom, darken($toColor, 10%) $percentTo);
+    background: linear-gradient(90deg, mix(black, $fromColor, 15%) $percentFrom, mix(black, $toColor, 15%) $percentTo);
     opacity: 1;
   }
 
   &:active::after {
-    background: linear-gradient(90deg, darken($fromColor, 15%) $percentFrom, darken($toColor, 15%) $percentTo);
+    background: linear-gradient(90deg, mix(black, $fromColor, 30%) $percentFrom, mix(black, $toColor, 30%) $percentTo);
     opacity: 1;
   }
 }

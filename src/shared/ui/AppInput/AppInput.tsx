@@ -17,7 +17,7 @@ interface AppInputProps {
   error?: string;
   autoComplete?: 'on' | 'off';
   placeholder?: string;
-  changeHandler?: (value: string) => void;
+  handleChange?: (value: string) => void;
 }
 
 export const AppInput: FC<AppInputProps> = ({
@@ -30,7 +30,7 @@ export const AppInput: FC<AppInputProps> = ({
   error = '',
   autoComplete = 'off',
   placeholder,
-  changeHandler,
+  handleChange,
 }) => {
   const [inputValue, setInputValue] = useState<string>(value);
   const [inputError, setInputError] = useState<boolean>(Boolean(error));
@@ -38,8 +38,8 @@ export const AppInput: FC<AppInputProps> = ({
   function onChange(str: string) {
     setInputValue(str);
     setInputError(false);
-    if (typeof changeHandler === 'function') {
-      changeHandler(str);
+    if (typeof handleChange === 'function') {
+      handleChange(str);
     }
   }
 

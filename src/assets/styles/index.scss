@@ -23,16 +23,16 @@ body,
 }
 
 img {
+  display: block;
   width: 100%;
   max-width: 100%;
-  display: block;
 }
 
 button {
   color: inherit;
+  background-color: transparent;
   border: none;
   outline: none;
-  background-color: transparent;
 }
 
 a {
@@ -64,9 +64,9 @@ textarea {
 }
 
 *::-webkit-scrollbar-thumb {
+  padding: 0 2px;
   background-color: $background-color-gray;
   border-radius: 2px;
-  padding: 0 2px;
 }
 
 // CSSTransition Animated
