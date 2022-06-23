@@ -3,6 +3,7 @@ import { FC } from 'react';
 // Components
 import { Default } from '~shared/layouts/Default';
 import { Header } from '~widgets/Header';
+import { HeroSection } from '~widgets/HeroSection';
 
 // Styles
 import cn from 'classnames';
@@ -14,6 +15,7 @@ const Home: FC = () => {
       <div className={cn(styles['home'])}>
         <div className={cn(styles['home__left'])}>
           <Header />
+          <HeroSection />
         </div>
         <div className={cn(styles['home__right'])}></div>
       </div>

@@ -1,0 +1,53 @@
+.hero {
+  padding: 16px;
+
+  @include mediaMin($mobile) {
+    padding: 16px 32px;
+  }
+
+  @include mediaMin($desktop) {
+    padding-left: 64px;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 12px;
+
+    font-size: rem(32px);
+    line-height: rem(38px);
+
+    @include mediaMin($mobile) {
+      font-size: rem(70px);
+      line-height: rem(70px);
+
+      margin-bottom: 22px;
+    }
+  }
+
+  &__text {
+    font-size: rem(18px);
+    line-height: rem(21px);
+    font-weight: 300;
+    color: $text-color-gray;
+
+    @include mediaMin($mobile) {
+      font-size: rem(26px);
+      line-height: rem(30px);
+    }
+  }
+
+  &__btn {
+    width: 100vw;
+    margin: 32px -16px 0;
+
+    border-radius: 0;
+
+    @include mediaMin($mobile) {
+      width: auto;
+      margin: 62px 0 0;
+      padding-left: 60px;
+      padding-right: 60px;
+      border-radius: 8px;
+    }
+  }
+}

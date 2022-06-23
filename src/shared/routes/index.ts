@@ -5,7 +5,7 @@ import { IRoutes } from './types';
 const Home = lazy(() => import('~pages/home'));
 const Error404 = lazy(() => import('~pages/error404'));
 
-export const routes: IRoutes[] = [
+export const ROUTES: IRoutes[] = [
   {
     path: '/',
     elements: Home,

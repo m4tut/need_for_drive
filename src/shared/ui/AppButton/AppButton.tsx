@@ -14,7 +14,7 @@ interface AppButtonProps {
   disabled?: boolean;
   isLoader?: boolean;
   type?: 'submit' | 'reset' | 'button';
-  variant?: 'green' | 'blue' | 'red' | 'purple';
+  variant?: 'lightgreen' | 'green' | 'blue' | 'red' | 'purple';
 }
 
 export const AppButton: FC<AppButtonProps> = ({
@@ -24,7 +24,7 @@ export const AppButton: FC<AppButtonProps> = ({
   disabled = false,
   isLoader = false,
   type = 'button',
-  variant = 'green',
+  variant = 'lightgreen',
 }) => {
   function classInitButton() {
     if (disabled) {
@@ -32,6 +32,8 @@ export const AppButton: FC<AppButtonProps> = ({
     }
 
     switch (variant) {
+      case 'lightgreen':
+        return styles['button--lightgreen'];
       case 'green':
         return styles['button--green'];
       case 'blue':

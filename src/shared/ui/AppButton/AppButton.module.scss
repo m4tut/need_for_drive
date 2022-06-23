@@ -52,6 +52,10 @@
     background-color: $background-color-gray-light;
   }
 
+  &--lightgreen {
+    @include gradientEffect($gradient-lightgreen-from, $gradient-lightgreen-to);
+  }
+
   &--green {
     @include gradientEffect($gradient-green-from, $gradient-green-to);
   }

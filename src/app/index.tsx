@@ -1,13 +1,17 @@
+// Components
 import { Suspense } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { routes } from '~shared/routes';
+import { AppSpin } from '~shared/ui/AppSpin';
+
+// Config
+import { ROUTES } from '~shared/routes';
 
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<h1>Загрузка...</h1>}>
+      <Suspense fallback={<AppSpin />}>
         <Routes>
-          {routes.map((route) => (
+          {ROUTES.map((route) => (
             <Route key={route.path} path={route.path} element={<route.elements />} />
           ))}
         </Routes>

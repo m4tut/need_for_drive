@@ -7,7 +7,7 @@ import { AppIcon } from '~shared/ui/AppIcon';
 import { SOCIAL_LIST } from './config/socialList';
 
 // Styles
-import cl from 'classnames';
+import cn from 'classnames';
 import styles from './SocialList.module.scss';
 
 interface SocialListProps {
@@ -16,7 +16,7 @@ interface SocialListProps {
 
 export const SocialList: FC<SocialListProps> = ({ className }) => {
   return (
-    <ul className={cl(className, styles['social'])}>
+    <ul className={cn(className, styles['social'])}>
       {SOCIAL_LIST.map((item) => (
         <li key={item.href}>
           <a href={item.href} target="_blank" rel="noopener noreferrer">

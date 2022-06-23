@@ -13,6 +13,9 @@
 
   &__left {
     @include mediaMin($mobile) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       padding-left: 86px;
     }
 

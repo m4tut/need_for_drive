@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 // Styles
-import cl from 'classnames';
+import cn from 'classnames';
 import styles from './AppIcon.module.scss';
 
 interface AppIconProps {
@@ -11,7 +11,7 @@ interface AppIconProps {
 
 export const AppIcon: FC<AppIconProps> = ({ className, name }) => {
   return (
-    <svg className={cl(className, styles['icon'])}>
+    <svg className={cn(className, styles['icon'])}>
       <use href={name} />
     </svg>
   );
