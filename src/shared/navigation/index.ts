@@ -1,8 +1,20 @@
 import { INavigation } from './types';
 
-export const routes: INavigation[] = [
+export const NAVIGATION: INavigation[] = [
   {
-    name: 'Home',
-    path: '/',
+    name: 'Парковка',
+    href: '/parking',
+  },
+  {
+    name: 'Страховка',
+    href: '/insurance',
+  },
+  {
+    name: 'Бензин',
+    href: '/petrol',
+  },
+  {
+    name: 'Обслуживание',
+    href: '/service',
   },
 ];

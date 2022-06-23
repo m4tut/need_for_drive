@@ -3,20 +3,78 @@
   top: 0;
   left: 0;
   z-index: 1000;
+  width: 66px;
+  height: 66px;
+
   padding: 16px;
 
+  transition: all 0.3s;
+
   @include mediaMin($mobile) {
+    width: 86px;
     height: 100%;
     padding: 29px 22px;
     background-color: $background-color-secondary;
   }
 
   @include mediaMin($laptop) {
+    width: 66px;
     padding: 29px 16px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    width: 0px;
+    height: 100%;
+
+    background-color: rgba($background-color-secondary, 0.8);
+
+    transition: all 0.3s;
+  }
+
+  &--open {
+    width: 100%;
+    height: 100%;
+    background-color: $background-color-secondary;
+
+    @include mediaMin($laptop) {
+      width: 50%;
+
+      &::after {
+        width: 50vw;
+      }
+    }
+
+    .sidebar__burger {
+      & > span,
+      &::before,
+      &::after {
+        background-color: $background-color-basic;
+      }
+    }
+  }
+
+  &__menu {
+    margin-left: 8px;
+    margin-top: 31px;
+
+    &-social {
+      margin-top: 38px;
+    }
+
+    @include mediaMin($mobile) {
+      margin-top: 25vh;
+    }
   }
 
   &__lang-toggle {
     position: absolute;
+    left: 16px;
+    bottom: 12px;
 
     @include mediaMin($mobile) {
       left: 19px;

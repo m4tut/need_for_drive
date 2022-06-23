@@ -1,0 +1,36 @@
+.nav-menu {
+  font-size: rem(22px);
+  line-height: rem(26px);
+  font-weight: 500;
+  color: $text-color-default;
+
+  text-transform: uppercase;
+
+  &__list {
+    list-style: none;
+
+    &-item {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        transition: color 0.3s;
+
+        &:hover {
+          color: $text-color-accent-green;
+        }
+
+        &:active {
+          color: $text-color-gray;
+        }
+
+        &.active {
+          color: $text-color-accent-green;
+        }
+      }
+    }
+  }
+}

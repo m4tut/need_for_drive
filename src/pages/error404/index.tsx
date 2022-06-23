@@ -8,7 +8,7 @@ import { AppLink } from '~shared/ui/AppLink/AppLink';
 import cn from 'classnames';
 import styles from './Error404.module.scss';
 
-// img
+// Img
 import error404 from '~assets/images/error404.png';
 
 const Error404: FC = () => {

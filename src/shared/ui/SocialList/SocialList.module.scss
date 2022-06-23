@@ -1,0 +1,25 @@
+.social {
+  display: flex;
+  list-style: none;
+
+  a {
+    color: $text-color-default;
+
+    transition: color 0.3s;
+    &:hover {
+      color: $text-color-accent-green;
+    }
+    &:active {
+      color: $text-color-gray;
+    }
+  }
+
+  li {
+    width: 32px;
+    height: 32px;
+  }
+
+  li + li {
+    margin-left: 24px;
+  }
+}

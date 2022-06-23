@@ -3,11 +3,13 @@ import { FC, useEffect, useState } from 'react';
 // Components
 import { BurgerMenu } from '~shared/ui/BurgerMenu';
 import { CSSTransition } from 'react-transition-group';
+import { LangToggle } from '~entities/LangToggle';
+import { NavMenu } from '~shared/ui/NavMenu';
+import { SocialList } from '~shared/ui/SocialList';
 
 // Styles
 import cn from 'classnames';
 import styles from './Sidebar.module.scss';
-import { LangToggle } from '~entities/LangToggle';
 
 interface SidebarProps {
   className?: string;
@@ -34,11 +36,16 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
   });
 
   return (
-    <aside className={cn(className, styles['sidebar'])}>
-      <BurgerMenu handleClick={toggleSidebar} />
+    <aside className={cn(className, styles['sidebar'], isOpenSidebar && styles['sidebar--open'])}>
+      <BurgerMenu className={cn(styles['sidebar__burger'])} handleClick={toggleSidebar} />
+
       <CSSTransition in={isOpenSidebar} timeout={300} classNames="fade" unmountOnExit>
-        <div className={cn(styles['sidebar__menu'])}>gg</div>
+        <div className={cn(styles['sidebar__menu'])}>
+          <NavMenu />
+          <SocialList className={cn(styles['sidebar__menu-social'])} />
+        </div>
       </CSSTransition>
+
       <CSSTransition
         in={(!isOpenSidebar && !isMobile) || (isOpenSidebar && isMobile)}
         timeout={300}
