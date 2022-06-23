@@ -12,9 +12,12 @@
   }
 
   &__left {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
     @include mediaMin($mobile) {
-      display: flex;
-      flex-direction: column;
       justify-content: space-between;
       padding-left: 86px;
     }

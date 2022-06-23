@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 // Styles
 import cn from 'classnames';
-import styles from './Header.module.scss';
+import styles from './AppHeader.module.scss';
 
-interface HeaderProps {
+interface AppHeaderProps {
   className?: string;
 }
 
-export const Header: FC<HeaderProps> = ({ className }) => {
+export const AppHeader: FC<AppHeaderProps> = ({ className }) => {
   return (
     <header className={cn(className, styles['header'])}>
       <Link className={cn(styles['header__link'])} to="/">

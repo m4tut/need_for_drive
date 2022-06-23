@@ -1,0 +1,50 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  margin-top: auto;
+  padding: 16px;
+
+  font-size: rem(13px);
+  line-height: rem(15px);
+  color: $background-color-gray-light;
+
+  background-color: $background-color-secondary;
+
+  @include mediaMin($mobile) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 38px 32px;
+
+    color: $text-color-gray;
+    background-color: transparent;
+  }
+
+  @include mediaMin($desktop) {
+    padding-left: 64px;
+  }
+
+  &__link {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: $text-color-accent-green;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $text-color-gray-light;
+    }
+
+    @include mediaMin($mobile) {
+      order: 2;
+      margin-bottom: 0;
+      color: $text-color-basic;
+
+      &:hover {
+        color: $text-color-accent-green;
+      }
+    }
+  }
+}

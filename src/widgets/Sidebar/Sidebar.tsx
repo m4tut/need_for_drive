@@ -24,7 +24,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
   }
 
   function resizeHandler() {
-    setIsMobile(window.matchMedia('(max-width: 575px)').matches);
+    setIsMobile(window.matchMedia('(max-width: 600px)').matches);
   }
 
   useEffect(() => {
