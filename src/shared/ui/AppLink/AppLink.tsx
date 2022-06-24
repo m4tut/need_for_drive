@@ -7,11 +7,14 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './AppLink.module.scss';
 
+// Types
+import { AppLinkVariant } from './type/AppLinkVariant';
+
 interface AppLinkProps {
   className?: string;
   children: ReactNode;
   href: string;
-  variant?: 'black' | 'white' | 'green';
+  variant?: AppLinkVariant;
   disabled?: boolean;
 }
 

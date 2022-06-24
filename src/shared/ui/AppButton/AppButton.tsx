@@ -7,6 +7,9 @@ import { AppSpin } from '../AppSpin';
 import cn from 'classnames';
 import styles from './AppButton.module.scss';
 
+// Types
+import { AppButtonVariant } from './type/AppButtonVariant';
+
 interface AppButtonProps {
   children: ReactNode;
   handleClick: () => void;
@@ -14,7 +17,7 @@ interface AppButtonProps {
   disabled?: boolean;
   isLoader?: boolean;
   type?: 'submit' | 'reset' | 'button';
-  variant?: 'lightgreen' | 'green' | 'blue' | 'red' | 'purple';
+  variant?: AppButtonVariant;
 }
 
 export const AppButton: FC<AppButtonProps> = ({

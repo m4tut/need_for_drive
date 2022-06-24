@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 // Components
-import { Sidebar } from '~widgets/Sidebar';
+import { AppSidebar } from '~widgets/AppSidebar';
 
 // Styles
 import cn from 'classnames';
@@ -14,7 +14,7 @@ interface DefaultProps {
 
 export const Default: FC<DefaultProps> = ({ className, children }) => (
   <div className={cn(className, styles['default'])}>
-    <Sidebar />
+    <AppSidebar />
     {children}
   </div>
 );

@@ -9,13 +9,13 @@ import { SocialList } from '~shared/ui/SocialList';
 
 // Styles
 import cn from 'classnames';
-import styles from './Sidebar.module.scss';
+import styles from './AppSidebar.module.scss';
 
-interface SidebarProps {
+interface AppSidebarProps {
   className?: string;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ className }) => {
+export const AppSidebar: FC<AppSidebarProps> = ({ className }) => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 

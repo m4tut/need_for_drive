@@ -6,7 +6,7 @@
   }
 
   @include mediaMin($desktop) {
-    padding-left: 64px;
+    padding: 16px 64px;
   }
 
   &__title {

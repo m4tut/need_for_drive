@@ -1,21 +1,13 @@
 .home {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   height: 100%;
-
-  @include mediaMin($laptop) {
-    grid-template-columns: 1fr 0.65fr;
-  }
-
-  @include mediaMin($desktop) {
-    grid-template-columns: 1fr 1fr;
-  }
 
   &__left {
     position: relative;
 
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     @include mediaMin($mobile) {
       justify-content: space-between;
@@ -24,10 +16,24 @@
 
     @include mediaMin($laptop) {
       padding-left: 66px;
+      width: 60%;
+    }
+
+    @include mediaMin($desktop) {
+      width: 50%;
     }
   }
 
   &__right {
     display: none;
+
+    @include mediaMin($laptop) {
+      display: block;
+      width: 40%;
+    }
+
+    @include mediaMin($desktop) {
+      width: 50%;
+    }
   }
 }

@@ -24,7 +24,7 @@
   }
 
   @include mediaMin($desktop) {
-    padding-left: 64px;
+    padding: 38px 64px;
   }
 
   &__link {

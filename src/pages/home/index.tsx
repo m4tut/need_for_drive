@@ -9,6 +9,7 @@ import { HeroSection } from '~widgets/HeroSection';
 import cn from 'classnames';
 import styles from './Home.module.scss';
 import { AppFooter } from '~widgets/AppFooter';
+import { HeroSlider } from '~widgets/HeroSlider';
 
 const Home: FC = () => {
   return (
@@ -19,7 +20,9 @@ const Home: FC = () => {
           <HeroSection />
           <AppFooter />
         </div>
-        <div className={cn(styles['home__right'])}></div>
+        <div className={cn(styles['home__right'])}>
+          <HeroSlider />
+        </div>
       </div>
     </Default>
   );
