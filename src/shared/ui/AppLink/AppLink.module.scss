@@ -5,7 +5,7 @@
   transition: color 0.3s;
 
   &--disabled {
-    color: $background-color-gray;
+    color: $text-color-gray;
     pointer-events: none;
   }
 
@@ -18,7 +18,7 @@
   }
 
   &--white {
-    color: $background-color-gray-light;
+    color: $text-color-gray-light;
 
     &:hover {
       color: $text-color-accent-green;

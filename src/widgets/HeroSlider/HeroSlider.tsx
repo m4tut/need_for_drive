@@ -1,8 +1,8 @@
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 
 // Components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import { HeroSlide } from './HeroSlide/HeroSlide';
 
 // Styles
@@ -22,25 +22,53 @@ interface HeroSliderProps {
 }
 
 export const HeroSlider: FC<HeroSliderProps> = ({ className, slides = DEFAULT_SLIDES }) => {
-  const navigationPrevRef = useRef<HTMLButtonElement>(null);
-  const navigationNextRef = useRef<HTMLButtonElement>(null);
+  const SwiperButtonPrev = () => {
+    const swiper = useSwiper();
+    return (
+      <button
+        className={cn(styles['hero-slider__arrow'], styles['hero-slider__arrow--prev'])}
+        onClick={() => swiper.slidePrev()}
+        type="button"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 20">
+          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1l-8 9 8 9" />
+        </svg>
+      </button>
+    );
+  };
+
+  const SwiperButtonNext = () => {
+    const swiper = useSwiper();
+    return (
+      <button
+        className={cn(styles['hero-slider__arrow'], styles['hero-slider__arrow--next'])}
+        onClick={() => swiper.slideNext()}
+        type="button"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 20">
+          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1l8 9-8 9" />
+        </svg>
+      </button>
+    );
+  };
 
   return (
     <Swiper
       className={cn(className, styles['hero-slider'])}
-      initialSlide={1}
+      initialSlide={0}
       slidesPerView={1}
+      loop
+      autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+      navigation
       pagination={{
         clickable: true,
         type: 'bullets',
-        bulletClass: `${styles['hero-slider__bullets']}`,
-        bulletActiveClass: `${styles['hero-slider__bullets--active']}`,
+        bulletElement: 'button',
+        horizontalClass: `${styles['hero-slider__dots']}`,
+        bulletClass: `${styles['hero-slider__dots-item']}`,
+        bulletActiveClass: `${styles['hero-slider__dots-item--active']}`,
       }}
-      navigation={{
-        prevEl: navigationPrevRef.current,
-        nextEl: navigationNextRef.current,
-      }}
-      modules={[Navigation, Pagination]}
+      modules={[Autoplay, Navigation, Pagination]}
     >
       {slides.map((slide) => {
         return (
@@ -50,24 +78,8 @@ export const HeroSlider: FC<HeroSliderProps> = ({ className, slides = DEFAULT_SL
         );
       })}
 
-      <button
-        ref={navigationPrevRef}
-        className={cn(styles['hero-slider__arrow'], styles['hero-slider__arrow--prev'])}
-        type="button"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 20">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1l-8 9 8 9" />
-        </svg>
-      </button>
-      <button
-        ref={navigationNextRef}
-        className={cn(styles['hero-slider__arrow'], styles['hero-slider__arrow--next'])}
-        type="button"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 20">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1l8 9-8 9" />
-        </svg>
-      </button>
+      <SwiperButtonPrev />
+      <SwiperButtonNext />
     </Swiper>
   );
 };

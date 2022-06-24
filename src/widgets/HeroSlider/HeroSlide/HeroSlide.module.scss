@@ -1,0 +1,52 @@
+.hero-slide {
+  position: relative;
+  height: 100%;
+
+  &__img {
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 10;
+
+    padding: 64px;
+    transform: translateY(-50%);
+
+    @include mediaMin($desktop) {
+      padding: 96px;
+    }
+
+    &-title {
+      margin-bottom: 8px;
+
+      font-size: rem(32px);
+      line-height: rem(38px);
+      font-weight: 500;
+      color: $text-color-default;
+
+      @include mediaMin($desktop) {
+        font-size: rem(40px);
+        line-height: rem(47px);
+      }
+    }
+
+    &-description {
+      margin-bottom: 32px;
+
+      font-size: rem(22px);
+      line-height: rem(22px);
+      font-weight: 300;
+      color: $text-color-gray-light;
+
+      @include mediaMin($desktop) {
+        font-size: rem(24px);
+        line-height: rem(20px);
+      }
+    }
+  }
+}

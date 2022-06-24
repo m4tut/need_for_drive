@@ -27,8 +27,8 @@ export const HeroSlide: FC<HeroSlideProps> = ({ className, slide }) => {
     <section className={cn(className, styles['hero-slide'])}>
       <img className={cn(styles['hero-slide__img'])} src={slide.images} alt={slide.alt} />
       <div className={cn(styles['hero-slide__content'])}>
-        <h2>{slide.title}</h2>
-        <p>{slide.description}</p>
+        <h2 className={cn(styles['hero-slide__content-title'])}>{slide.title}</h2>
+        <p className={cn(styles['hero-slide__content-description'])}>{slide.description}</p>
         <AppButton handleClick={handleClick} variant={slide.button.variant}>
           {slide.button.text}
         </AppButton>

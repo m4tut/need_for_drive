@@ -1,4 +1,72 @@
 .hero-slider {
+  position: relative;
   width: 100%;
   height: 100%;
+
+  &__dots {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 32px;
+
+    &-item {
+      width: 8px;
+      height: 8px;
+
+      margin: 4px;
+      background-color: $background-color-gray-light;
+
+      border-radius: 50%;
+      transition: background-color 0.3s;
+
+      &--active {
+        background-color: $background-color-accent-green;
+      }
+
+      &:hover {
+        background-color: $background-color-gray;
+      }
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+
+    width: 32px;
+    height: 100%;
+
+    transition: background-color 0.3s;
+
+    & > svg {
+      width: 8px;
+      color: $text-color-default;
+    }
+
+    &:hover {
+      background-color: rgba($background-color-accent-green, 0.2);
+
+      svg {
+        color: $text-color-gray;
+      }
+    }
+
+    @include mediaMin($desktop) {
+      width: 64px;
+    }
+
+    &--prev {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
+    }
+  }
 }

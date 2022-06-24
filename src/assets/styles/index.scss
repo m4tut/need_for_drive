@@ -43,7 +43,7 @@ a {
 
 a,
 button {
-  @include pointerPointer();
+  @include pointerCursor();
 
   &:focus {
     outline: none;

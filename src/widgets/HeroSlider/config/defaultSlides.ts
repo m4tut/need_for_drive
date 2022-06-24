@@ -10,9 +10,9 @@ export const DEFAULT_SLIDES: IHeroSlide[] = [
   {
     alt: 'parking',
     images: parking,
-    title: 'Бесплатный парковка',
+    title: 'Бесплатная парковка',
     description:
-      'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах',
+      'Оставляйте машину на\u00a0платных городских парковках и\u00a0разрешенных местах, не\u00a0нарушая ПДД, а\u00a0также в аэропортах',
     button: {
       href: '/parking',
       text: 'Подробнее',
@@ -25,7 +25,7 @@ export const DEFAULT_SLIDES: IHeroSlide[] = [
     title: 'Страховка',
     description: 'Полная страховка страховка автомобиля',
     button: {
-      href: '/parking',
+      href: '/insurance',
       text: 'Подробнее',
       variant: 'blue',
     },
@@ -34,9 +34,9 @@ export const DEFAULT_SLIDES: IHeroSlide[] = [
     images: petrol,
     alt: 'petrol',
     title: 'Бензин',
-    description: 'Полный бак на любой заправке города за наш счёт',
+    description: 'Полный бак на\u00a0любой заправке города за\u00a0наш счёт',
     button: {
-      href: '/parking',
+      href: '/petrol',
       text: 'Подробнее',
       variant: 'red',
     },
@@ -47,7 +47,7 @@ export const DEFAULT_SLIDES: IHeroSlide[] = [
     title: 'Обслуживание',
     description: 'Автомобиль проходит еженедельное ТО',
     button: {
-      href: '/parking',
+      href: '/service',
       text: 'Подробнее',
       variant: 'purple',
     },

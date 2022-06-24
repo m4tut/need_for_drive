@@ -42,6 +42,14 @@
     background-color: $background-color-secondary;
 
     @include mediaMin($laptop) {
+      width: 60%;
+
+      &::after {
+        width: 40vw;
+      }
+    }
+
+    @include mediaMin($desktop) {
       width: 50%;
 
       &::after {

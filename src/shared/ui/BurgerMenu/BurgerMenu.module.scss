@@ -1,9 +1,16 @@
 .burger-menu {
   position: relative;
-  
+
   width: 34px;
   height: 33px;
   padding: 7px;
+
+  will-change: transform;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 
   @include mediaMin($mobile) {
     width: 42px;

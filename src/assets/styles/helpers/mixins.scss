@@ -48,7 +48,7 @@
   cursor: url('../images/svg/cursor/default.svg'), default;
 }
 
-@mixin pointerPointer() {
+@mixin pointerCursor() {
   cursor: url('../images/svg/cursor/pointer.svg'), pointer;
 }
 
