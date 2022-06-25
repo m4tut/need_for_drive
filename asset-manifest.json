@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/need-for-drive/static/css/main.c3fd4a54.css",
+    "main.js": "/need-for-drive/static/js/main.d4dd96d5.js",
+    "static/css/331.62fc32f8.chunk.css": "/need-for-drive/static/css/331.62fc32f8.chunk.css",
+    "static/js/331.715dd942.chunk.js": "/need-for-drive/static/js/331.715dd942.chunk.js",
+    "static/css/703.96805138.chunk.css": "/need-for-drive/static/css/703.96805138.chunk.css",
+    "static/js/703.526c6b89.chunk.js": "/need-for-drive/static/js/703.526c6b89.chunk.js",
+    "static/js/792.34d0aaed.chunk.js": "/need-for-drive/static/js/792.34d0aaed.chunk.js",
+    "static/media/parking.jpg": "/need-for-drive/static/media/parking.17d73507712d5eca7fc0.jpg",
+    "static/media/service.jpg": "/need-for-drive/static/media/service.912e2ae738922201f779.jpg",
+    "static/media/insurance.jpg": "/need-for-drive/static/media/insurance.4a2df16289c0f3736024.jpg",
+    "static/media/petrol.jpg": "/need-for-drive/static/media/petrol.ac710a5c875bee2d0b68.jpg",
+    "static/media/Roboto-Medium.woff": "/need-for-drive/static/media/Roboto-Medium.61c265591865cecb1c3d.woff",
+    "static/media/Roboto-Bold.woff": "/need-for-drive/static/media/Roboto-Bold.75a1a5b5582b236e0fe3.woff",
+    "static/media/Roboto-Regular.woff": "/need-for-drive/static/media/Roboto-Regular.774f99460b8c31560a3c.woff",
+    "static/media/Roboto-Light.woff": "/need-for-drive/static/media/Roboto-Light.19a99746405e8730f34c.woff",
+    "static/media/Roboto-Medium.woff2": "/need-for-drive/static/media/Roboto-Medium.70ace3870f471997ceb7.woff2",
+    "static/media/Roboto-Bold.woff2": "/need-for-drive/static/media/Roboto-Bold.002079d85a6f27587d17.woff2",
+    "static/media/Roboto-Regular.woff2": "/need-for-drive/static/media/Roboto-Regular.9429985be4f46ec8fcfc.woff2",
+    "static/media/Roboto-Light.woff2": "/need-for-drive/static/media/Roboto-Light.81c7589f0813d50a673e.woff2",
+    "static/media/error404.png": "/need-for-drive/static/media/error404.ca9f3c3cfdbe467320ab.png",
+    "static/media/pointer.svg": "/need-for-drive/static/media/pointer.ffdfd958fe89ea9d3a5e.svg",
+    "static/media/socialSprite.svg": "/need-for-drive/static/media/socialSprite.a17826345d7243d984d4089c0605c658.svg",
+    "index.html": "/need-for-drive/index.html",
+    "static/media/default.svg": "/need-for-drive/static/media/default.3a3d4a9e622479779385.svg",
+    "main.c3fd4a54.css.map": "/need-for-drive/static/css/main.c3fd4a54.css.map",
+    "main.d4dd96d5.js.map": "/need-for-drive/static/js/main.d4dd96d5.js.map",
+    "331.62fc32f8.chunk.css.map": "/need-for-drive/static/css/331.62fc32f8.chunk.css.map",
+    "331.715dd942.chunk.js.map": "/need-for-drive/static/js/331.715dd942.chunk.js.map",
+    "703.96805138.chunk.css.map": "/need-for-drive/static/css/703.96805138.chunk.css.map",
+    "703.526c6b89.chunk.js.map": "/need-for-drive/static/js/703.526c6b89.chunk.js.map",
+    "792.34d0aaed.chunk.js.map": "/need-for-drive/static/js/792.34d0aaed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c3fd4a54.css",
+    "static/js/main.d4dd96d5.js"
+  ]
+}
