@@ -25,7 +25,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ className }) => {
       <AppButton
         className={cn(styles['hero__btn'])}
         handleClick={() => {
-          navigate('/order#location');
+          navigate('/order?section=location');
         }}
       >
         Забронировать

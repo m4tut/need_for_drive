@@ -29,6 +29,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-transition-group": "^4.4.2",
+    "react-yandex-maps": "^4.6.0",
     "swiper": "^8.0.0"
   },
   "devDependencies": {

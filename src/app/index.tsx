@@ -9,7 +9,7 @@ import { ROUTES } from '~shared/routes';
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<AppSpin />}>
+      <Suspense fallback={<AppSpin color="#0ec261" />}>
         <Routes>
           {ROUTES.map((route) => (
             <Route key={route.path} path={route.path} element={<route.elements />} />
