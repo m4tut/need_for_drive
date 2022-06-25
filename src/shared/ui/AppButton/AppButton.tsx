@@ -62,7 +62,7 @@ export const AppButton: FC<AppButtonProps> = ({
       disabled={disabled || isLoader}
     >
       <span className={styles['button__content']}>{children}</span>
-      {isLoader && <AppSpin className={styles['button__spin']} color={disabled ? '#fff' : '#f5f6f8'} />}
+      {isLoader && <AppSpin color={disabled ? '#fff' : '#f5f6f8'} />}
     </button>
   );
 };

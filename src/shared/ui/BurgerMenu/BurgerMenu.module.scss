@@ -64,11 +64,21 @@
   }
 
   &::before {
-    animation: beforeNotActive 0.5s linear forwards;
+    top: 7px;
   }
 
   &::after {
-    animation: afterNotActive 0.5s linear forwards;
+    bottom: 7px;
+  }
+
+  &--close {
+    &::before {
+      animation: beforeNotActive 0.5s linear forwards;
+    }
+
+    &::after {
+      animation: afterNotActive 0.5s linear forwards;
+    }
   }
 
   &--open {

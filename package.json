@@ -14,7 +14,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://mtom4tut.github.io/need-for-drive/",
+  "homepage": "https://mtom4tut.github.io/",
   "pre-commit": [
     "lint",
     "test"

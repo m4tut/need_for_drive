@@ -17,7 +17,7 @@ interface AppSidebarProps {
 
 export const AppSidebar: FC<AppSidebarProps> = ({ className }) => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
   function toggleSidebar() {
     setIsOpenSidebar(!isOpenSidebar);

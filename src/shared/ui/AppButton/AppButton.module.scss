@@ -38,15 +38,6 @@
     height: 100%;
   }
 
-  &__spin {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 100;
-
-    transform: translate3d(-50%, -45%, 0);
-  }
-
   &--disabled {
     color: $text-color-default;
     background-color: $background-color-gray-light;

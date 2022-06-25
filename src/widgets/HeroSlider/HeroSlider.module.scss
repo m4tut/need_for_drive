@@ -15,21 +15,31 @@
     padding: 32px;
 
     &-item {
-      width: 8px;
-      height: 8px;
+      width: 12px;
+      height: 12px;
 
-      margin: 4px;
-      background-color: $background-color-gray-light;
+      &::before {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
 
-      border-radius: 50%;
-      transition: background-color 0.3s;
+        background-color: $background-color-gray-light;
+
+        border-radius: 50%;
+        transition: background-color 0.3s;
+      }
 
       &--active {
-        background-color: $background-color-accent-green;
+        &::before {
+          background-color: $background-color-accent-green;
+        }
       }
 
       &:hover {
-        background-color: $background-color-gray;
+        &::before {
+          background-color: $background-color-gray;
+        }
       }
     }
   }

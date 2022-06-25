@@ -40,14 +40,14 @@
     width: 100vw;
     margin: 32px -16px 0;
 
-    border-radius: 0;
+    border-radius: 0 !important;
 
     @include mediaMin($mobile) {
       width: auto;
       margin: 62px 0 0;
       padding-left: 60px;
       padding-right: 60px;
-      border-radius: 8px;
+      border-radius: 8px !important;
     }
   }
 }

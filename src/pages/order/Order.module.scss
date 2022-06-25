@@ -1,0 +1,11 @@
+.order {
+  height: 100%;
+
+  @include mediaMin($mobile) {
+    padding-left: 86px;
+  }
+
+  @include mediaMin($laptop) {
+    padding-left: 66px;
+  }
+}

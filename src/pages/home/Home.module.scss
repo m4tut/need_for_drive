@@ -22,6 +22,14 @@
     @include mediaMin($desktop) {
       width: 50%;
     }
+
+    &-footer {
+      margin-top: auto;
+
+      @include mediaMin($mobile) {
+        margin-top: 0;
+      }
+    }
   }
 
   &__right {

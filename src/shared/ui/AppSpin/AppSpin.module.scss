@@ -1,5 +1,11 @@
 .spin {
-  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  display: flex;
+
+  transform: translate3d(-50%, -50%, 0);
 
   svg {
     animation: spin 1.2s infinite linear;

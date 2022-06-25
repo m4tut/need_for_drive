@@ -21,8 +21,8 @@ export const NavMenu: FC<NavMenuProps> = ({ className }) => {
       <ul className={cn(styles['nav-menu__list'])}>
         {NAVIGATION.map((item) => {
           return (
-            <li className={cn(styles['nav-menu__list-item'])}>
-              <NavLink className={({ isActive }) => isActive && styles['active']} to={item.href}>
+            <li key={item.href} className={cn(styles['nav-menu__list-item'])}>
+              <NavLink className={({ isActive }) => (isActive ? styles['active'] : '')} to={item.href}>
                 {item.name}
               </NavLink>
             </li>
