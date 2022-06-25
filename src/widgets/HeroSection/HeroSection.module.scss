@@ -1,14 +1,4 @@
 .hero {
-  padding: 16px;
-
-  @include mediaMin($mobile) {
-    padding: 16px 32px;
-  }
-
-  @include mediaMin($desktop) {
-    padding: 16px 64px;
-  }
-
   &__title {
     margin: 0;
     margin-bottom: 12px;
@@ -40,14 +30,14 @@
     width: 100vw;
     margin: 32px -16px 0;
 
-    border-radius: 0 !important;
+    border-radius: 0;
 
     @include mediaMin($mobile) {
       width: auto;
       margin: 62px 0 0;
       padding-left: 60px;
       padding-right: 60px;
-      border-radius: 8px !important;
+      border-radius: 8px;
     }
   }
 }

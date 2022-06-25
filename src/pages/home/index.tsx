@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 // Components
 import { Default } from '~shared/layouts/Default';
+import { Container } from '~shared/layouts/Container';
 import { AppHeader } from '~widgets/AppHeader';
 import { HeroSection } from '~widgets/HeroSection';
 import { AppFooter } from '~widgets/AppFooter';
@@ -15,11 +16,11 @@ const Home: FC = () => {
   return (
     <Default>
       <div className={cn(styles['home'])}>
-        <div className={cn(styles['home__left'])}>
-          <AppHeader />
+        <Container className={cn(styles['home__left'])}>
+          <AppHeader className={cn(styles['home__left-header'])} />
           <HeroSection />
           <AppFooter className={cn(styles['home__left-footer'])} />
-        </div>
+        </Container>
         <div className={cn(styles['home__right'])}>
           <HeroSlider />
         </div>

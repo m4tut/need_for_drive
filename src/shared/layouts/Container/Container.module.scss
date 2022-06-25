@@ -1,8 +1,15 @@
 .container {
-  height: 100%;
+  position: relative;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  padding: 16px;
 
-  position: relative;
+  @include mediaMin($mobile) {
+    padding: 32px;
+  }
+
+  @include mediaMin($desktop) {
+    padding: 32px 64px;
+  }
 }
