@@ -1,23 +1,32 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+
+// Store
+import { useStore } from 'effector-react';
+import { $storeOrder } from '~processes/order/model/store';
 
 // Components
 import { TheLoacation } from '~entities/TheLoacation';
 import { TheOrder } from '~entities/TheOrder';
+import { TheAdditionally } from '~entities/TheAdditionally';
+import { TheModel } from '~entities/TheModel';
+import { TheTotal } from '~entities/TheTotal';
 
 // Styles
 import cn from 'classnames';
 import styles from './OrderSettings.module.scss';
-import { TheAdditionally } from '~entities/TheAdditionally';
-import { TheModel } from '~entities/TheModel';
-import { TheTotal } from '~entities/TheTotal';
 
 interface OrderSettingsProps {
   className?: string;
 }
 
 export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
+  const storeOrder = useStore($storeOrder);
   const location = useLocation();
+
+  useMemo(() => {
+    console.log(location.search);
+  }, [location]);
 
   const OrderSection = () => {
     const fullPathname = location.pathname + location.search;
@@ -36,7 +45,10 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
   return (
     <div className={cn(className, styles['order-settings'])}>
       {OrderSection()}
-      <TheOrder />
+      <TheOrder
+        orderPoints={storeOrder}
+        btnSettings={{ text: 'Выбрать модель', variant: 'lightgreen', disabled: false }}
+      />
     </div>
   );
 };

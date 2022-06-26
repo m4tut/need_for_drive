@@ -13,6 +13,10 @@
     font-weight: 500;
 
     margin-bottom: 26px;
+
+    @include mediaMin($laptop) {
+      text-align: right;
+    }
   }
 
   &__list {

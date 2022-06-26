@@ -1,17 +1,59 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+// Components
+import { AppButton, AppButtonVariant } from '~shared/ui/AppButton';
 
 // Styles
 import cn from 'classnames';
 import styles from './TheOrder.module.scss';
-import { AppButton } from '~shared/ui/AppButton';
+
+// Interface
+import { IOrder } from '~processes/order/interface/IOrder';
+
+// Utils
+import { dateDifference } from '~shared/utils/dateDifference';
 
 interface TheOrderProps {
   className?: string;
+  orderPoints: IOrder;
+  btnSettings: {
+    text: string;
+    variant: AppButtonVariant;
+    disabled: boolean;
+  };
 }
 
-export const TheOrder: FC<TheOrderProps> = ({ className }) => {
+export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSettings }) => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function confirmation() {
+    navigate('/order?section=completed');
+  }
+
   function nextSection() {
-    console.log('next');
+    switch (location.search) {
+      case '?section=location':
+        navigate('/order?section=model');
+        break;
+
+      case '?section=model':
+        navigate('/order?section=additionally');
+        break;
+
+      case '?section=additionally':
+        navigate('/order?section=total');
+        break;
+
+      case '?section=total':
+        setIsOpenModal(true);
+        break;
+      case '?section=completed':
+        console.log('отменить заказ');
+        break;
+    }
   }
 
   return (
@@ -19,36 +61,41 @@ export const TheOrder: FC<TheOrderProps> = ({ className }) => {
       <h2 className={cn(styles['order__title'])}>Ваш заказ:</h2>
 
       <ul className={cn(styles['order__list'])}>
-        <li className={cn(styles['order__list-item'])}>
-          <span className={cn(styles['order__list-item-name'])}>Пункт выдачи</span>
-          <span className={cn(styles['order__list-item-dashed'])} />
-          <span className={cn(styles['order__list-item-selected'])}>Ульяновск, Нариманова&#160;42</span>
-        </li>
-        <li className={cn(styles['order__list-item'])}>
-          <span className={cn(styles['order__list-item-name'])}>Модель</span>
-          <span className={cn(styles['order__list-item-dashed'])} />
-          <span className={cn(styles['order__list-item-selected'])}>Hyndai,&#160;i30&#160;N</span>
-        </li>
-        <li className={cn(styles['order__list-item'])}>
-          <span className={cn(styles['order__list-item-name'])}>Цвет</span>
-          <span className={cn(styles['order__list-item-dashed'])} />
-          <span className={cn(styles['order__list-item-selected'])}>Голубой</span>
-        </li>
-        <li className={cn(styles['order__list-item'])}>
-          <span className={cn(styles['order__list-item-name'])}>Длительность аренды</span>
-          <span className={cn(styles['order__list-item-dashed'])} />
-          <span className={cn(styles['order__list-item-selected'])}>1д&#160;2ч</span>
-        </li>
-        <li className={cn(styles['order__list-item'])}>
-          <span className={cn(styles['order__list-item-name'])}>Тариф</span>
-          <span className={cn(styles['order__list-item-dashed'])} />
-          <span className={cn(styles['order__list-item-selected'])}>На&#160;сутки</span>
-        </li>
-        <li className={cn(styles['order__list-item'])}>
-          <span className={cn(styles['order__list-item-name'])}>Полный бак</span>
-          <span className={cn(styles['order__list-item-dashed'])} />
-          <span className={cn(styles['order__list-item-selected'])}>Да</span>
-        </li>
+        {Object.keys(orderPoints).map((key) => {
+          const item = orderPoints[key as keyof IOrder];
+
+          if (!item.visible) {
+            return;
+          }
+
+          const name = item.name;
+          const value = item.value;
+          let selected;
+
+          if (typeof value === 'object' && (key as keyof IOrder) === 'rentalDuration') {
+            const dateDiff = value.dateStart && value.dateEnd && dateDifference(value.dateStart, value.dateEnd);
+
+            selected = dateDiff && (
+              <>
+                {dateDiff.days ? <span>{dateDiff.days}д&#160;</span> : ''}
+                {dateDiff.hours ? <span>{dateDiff.hours}ч</span> : ''}
+                {dateDiff.minutes ? <span>{dateDiff.minutes}&#160;м</span> : ''}
+              </>
+            );
+          } else if (typeof value === 'boolean') {
+            selected = value ? 'Да' : 'Нет';
+          } else {
+            selected = value;
+          }
+
+          return (
+            <li key={key} className={cn(styles['order__list-item'])}>
+              <span className={cn(styles['order__list-item-name'])}>{name}</span>
+              <span className={cn(styles['order__list-item-dashed'])} />
+              <span className={cn(styles['order__list-item-selected'])}>{selected}</span>
+            </li>
+          );
+        })}
       </ul>
 
       <div className={cn(styles['order__price'])}>
@@ -57,8 +104,13 @@ export const TheOrder: FC<TheOrderProps> = ({ className }) => {
         <span>&#160;₽</span>
       </div>
 
-      <AppButton className={cn(styles['order__btn'])} handleClick={nextSection} disabled>
-        Выбрать модель
+      <AppButton
+        className={cn(styles['order__btn'])}
+        handleClick={nextSection}
+        variant={btnSettings.variant}
+        disabled={btnSettings.disabled}
+      >
+        {btnSettings.text}
       </AppButton>
     </div>
   );
