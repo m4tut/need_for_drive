@@ -28,7 +28,7 @@ const Order: FC = () => {
           </Container>
         </div>
 
-        <Container>
+        <Container className={cn(styles['order__container'])}>
           <OrderSettings />
         </Container>
       </div>

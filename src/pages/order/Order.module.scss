@@ -2,6 +2,8 @@
   height: 100%;
 
   @include mediaMin($mobile) {
+    display: flex;
+    flex-direction: column;
     padding-left: 86px;
   }
 
@@ -23,6 +25,15 @@
       @include mediaMin($laptop) {
         padding: 0 48px;
       }
+    }
+  }
+
+  &__container {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @include mediaMin($laptop) {
+      height: 100%;
     }
   }
 }

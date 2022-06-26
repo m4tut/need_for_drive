@@ -1,3 +1,63 @@
 .order {
-  
+  padding-top: 32px;
+
+  @include mediaMin($laptop) {
+    height: 100%;
+    border-left: 1px solid $border-color-gray-light;
+    padding-left: 32px;
+  }
+
+  &__title {
+    font-size: rem(18px);
+    line-height: rem(21px);
+    font-weight: 500;
+
+    margin-bottom: 26px;
+  }
+
+  &__list {
+    font-size: rem(14px);
+    line-height: rem(16px);
+    font-weight: 300;
+    list-style: none;
+
+    &-item {
+      display: flex;
+      align-items: flex-end;
+
+      & + & {
+        margin-top: 16px;
+      }
+
+      &-name {
+        margin-right: 8px;
+        white-space: nowrap;
+      }
+
+      &-dashed {
+        display: inline-block;
+        width: 100%;
+        border-bottom: 2px dotted $background-color-gray;
+      }
+
+      &-selected {
+        margin-left: 8px;
+        text-align: right;
+        color: $text-color-gray;
+      }
+    }
+  }
+
+  &__price {
+    margin-top: 32px;
+
+    font-size: rem(16px);
+    line-height: rem(16px);
+    font-weight: 500;
+  }
+
+  &__btn {
+    width: 100%;
+    margin-top: 32px;
+  }
 }
