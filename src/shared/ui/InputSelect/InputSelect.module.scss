@@ -1,0 +1,11 @@
+.input-select {
+  position: relative;
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    width: 220px;
+  }
+}

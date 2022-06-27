@@ -1,9 +1,9 @@
 import { ILocation } from '../interface/ILoacation';
 import { IOrder } from '../interface/IOrder';
 
-const storage = localStorage.getItem('pointOfIssue');
-const storageParse: ILocation = storage ? JSON.parse(storage) : { city: '', address: '' };
-const pointOfIssueStorage = `${storageParse.city}${storageParse.address ? ', ' + storageParse.address : ''}`;
+const storage = localStorage.getItem('location');
+const storageParse: ILocation = storage ? JSON.parse(storage) : { city: '', point: '' };
+const pointOfIssueStorage = `${storageParse.city}${storageParse.point ? ', ' + storageParse.point : ''}`;
 
 export const INIT_ORDER: IOrder = {
   pointOfIssue: {

@@ -6,7 +6,7 @@ export const setPointOfIssue = createEvent<ILocation>();
 
 export function setPointOfIssueEvent(state: IOrder, payload: ILocation) {
   localStorage.setItem('location', JSON.stringify(payload));
-  state.pointOfIssue.value = `${payload.city}, ${payload.address}`;
+  state.pointOfIssue.value = `${payload.city}${payload.point ? ', ' + payload.point : ''}`;
 
   return state;
 }

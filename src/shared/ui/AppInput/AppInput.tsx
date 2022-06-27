@@ -36,7 +36,7 @@ export const AppInput: FC<AppInputProps> = ({
   handleFocus,
   handleBlur,
 }) => {
-  const [isError, setIsError] = useState<boolean>(Boolean(error));
+  const [isError, setIsError] = useState<boolean>(!error);
 
   function onChange(str: string) {
     setIsError(false);
@@ -72,15 +72,15 @@ export const AppInput: FC<AppInputProps> = ({
             placeholder={placeholder}
             value={value}
             autoComplete={autoComplete}
+            disabled={disabled}
+            formNoValidate
             onChange={({ target }) => {
               onChange(target.value);
             }}
             onFocus={onFocus}
             onBlur={onBlur}
           />
-          <CSSTransition in={isError} timeout={300} classNames="fade" unmountOnExit>
-            <span className={cn(styles['input__label-field-error'])}>{error}</span>
-          </CSSTransition>
+          {!isError && <span className={cn(styles['input__label-field-error'])}>{error}</span>}
         </span>
       </label>
       <CSSTransition in={Boolean(value)} timeout={300} classNames="fade" unmountOnExit>

@@ -46,7 +46,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ className }) => {
           </svg>
         </div>
 
-        <span>{getCity(storeOrder)}</span>
+        <span>{getCity()}</span>
       </div>
     </header>
   );

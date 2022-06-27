@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Store
@@ -23,10 +23,6 @@ interface OrderSettingsProps {
 export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
   const storeOrder = useStore($storeOrder);
   const location = useLocation();
-
-  useMemo(() => {
-    console.log(location.search);
-  }, [location]);
 
   const OrderSection = () => {
     const fullPathname = location.pathname + location.search;

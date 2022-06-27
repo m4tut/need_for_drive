@@ -6,7 +6,7 @@
 
   &--disabled {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
   &:hover {
@@ -31,6 +31,7 @@
         width: 100%;
         padding: 3px 20px 3px 8px;
         border-bottom: 1px solid $border-color-gray;
+        text-overflow: ellipsis;
         transition: border-color 0.3s;
 
         &::placeholder {
@@ -43,7 +44,8 @@
         top: 100%;
         left: 8px;
 
-        font-size: rem(12px);
+        font-size: rem(10px);
+        line-height: rem(10px);
         color: $text-color-accent-red;
       }
     }

@@ -23,7 +23,7 @@ export const AppSelect: FC<AppSelectProps> = ({ className, selectList, isOpen, h
   }
 
   return (
-    <CSSTransition in={isOpen} timeout={300} classNames="fade" unmountOnExit>
+    <CSSTransition in={isOpen} timeout={0} unmountOnExit>
       <ul className={cn(className, styles['select'])}>
         {selectList.map((item) => {
           return (

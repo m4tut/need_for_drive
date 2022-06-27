@@ -1,5 +1,7 @@
 import { IOrder } from '../../processes/order/interface/IOrder';
 
-export function getCity({ pointOfIssue }: IOrder): string {
-  return pointOfIssue.value.split(', ')[0];
+export function getCity(): string {
+  const storage = localStorage.getItem('location');
+  const storageParse = storage ? JSON.parse(storage) : '';
+  return storageParse.city ? storageParse.city : '';
 }
