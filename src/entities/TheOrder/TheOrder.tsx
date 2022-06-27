@@ -4,15 +4,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Components
 import { AppButton, AppButtonVariant } from '~shared/ui/AppButton';
 
+// Utils
+import { dateDifference } from '~shared/utils/dateDifference';
+
 // Styles
 import cn from 'classnames';
 import styles from './TheOrder.module.scss';
 
 // Interface
 import { IOrder } from '~processes/order/interface/IOrder';
-
-// Utils
-import { dateDifference } from '~shared/utils/dateDifference';
 
 interface TheOrderProps {
   className?: string;

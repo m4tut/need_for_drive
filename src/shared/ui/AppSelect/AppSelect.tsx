@@ -8,18 +8,18 @@ import cn from 'classnames';
 import styles from './AppSelect.module.scss';
 
 // Interface
-import { ISelect } from '~shared/interfaces/ISelect';
+import { ISelect } from './interfaces/ISelect';
 
 interface AppSelectProps {
   className?: string;
   selectList: ISelect[];
   isOpen: boolean;
-  handleChange: (value: string) => void;
+  handleChange: (selected: ISelect) => void;
 }
 
 export const AppSelect: FC<AppSelectProps> = ({ className, selectList, isOpen, handleChange }) => {
-  function changeSelect(value: string) {
-    handleChange(value);
+  function changeSelect(selected: ISelect) {
+    handleChange(selected);
   }
 
   return (
@@ -28,7 +28,7 @@ export const AppSelect: FC<AppSelectProps> = ({ className, selectList, isOpen, h
         {selectList.map((item) => {
           return (
             <li
-              onClick={() => changeSelect(item.value)}
+              onClick={() => changeSelect(item)}
               className={cn(className, styles['select__item'])}
               role="button"
               key={item.value}

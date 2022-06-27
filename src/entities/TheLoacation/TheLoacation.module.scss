@@ -1,3 +1,24 @@
 .location {
-  
+  margin-top: 32px;
+
+  &__form {
+    max-width: 320px;
+
+    &-input {
+      position: relative;
+
+      &-select {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1000;
+        width: 220px;
+      }
+    }
+
+    &-city {
+      margin-bottom: 14px;
+      margin-left: 54px;
+    }
+  }
 }

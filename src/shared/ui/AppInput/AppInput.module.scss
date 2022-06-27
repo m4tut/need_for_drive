@@ -1,7 +1,13 @@
 .input {
   position: relative;
-
   font-size: rem(14px);
+
+  transition: opacity 0.3s;
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 
   &:hover {
     .input__label-field > input {
@@ -12,6 +18,8 @@
   &__label {
     display: flex;
     align-items: center;
+
+    cursor: inherit;
 
     &-field {
       position: relative;

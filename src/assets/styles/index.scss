@@ -21,7 +21,7 @@ body,
   font-weight: $font-weight-default;
   color: $text-color-basic;
 
-  @include defaultCursor();
+  cursor: url('../images/svg/cursor/default.svg'), default;
 }
 
 img {
@@ -44,7 +44,7 @@ a {
 
 a,
 button {
-  @include pointerCursor();
+  cursor: url('../images/svg/cursor/pointer.svg'), pointer;
 
   &:focus {
     outline: none;

@@ -43,15 +43,6 @@
   }
 }
 
-// Cursor
-@mixin defaultCursor() {
-  cursor: url('../images/svg/cursor/default.svg'), default;
-}
-
-@mixin pointerCursor() {
-  cursor: url('../images/svg/cursor/pointer.svg'), pointer;
-}
-
 // Gradient Effect Button
 @mixin gradientEffect($fromColor, $toColor, $percentFrom: 0%, $percentTo: 100%) {
   background: linear-gradient(90deg, $fromColor $percentFrom, $toColor $percentTo);

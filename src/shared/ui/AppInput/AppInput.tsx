@@ -10,36 +10,50 @@ import styles from './AppInput.module.scss';
 interface AppInputProps {
   children: ReactNode;
   className?: string;
-  innerClassName?: string;
   name: string;
+  value: string;
   type?: HTMLInputTypeAttribute;
-  value?: string;
   error?: string;
   autoComplete?: 'on' | 'off';
   placeholder?: string;
+  disabled?: boolean;
   handleChange?: (value: string) => void;
+  handleFocus?: () => void;
+  handleBlur?: () => void;
 }
 
 export const AppInput: FC<AppInputProps> = ({
   className,
-  innerClassName,
   children,
   name,
   type = 'text',
-  value = '',
+  value,
   error = '',
   autoComplete = 'off',
+  disabled = false,
   placeholder,
   handleChange,
+  handleFocus,
+  handleBlur,
 }) => {
-  const [inputValue, setInputValue] = useState<string>(value);
-  const [inputError, setInputError] = useState<boolean>(Boolean(error));
+  const [isError, setIsError] = useState<boolean>(Boolean(error));
 
   function onChange(str: string) {
-    setInputValue(str);
-    setInputError(false);
+    setIsError(false);
     if (typeof handleChange === 'function') {
       handleChange(str);
+    }
+  }
+
+  function onFocus() {
+    if (typeof handleFocus === 'function') {
+      handleFocus();
+    }
+  }
+
+  function onBlur() {
+    if (typeof handleBlur === 'function') {
+      handleBlur();
     }
   }
 
@@ -48,26 +62,28 @@ export const AppInput: FC<AppInputProps> = ({
   }
 
   return (
-    <div className={cn(className, styles['input'])}>
-      <label className={cn(innerClassName, styles['input__label'])}>
+    <div className={cn(className, styles['input'], disabled && styles['input--disabled'])}>
+      <label className={cn(styles['input__label'])}>
         <span className={cn(styles['input__label-text'])}>{children}</span>
         <span className={cn(styles['input__label-field'])}>
           <input
             name={name}
             type={type}
             placeholder={placeholder}
-            value={inputValue}
+            value={value}
             autoComplete={autoComplete}
             onChange={({ target }) => {
               onChange(target.value);
             }}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
-          <CSSTransition in={Boolean(inputError)} timeout={300} classNames="fade" unmountOnExit>
+          <CSSTransition in={isError} timeout={300} classNames="fade" unmountOnExit>
             <span className={cn(styles['input__label-field-error'])}>{error}</span>
           </CSSTransition>
         </span>
       </label>
-      <CSSTransition in={Boolean(inputValue)} timeout={300} classNames="fade" unmountOnExit>
+      <CSSTransition in={Boolean(value)} timeout={300} classNames="fade" unmountOnExit>
         <button className={cn(styles['input__btn'])} onClick={clearInput} type="button">
           <svg width="8" height="8" fill="none">
             <path
