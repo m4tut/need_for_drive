@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 // Store
 import { useStore } from 'effector-react';
-import { $storeAddress, $storeCity } from '~processes/order/model/store';
+import { $storeOrderLocation } from '~processes/order/model/store';
 
 // Event
 import { setCity as setCityEvent } from '~processes/order/model/events/setCity';
@@ -37,10 +37,9 @@ interface TheLoacationProps {
 }
 
 export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
-  const storeCity = useStore($storeCity);
-  const storeAddress = useStore($storeAddress);
-  const [city, setCity] = useState<string>(storeCity);
-  const [address, setAddress] = useState<string>(storeAddress);
+  const storeOrderLocation = useStore($storeOrderLocation);
+  const [city, setCity] = useState<string>(storeOrderLocation.city);
+  const [address, setAddress] = useState<string>(storeOrderLocation.address);
   const [addressData, setAddressData] = useState<IAddress[]>(getAddressList());
   const [error, setError] = useState<IError>({ city: '', address: '' });
 

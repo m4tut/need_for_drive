@@ -1,10 +1,9 @@
 import { IOrder } from '../interface/IOrder';
-import { initLocation } from '../functons/initLocation';
 
 export const INIT_ORDER: IOrder = {
   location: {
     name: 'Пункт выдачи',
-    value: initLocation(),
+    value: '',
     visible: true,
   },
   model: {

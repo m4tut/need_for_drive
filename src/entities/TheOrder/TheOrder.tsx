@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Components
-import { AppButton, AppButtonVariant } from '~shared/ui/AppButton';
+import { AppButton } from '~shared/ui/AppButton';
 
 // Utils
 import { dateDifference } from '~shared/utils/dateDifference';
@@ -13,15 +13,12 @@ import styles from './TheOrder.module.scss';
 
 // Interface
 import { IOrder } from '~processes/order/interface/IOrder';
+import { IOrderBtnSettings } from './interface/IOrderBtnSettings';
 
 interface TheOrderProps {
   className?: string;
   orderPoints: IOrder;
-  btnSettings: {
-    text: string;
-    variant: AppButtonVariant;
-    disabled: boolean;
-  };
+  btnSettings: IOrderBtnSettings;
 }
 
 export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSettings }) => {
@@ -30,27 +27,27 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
   const location = useLocation();
 
   function confirmation() {
-    navigate('/order?section=completed');
+    navigate('/order?step=completed');
   }
 
   function nextSection() {
     switch (location.search) {
-      case '?section=location':
-        navigate('/order?section=model');
+      case '?step=location':
+        navigate('/order?step=model');
         break;
 
-      case '?section=model':
-        navigate('/order?section=additionally');
+      case '?step=model':
+        navigate('/order?step=additionally');
         break;
 
-      case '?section=additionally':
-        navigate('/order?section=total');
+      case '?step=additionally':
+        navigate('/order?step=total');
         break;
 
-      case '?section=total':
+      case '?step=total':
         setIsOpenModal(true);
         break;
-      case '?section=completed':
+      case '?step=completed':
         console.log('отменить заказ');
         break;
     }

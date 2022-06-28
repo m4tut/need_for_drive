@@ -1,4 +1,4 @@
-import { ICity } from './../interface/ICity';
+import { ICity } from '../interface/ICity';
 
 export const CITYS: ICity[] = [
   {

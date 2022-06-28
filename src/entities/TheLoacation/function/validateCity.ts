@@ -1,5 +1,5 @@
 import { dataFilter } from '~entities/TheLoacation/function/dataFilter';
-import { ICity } from './../interface/ICity';
+import { ICity } from '../interface/ICity';
 
 export function validateCity(citys: ICity[], value: string) {
   if (!value) {

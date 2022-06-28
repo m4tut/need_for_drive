@@ -1,12 +1,11 @@
-import { getLocation } from '../functons/getLocation';
+import { ILocation } from '../interface/ILoacation';
 
-export function initLocation() {
-  const location = getLocation();
-
+export function getFullLocation(location: ILocation) {
   let address = '';
 
   if (location.address) {
     address = ', ' + location.address.replaceAll(' ', '\u00a0');
   }
+
   return `${location.city}${address}`;
 }

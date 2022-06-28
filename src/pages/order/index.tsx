@@ -1,5 +1,9 @@
 import { FC } from 'react';
 
+// Store
+import { useStore } from 'effector-react';
+import { $storeOrder } from '~processes/order/model/store';
+
 // Components
 import { Default } from '~shared/layouts/Default';
 import { Container } from '~shared/layouts/Container';
@@ -11,10 +15,9 @@ import { OrderSettings } from '~widgets/OrderSettings';
 import cn from 'classnames';
 import styles from './Order.module.scss';
 
-// Config
-import { BREADCRUMBS } from './config/breadcrumbs';
-
 const Order: FC = () => {
+  const storeOrder = useStore($storeOrder);
+
   return (
     <Default>
       <div className={cn(styles['order'])}>
@@ -24,7 +27,7 @@ const Order: FC = () => {
 
         <div className={cn(styles['order__breadcrumbs'])}>
           <Container className={cn(styles['order__breadcrumbs-container'])}>
-            <AppBreadcrumbs breadcrumbs={BREADCRUMBS} />
+            <AppBreadcrumbs breadcrumbs={storeOrder.breadcrumbs} />
           </Container>
         </div>
 

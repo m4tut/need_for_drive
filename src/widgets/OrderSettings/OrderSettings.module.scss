@@ -10,6 +10,6 @@
   }
 
   @include mediaMin($desktop) {
-    grid-template-columns: 1fr 0.35fr;
+    grid-template-columns: 1fr 0.5fr;
   }
 }

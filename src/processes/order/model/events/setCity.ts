@@ -16,8 +16,6 @@ export function setCityEvent(payload: string): string {
     address: location.address,
   };
 
-  console.log(newLocation);
-
   localStorage.setItem('location', JSON.stringify(newLocation));
 
   return payload;

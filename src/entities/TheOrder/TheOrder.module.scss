@@ -20,10 +20,15 @@
   }
 
   &__list {
-    font-size: rem(14px);
-    line-height: rem(16px);
+    font-size: rem(12px);
+    line-height: rem(14px);
     font-weight: 300;
     list-style: none;
+
+    @include mediaMin($mobile-small) {
+      font-size: rem(14px);
+      line-height: rem(16px);
+    }
 
     &-item {
       display: flex;
