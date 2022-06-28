@@ -5,7 +5,7 @@ export const CITYS: ICity[] = [
     text: 'Ульяновск',
     value: 'Ulyanovsk',
     coordinates: [54.314192, 48.403132],
-    pointOfIssue: [
+    address: [
       {
         text: 'проспект Нариманова, 24',
         value: 'Narimanov Avenue, 24',
@@ -32,7 +32,7 @@ export const CITYS: ICity[] = [
     text: 'Самара',
     value: 'Samara',
     coordinates: [53.195878, 50.100202],
-    pointOfIssue: [
+    address: [
       {
         text: 'Московское шоссе, 17К',
         value: 'Moscow highway, 17K',
@@ -49,7 +49,7 @@ export const CITYS: ICity[] = [
     text: 'Саранск',
     value: 'Saransk',
     coordinates: [54.187433, 45.183938],
-    pointOfIssue: [
+    address: [
       {
         text: 'проспект Ленина, 37',
         value: 'Lenin Avenue, 37',
@@ -66,7 +66,7 @@ export const CITYS: ICity[] = [
     text: 'Казань',
     value: 'Kazan',
     coordinates: [55.796127, 49.106414],
-    pointOfIssue: [
+    address: [
       {
         text: 'Проточная улица, 10',
         value: 'Protochnaya street, 10',

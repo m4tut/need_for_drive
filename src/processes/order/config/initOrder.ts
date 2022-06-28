@@ -1,15 +1,10 @@
-import { ILocation } from '../interface/ILoacation';
 import { IOrder } from '../interface/IOrder';
-
-const storage = localStorage.getItem('location');
-const storageParse: ILocation = storage ? JSON.parse(storage) : { city: '', point: '' };
-const pointOfIssueStorage = `${storageParse.city}${storageParse.point ? ', ' + storageParse.point : ''}`;
 
 export const INIT_ORDER: IOrder = {
   pointOfIssue: {
     name: 'Пункт выдачи',
-    value: pointOfIssueStorage,
-    visible: true,
+    value: '',
+    visible: false,
   },
   model: {
     name: 'Модель',

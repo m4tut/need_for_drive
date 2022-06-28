@@ -1,8 +1,8 @@
 import { dataFilter } from './dataFilter';
-import { CITYS } from './../config/citys';
-import { IPointOfIssue } from './../interface/IPointOfIssue';
+import { CITYS } from '../config/citys';
+import { IAddres } from '../interface/IAddres';
 
-export function getDataPointOfIssue(): IPointOfIssue[] {
+export function getAddressList(): IAddres[] {
   const storage = localStorage.getItem('location');
   const storageParse = storage ? JSON.parse(storage) : '';
 
@@ -16,5 +16,5 @@ export function getDataPointOfIssue(): IPointOfIssue[] {
     return [];
   }
 
-  return filteredData[0].pointOfIssue;
+  return filteredData[0].address;
 }

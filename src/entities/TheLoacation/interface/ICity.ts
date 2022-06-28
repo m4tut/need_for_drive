@@ -1,7 +1,7 @@
-import { IPointOfIssue } from './IPointOfIssue';
+import { IAddres } from './IAddres';
 import { ISelect } from '~shared/ui/AppSelect';
 
 export interface ICity extends ISelect {
-  pointOfIssue: IPointOfIssue[];
+  address: IAddres[];
   coordinates: [number, number];
 }

@@ -1,21 +1,23 @@
 import { FC } from 'react';
 
+// Store
+import { useStore } from 'effector-react';
+import { $storeCity } from '~processes/order/model/store';
+
 // Components
 import { Link } from 'react-router-dom';
-
-// Utils
-import { getCity } from '~shared/utils/getCity';
 
 // Styles
 import cn from 'classnames';
 import styles from './AppHeader.module.scss';
-import { useStore } from 'effector-react';
 
 interface AppHeaderProps {
   className?: string;
 }
 
 export const AppHeader: FC<AppHeaderProps> = ({ className }) => {
+  const storeCity = useStore($storeCity);
+
   return (
     <header className={cn(className, styles['header'])}>
       <Link className={cn(styles['header__link'])} to="/">
@@ -41,7 +43,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ className }) => {
           </svg>
         </div>
 
-        <span>{getCity()}</span>
+        <span>{storeCity}</span>
       </div>
     </header>
   );

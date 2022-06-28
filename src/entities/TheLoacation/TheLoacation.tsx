@@ -1,16 +1,20 @@
 import { FC, useState } from 'react';
 
+// Store
+import { useStore } from 'effector-react';
+import { $storeAddress, $storeCity } from '~processes/order/model/store';
+
+// Event
+import { setCity as setCityEvent } from '~processes/order/model/events/setCity';
+import { setAddress as setAddressEvent } from '~processes/order/model/events/setAddress';
+
 // Components
 import { InputSelect } from '~shared/ui/InputSelect';
 
-// Utils
-import { getCity } from '~shared/utils/getCity';
-import { getPointOfIssue } from '~shared/utils/getPointOfIssue';
-
 // Function
 import { validateCity } from './function/validateCity';
-import { validatePointOfIssue } from './function/validatePointOfIssue';
-import { getDataPointOfIssue } from './function/getDataPointOfIssue';
+import { validateAddress } from './function/validateAddress';
+import { getAddressList } from './function/getAddressList';
 import { dataFilter } from './function/dataFilter';
 
 // Styles
@@ -21,12 +25,11 @@ import styles from './TheLoacation.module.scss';
 import { CITYS } from './config/citys';
 
 // Interface
-import { IPointOfIssue } from './interface/IPointOfIssue';
-import { setPointOfIssue } from '~processes/order/model/events/setPointOfIssue';
+import { IAddres } from './interface/IAddres';
 
 interface IError {
   city: string;
-  point: string;
+  address: string;
 }
 
 interface TheLoacationProps {
@@ -34,10 +37,12 @@ interface TheLoacationProps {
 }
 
 export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
-  const [city, setCity] = useState<string>(getCity());
-  const [point, setPoint] = useState<string>(getPointOfIssue());
-  const [pointData, setPointData] = useState<IPointOfIssue[]>(getDataPointOfIssue());
-  const [error, setError] = useState<IError>({ city: '', point: '' });
+  const storeCity = useStore($storeCity);
+  const storeAddress = useStore($storeAddress);
+  const [city, setCity] = useState<string>(storeCity);
+  const [address, setAddress] = useState<string>(storeAddress);
+  const [addressData, setAddressData] = useState<IAddres[]>(getAddressList());
+  const [error, setError] = useState<IError>({ city: '', address: '' });
 
   function changeCity(value: string) {
     setCity(value);
@@ -46,24 +51,24 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
 
     if (!errorCity) {
       const cityData = dataFilter(CITYS, 'text', value)[0];
-      setPointData(cityData.pointOfIssue);
-      setPointOfIssue({ city: value, point: '' });
+      setCityEvent(value);
+      setAddressData(cityData.address);
     } else {
-      setPoint('');
-      setPointData([]);
-      setPointOfIssue({ city: '', point: '' });
+      setAddress('');
+      setAddressData([]);
+      setCityEvent('');
     }
   }
 
-  function changePointOfIssue(value: string) {
-    setPoint(value);
-    const errorPoint = validatePointOfIssue(pointData, value);
-    setError({ ...error, point: errorPoint });
+  function changeAddress(value: string) {
+    setAddress(value);
+    const errorAddress = validateAddress(addressData, value);
+    setError({ ...error, address: errorAddress });
 
-    if (!errorPoint) {
-      setPointOfIssue({ city: city, point: value });
+    if (!errorAddress) {
+      setAddressEvent(value);
     } else {
-      setPointOfIssue({ city: city, point: '' });
+      setAddressEvent('');
     }
   }
 
@@ -83,13 +88,13 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
         </InputSelect>
 
         <InputSelect
-          name="point"
+          name="address"
           placeholder="Выберете пункт выдачи"
-          value={point}
-          error={error.point}
-          disabled={pointData.length < 1}
-          selectList={pointData}
-          handleChange={changePointOfIssue}
+          value={address}
+          error={error.address}
+          disabled={addressData.length < 1}
+          selectList={dataFilter(addressData, 'text', address)}
+          handleChange={changeAddress}
         >
           Пункт&#160;выдачи
         </InputSelect>
