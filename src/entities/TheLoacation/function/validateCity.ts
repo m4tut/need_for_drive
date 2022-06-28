@@ -1,4 +1,4 @@
-import { cityFilter } from '~entities/TheLoacation/function/cityFilter';
+import { dataFilter } from '~entities/TheLoacation/function/dataFilter';
 import { ICity } from './../interface/ICity';
 
 export function validateCity(citys: ICity[], value: string) {
@@ -6,7 +6,7 @@ export function validateCity(citys: ICity[], value: string) {
     return 'Выберете город';
   }
 
-  const city = cityFilter(citys, 'text', value);
+  const city = dataFilter(citys, 'text', value);
 
   if (!city.length) {
     return 'Фелиалы в выбраонном городе отсутствют';

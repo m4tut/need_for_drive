@@ -11,7 +11,7 @@ import { getPointOfIssue } from '~shared/utils/getPointOfIssue';
 import { validateCity } from './function/validateCity';
 import { validatePointOfIssue } from './function/validatePointOfIssue';
 import { getDataPointOfIssue } from './function/getDataPointOfIssue';
-import { cityFilter } from './function/cityFilter';
+import { dataFilter } from './function/dataFilter';
 
 // Styles
 import cn from 'classnames';
@@ -45,8 +45,8 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
     setError({ ...error, city: errorCity });
 
     if (!errorCity) {
-      const cityData = cityFilter(CITYS, 'text', value)[0];
-      setPointData(cityData ? cityData.pointOfIssue : []);
+      const cityData = dataFilter(CITYS, 'text', value)[0];
+      setPointData(cityData.pointOfIssue);
       setPointOfIssue({ city: value, point: '' });
     } else {
       setPoint('');
@@ -76,7 +76,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           placeholder="Выберете город"
           value={city}
           error={error.city}
-          selectList={cityFilter(CITYS, 'text', city)}
+          selectList={dataFilter(CITYS, 'text', city)}
           handleChange={changeCity}
         >
           Город

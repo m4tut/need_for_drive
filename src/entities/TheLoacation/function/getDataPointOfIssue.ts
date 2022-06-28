@@ -1,4 +1,4 @@
-import { cityFilter } from './cityFilter';
+import { dataFilter } from './dataFilter';
 import { CITYS } from './../config/citys';
 import { IPointOfIssue } from './../interface/IPointOfIssue';
 
@@ -10,7 +10,7 @@ export function getDataPointOfIssue(): IPointOfIssue[] {
     return [];
   }
 
-  const filteredData = cityFilter(CITYS, 'text', storageParse.city);
+  const filteredData = dataFilter(CITYS, 'text', storageParse.city);
 
   if (filteredData.length < 1) {
     return [];

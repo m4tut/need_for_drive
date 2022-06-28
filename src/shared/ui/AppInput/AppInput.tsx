@@ -1,4 +1,4 @@
-import { FC, HTMLInputTypeAttribute, ReactNode, useState } from 'react';
+import { FC, HTMLInputTypeAttribute, ReactNode } from 'react';
 
 // Components
 import { CSSTransition } from 'react-transition-group';
@@ -36,10 +36,9 @@ export const AppInput: FC<AppInputProps> = ({
   handleFocus,
   handleBlur,
 }) => {
-  const [isError, setIsError] = useState<boolean>(!error);
+  const errorMessage = error;
 
   function onChange(str: string) {
-    setIsError(false);
     if (typeof handleChange === 'function') {
       handleChange(str);
     }
@@ -80,7 +79,9 @@ export const AppInput: FC<AppInputProps> = ({
             onFocus={onFocus}
             onBlur={onBlur}
           />
-          {!isError && <span className={cn(styles['input__label-field-error'])}>{error}</span>}
+          <CSSTransition in={!!error} timeout={300} classNames="fade" unmountOnExit>
+            <span className={cn(styles['input__label-field-error'])}>{errorMessage}</span>
+          </CSSTransition>
         </span>
       </label>
       <CSSTransition in={Boolean(value)} timeout={300} classNames="fade" unmountOnExit>
