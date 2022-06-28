@@ -1,4 +1,4 @@
-import { createStore } from 'effector';
+import { createStore, combine } from 'effector';
 
 // Event
 import { setAddress, setAddressEvent } from './events/setAddress';
@@ -16,3 +16,7 @@ export const $storeCity = createStore<string>(location.city).on(setCity, (store,
 export const $storeAddress = createStore<string>(location.address).on(setAddress, (store, payload: string) =>
   setAddressEvent(payload)
 );
+
+export const $storeOrder = combine($storeCity, $storeAddress, (city, address) => {
+  return `Hello, ${city}. Your balance is ${address}`;
+});

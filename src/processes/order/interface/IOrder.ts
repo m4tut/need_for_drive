@@ -7,7 +7,7 @@ type OrderItem<T> = {
 };
 
 export interface IOrder {
-  pointOfIssue: OrderItem<string>;
+  location: OrderItem<string>;
   model: OrderItem<string>;
   color: OrderItem<string>;
   rentalDuration: OrderItem<IRentalDuration>;
