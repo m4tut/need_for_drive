@@ -1,6 +1,6 @@
-import { IAddres } from '../interface/IAddres';
+import { IAddress } from '../interface/IAddress';
 
-export function validateAddress(pointOfIssue: IAddres[], value: string) {
+export function validateAddress(pointOfIssue: IAddress[], value: string) {
   if (!value) {
     return 'Выберете пункт выдачи';
   }

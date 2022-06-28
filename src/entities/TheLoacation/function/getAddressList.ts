@@ -1,8 +1,8 @@
 import { dataFilter } from './dataFilter';
 import { CITYS } from '../config/citys';
-import { IAddres } from '../interface/IAddres';
+import { IAddress } from '../interface/IAddress';
 
-export function getAddressList(): IAddres[] {
+export function getAddressList(): IAddress[] {
   const storage = localStorage.getItem('location');
   const storageParse = storage ? JSON.parse(storage) : '';
 

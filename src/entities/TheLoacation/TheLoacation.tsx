@@ -25,7 +25,7 @@ import styles from './TheLoacation.module.scss';
 import { CITYS } from './config/citys';
 
 // Interface
-import { IAddres } from './interface/IAddres';
+import { IAddress } from './interface/IAddress';
 
 interface IError {
   city: string;
@@ -41,7 +41,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
   const storeAddress = useStore($storeAddress);
   const [city, setCity] = useState<string>(storeCity);
   const [address, setAddress] = useState<string>(storeAddress);
-  const [addressData, setAddressData] = useState<IAddres[]>(getAddressList());
+  const [addressData, setAddressData] = useState<IAddress[]>(getAddressList());
   const [error, setError] = useState<IError>({ city: '', address: '' });
 
   function changeCity(value: string) {

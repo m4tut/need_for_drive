@@ -1,7 +1,7 @@
 import { createEvent } from 'effector';
 
-// Config
-import { initLocation } from './../../config/initLocation';
+// Functions
+import { getLocation } from '~processes/order/functons/getLocation';
 
 // Interface
 import { ILocation } from '~processes/order/interface/ILoacation';
@@ -9,7 +9,7 @@ import { ILocation } from '~processes/order/interface/ILoacation';
 export const setAddress = createEvent<string>();
 
 export function setAddressEvent(payload: string): string {
-  const location = initLocation;
+  const location = getLocation();
 
   const newLocation: ILocation = {
     city: location.city,

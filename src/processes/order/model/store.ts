@@ -4,13 +4,15 @@ import { createStore } from 'effector';
 import { setAddress, setAddressEvent } from './events/setAddress';
 import { setCity, setCityEvent } from './events/setCity';
 
-// Config
-import { initLocation } from '../config/initLocation';
+// Functions
+import { getLocation } from '../functons/getLocation';
 
-export const $storeCity = createStore<string>(initLocation.city).on(setCity, (store, payload: string) =>
+const location = getLocation();
+
+export const $storeCity = createStore<string>(location.city).on(setCity, (store, payload: string) =>
   setCityEvent(payload)
 );
 
-export const $storeAddress = createStore<string>(initLocation.address).on(setAddress, (store, payload: string) =>
+export const $storeAddress = createStore<string>(location.address).on(setAddress, (store, payload: string) =>
   setAddressEvent(payload)
 );

@@ -1,3 +1,3 @@
 export * from './interface/ICity';
-export * from './interface/IAddres';
+export * from './interface/IAddress';
 export * from './TheLoacation';

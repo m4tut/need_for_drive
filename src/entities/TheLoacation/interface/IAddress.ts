@@ -1,5 +1,5 @@
 import { ISelect } from '~shared/ui/AppSelect';
 
-export interface IAddres extends ISelect {
+export interface IAddress extends ISelect {
   coordinates: [number, number];
 }
