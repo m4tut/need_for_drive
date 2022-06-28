@@ -1,15 +1,40 @@
 .order-settings {
-  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-  @include mediaMin($laptop) {
-    display: grid;
-    grid-template-columns: 1fr 0.7fr;
-    gap: 30px;
-    height: 100%;
-    margin-top: 0;
+  &__breadcrumbs {
+    border-top: 1px solid $border-color-gray-light;
+    border-bottom: 1px solid $border-color-gray-light;
+
+    &-container {
+      padding: 0;
+
+      @include mediaMin($mobile) {
+        padding: 0 16px;
+      }
+
+      @include mediaMin($laptop) {
+        padding: 0 48px;
+      }
+    }
   }
 
-  @include mediaMin($desktop) {
-    grid-template-columns: 1fr 0.5fr;
+  &__content {
+    margin-top: 16px;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @include mediaMin($laptop) {
+      display: grid;
+      grid-template-columns: 1fr 0.7fr;
+      gap: 30px;
+      height: 100%;
+      margin-top: 0;
+    }
+
+    @include mediaMin($desktop) {
+      grid-template-columns: 1fr 0.5fr;
+    }
   }
 }

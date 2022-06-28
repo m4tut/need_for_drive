@@ -9,6 +9,7 @@ import { setCity as setCityEvent } from '~processes/order/model/events/setCity';
 import { setAddress as setAddressEvent } from '~processes/order/model/events/setAddress';
 
 // Components
+import { AppMap } from '~shared/ui/AppMap';
 import { InputSelect } from '~shared/ui/InputSelect';
 
 // Function
@@ -98,6 +99,11 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           Пункт&#160;выдачи
         </InputSelect>
       </form>
+
+      <div className={cn(styles['location__map'])}>
+        <div className={cn(styles['location__map-text'])}>Выбрать на карте:</div>
+        <AppMap center={[55.796127, 49.106414]} />
+      </div>
     </div>
   );
 };

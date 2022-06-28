@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Store
 import { useStore } from 'effector-react';
@@ -9,6 +9,8 @@ import { $storeOrder } from '~processes/order/model/store';
 import { setOrderStep } from '~processes/order/model/events/setOrderStep';
 
 // Components
+import { Container } from '~shared/layouts/Container';
+import { AppBreadcrumbs } from '~shared/ui/AppBreadcrumbs';
 import { TheLoacation } from '~entities/TheLoacation';
 import { TheOrder } from '~entities/TheOrder';
 import { TheAdditionally } from '~entities/TheAdditionally';
@@ -26,8 +28,44 @@ interface OrderSettingsProps {
 export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
   const storeOrder = useStore($storeOrder);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const OrderSection = () => {
+  useEffect(() => {
+    if (
+      storeOrder.completed.location &&
+      storeOrder.completed.model &&
+      storeOrder.completed.additionally &&
+      storeOrder.completed.total &&
+      location.search !== '?step=completed'
+    ) {
+      navigate('/order?step=completed');
+    }
+
+    switch (location.search) {
+      case '?step=model':
+        if (!storeOrder.completed.location) {
+          navigate('/order?step=location');
+        }
+        break;
+      case '?step=additionally':
+        if (!storeOrder.completed.location) {
+          navigate('/order?step=model');
+        }
+        break;
+      case '?step=total':
+        if (!storeOrder.completed.location) {
+          navigate('/order?step=additionally');
+        }
+        break;
+      default:
+        if (location.search !== '?step=location') {
+          navigate('/order?step=location');
+        }
+        break;
+    }
+  });
+
+  const OrderStep = () => {
     switch (location.search) {
       case '?step=location':
         setOrderStep('location');
@@ -46,8 +84,15 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
 
   return (
     <div className={cn(className, styles['order-settings'])}>
-      {OrderSection()}
-      <TheOrder orderPoints={storeOrder.order} btnSettings={storeOrder.btnSettings} />
+      <div className={cn(styles['order-settings__breadcrumbs'])}>
+        <Container className={cn(styles['order-settings__breadcrumbs-container'])}>
+          <AppBreadcrumbs breadcrumbs={storeOrder.breadcrumbs} />
+        </Container>
+      </div>
+      <Container className={cn(className, styles['order-settings__content'])}>
+        {OrderStep()}
+        <TheOrder orderPoints={storeOrder.order} btnSettings={storeOrder.btnSettings} />
+      </Container>
     </div>
   );
 };

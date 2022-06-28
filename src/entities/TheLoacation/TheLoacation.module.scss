@@ -21,4 +21,16 @@
       margin-left: 54px;
     }
   }
+
+  &__map {
+    margin: 45px 0;
+
+    font-size: rem(14px);
+    line-height: rem(16px);
+    font-weight: 300;
+
+    &-text {
+      margin-bottom: 16px;
+    }
+  }
 }
