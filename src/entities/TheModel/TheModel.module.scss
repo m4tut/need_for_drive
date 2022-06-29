@@ -1,3 +1,8 @@
 .model {
-  
+  margin-top: 32px;
+
+  &__filter {
+    display: flex;
+    margin-bottom: 48px;
+  }
 }
