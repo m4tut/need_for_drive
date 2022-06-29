@@ -17,6 +17,7 @@ import { validateCity } from './function/validateCity';
 import { validateAddress } from './function/validateAddress';
 import { getAddressList } from './function/getAddressList';
 import { dataFilter } from './function/dataFilter';
+import { getCoordinates } from './function/getCoordinates';
 
 // Styles
 import cn from 'classnames';
@@ -43,6 +44,10 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
   const [address, setAddress] = useState<string>(storeOrderLocation.address);
   const [addressData, setAddressData] = useState<IAddress[]>(getAddressList());
   const [error, setError] = useState<IError>({ city: '', address: '' });
+  const [zoom, setZoom] = useState<number>(storeOrderLocation.address ? 14 : 11);
+  const [coordinates, setCoordinates] = useState<[number, number]>(
+    getCoordinates(storeOrderLocation.city, storeOrderLocation.address)
+  );
 
   function changeCity(value: string) {
     setCity(value);
@@ -53,11 +58,14 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
       const cityData = dataFilter(CITYS, 'text', value)[0];
       setCityEvent(value);
       setAddressData(cityData.address);
+      setZoom(11);
     } else {
       setAddress('');
       setAddressData([]);
       setCityEvent('');
+      setZoom(11);
     }
+    setCoordinates(getCoordinates(value, storeOrderLocation.address));
   }
 
   function changeAddress(value: string) {
@@ -67,9 +75,12 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
 
     if (!errorAddress) {
       setAddressEvent(value);
+      setZoom(14);
     } else {
       setAddressEvent('');
+      setZoom(11);
     }
+    setCoordinates(getCoordinates(storeOrderLocation.city, value));
   }
 
   return (
@@ -102,7 +113,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
 
       <div className={cn(styles['location__map'])}>
         <div className={cn(styles['location__map-text'])}>Выбрать на карте:</div>
-        <AppMap center={[55.796127, 49.106414]} />
+        <AppMap center={coordinates} placemark={addressData} zoom={zoom} handleClickPlacemark={changeAddress} />
       </div>
     </div>
   );

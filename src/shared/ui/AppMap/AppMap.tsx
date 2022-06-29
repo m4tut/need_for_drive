@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { FullscreenControl, GeoObject, Map, Placemark, YMaps, ZoomControl } from 'react-yandex-maps';
+import { FullscreenControl, Map, Placemark, YMaps, ZoomControl } from 'react-yandex-maps';
 
 // Config
 import { options } from './config/options';
@@ -8,13 +8,27 @@ import { options } from './config/options';
 import cn from 'classnames';
 import styles from './AppMap.module.scss';
 
+// Images
+import placemarkImg from '~assets/images/svg/placemark.png';
+
+// Interface
+import { IAddress } from '~entities/TheLoacation';
+
 interface MapProps {
   className?: string;
   center: [number, number];
-  placemark?: [number, number][];
+  zoom?: number;
+  placemark?: IAddress[];
+  handleClickPlacemark?: (address: string) => void;
 }
 
-export const AppMap: FC<MapProps> = ({ className, center, placemark }) => {
+export const AppMap: FC<MapProps> = ({ className, center, zoom = 12, handleClickPlacemark, placemark }) => {
+  function onClickPlacemark(address: string) {
+    if (typeof handleClickPlacemark === 'function') {
+      handleClickPlacemark(address);
+    }
+  }
+
   return (
     <YMaps>
       <Map
@@ -23,9 +37,40 @@ export const AppMap: FC<MapProps> = ({ className, center, placemark }) => {
           center,
           ...options,
         }}
+        state={{
+          center,
+          zoom,
+        }}
+        instanceRef={(ref: any) => {
+          if (ref && ref.events) {
+            ref.events.add('click', () => {
+              ref.balloon.close();
+            });
+          }
+        }}
       >
-        {placemark && placemark.map((item) => <Placemark key={`placemark_${item[0]}`} geometry={[...item]} />)}
-        <FullscreenControl options={{ float: 'left' }} />
+        {placemark &&
+          placemark.map((item) => (
+            <Placemark
+              key={item.value}
+              modules={['geoObject.addon.balloon']}
+              geometry={[...item.coordinates]}
+              defaultOptions={{
+                iconLayout: 'default#image',
+                iconImageHref: placemarkImg,
+                iconImageSize: [20, 20],
+                iconImageOffset: [-10, -10],
+              }}
+              properties={{
+                balloonContentHeader: item.text,
+                balloonContent: `${item.coordinates[0]}, ${item.coordinates[1]}`,
+              }}
+              onClick={() => {
+                onClickPlacemark(item.text);
+              }}
+            />
+          ))}
+        <FullscreenControl />
         <ZoomControl />
       </Map>
     </YMaps>
