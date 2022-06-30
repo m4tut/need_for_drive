@@ -1,9 +1,9 @@
 .order {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 
   @include mediaMin($mobile) {
-    display: flex;
-    flex-direction: column;
     padding-left: 86px;
   }
 

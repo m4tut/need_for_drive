@@ -1,5 +1,5 @@
 .order {
-  padding-top: 32px;
+  padding: 32px 0;
 
   @include mediaMin($laptop) {
     height: 100%;

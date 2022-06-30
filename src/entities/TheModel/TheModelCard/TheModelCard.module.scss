@@ -1,0 +1,64 @@
+.model-card {
+  position: relative;
+  padding: 16px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: block;
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
+
+    background-color: transparent;
+    border: 1px solid $border-color-gray-light;
+
+    transition: border 0.3s;
+  }
+
+  &:hover {
+    &::after {
+      z-index: 50;
+      border: 1px solid $border-color-gray;
+    }
+  }
+
+  &--active {
+    &::after {
+      z-index: 100;
+      border: 1px solid $border-color-accent-green;
+    }
+
+    &:hover {
+      &::after {
+        z-index: 50;
+        border: 1px solid $border-color-accent-green;
+      }
+    }
+  }
+
+  &__content {
+    &-model {
+      font-size: rem(18px);
+      line-height: rem(21px);
+      text-transform: uppercase;
+    }
+
+    &-price {
+      font-size: rem(14px);
+      color: $text-color-gray;
+    }
+  }
+
+  &__img {
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      max-width: 256px;
+    }
+  }
+}

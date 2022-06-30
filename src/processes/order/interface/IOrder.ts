@@ -12,7 +12,5 @@ export interface IOrder {
   color: OrderItem<string>;
   rentalDuration: OrderItem<IRentalDuration>;
   rate: OrderItem<string>;
-  tankFull: OrderItem<boolean>;
   babySeat: OrderItem<boolean>;
-  rightHandDrive: OrderItem<boolean>;
 }

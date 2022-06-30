@@ -77,6 +77,14 @@
     @include mediaMin($mobile) {
       margin-top: 25vh;
     }
+
+    @include mediaMin($tablet) {
+      margin-left: 100px;
+    }
+
+    @include mediaMin($laptop) {
+      margin-left: 130px;
+    }
   }
 
   &__lang-toggle {

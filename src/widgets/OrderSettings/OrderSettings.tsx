@@ -89,9 +89,11 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
           <AppBreadcrumbs breadcrumbs={storeOrder.breadcrumbs} />
         </Container>
       </div>
-      <Container className={cn(className, styles['order-settings__content'])}>
-        {OrderStep()}
-        <TheOrder orderPoints={storeOrder.order} btnSettings={storeOrder.btnSettings} />
+      <Container className={cn(styles['order-settings__content'])}>
+        <div className={cn(styles['order-settings__content-left'])}>{OrderStep()}</div>
+        <div className={cn(styles['order-settings__content-right'])}>
+          <TheOrder orderPoints={storeOrder.order} btnSettings={storeOrder.btnSettings} />
+        </div>
       </Container>
     </div>
   );

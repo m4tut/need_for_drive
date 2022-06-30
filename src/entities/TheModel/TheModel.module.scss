@@ -5,4 +5,11 @@
     display: flex;
     margin-bottom: 48px;
   }
+
+  &__cards {
+    @include mediaMin($mobile) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 }

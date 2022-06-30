@@ -4,9 +4,11 @@ import { createStore, combine } from 'effector';
 import { setAddress, setAddressEvent } from './events/setAddress';
 import { setCity, setCityEvent } from './events/setCity';
 import { setOrderStep, setOrderStepEvent } from './events/setOrderStep';
+import { setModel, setModelEvent } from './events/setModel';
 
 // Functions
 import { getLocation } from '../functons/getLocation';
+import { getModel } from '../functons/getModel';
 
 // Controller
 import { orderController } from './controller/orderController';
@@ -32,6 +34,15 @@ export const $storeOrderLocation = combine($storeCity, $storeAddress, (city, add
   return { city, address };
 });
 
-export const $storeOrder = combine($storeOrderStep, $storeOrderLocation, (orderStep, orderLocation) => {
-  return orderController(orderStep, orderLocation);
-});
+export const $storeModel = createStore<string>(getModel()).on(setModel, (store, payload: string) =>
+  setModelEvent(payload)
+);
+
+export const $storeOrder = combine(
+  $storeOrderStep,
+  $storeOrderLocation,
+  $storeModel,
+  (orderStep, orderLocation, orderModel) => {
+    return orderController(orderStep, orderLocation, orderModel);
+  }
+);

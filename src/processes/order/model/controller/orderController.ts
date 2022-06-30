@@ -28,8 +28,9 @@ const btnSettings: IOrderBtnSettings = {
   disabled: true,
 };
 
-export function orderController(step: OrderStep, location: ILocation): IOrderController {
+export function orderController(step: OrderStep, location: ILocation, model: string): IOrderController {
   const locationCompleted = Boolean(location.city && location.address);
+  const modelCompleted = locationCompleted && Boolean(model);
 
   switch (step) {
     case 'location':
@@ -39,10 +40,12 @@ export function orderController(step: OrderStep, location: ILocation): IOrderCon
 
     case 'model':
       btnSettings.text = 'Дополнительно';
-      btnSettings.disabled = true;
+      btnSettings.disabled = !modelCompleted;
       break;
 
-    default:
+    case 'additionally':
+      btnSettings.text = 'Итого';
+      btnSettings.disabled = true;
       break;
   }
 
@@ -59,7 +62,7 @@ export function orderController(step: OrderStep, location: ILocation): IOrderCon
     {
       href: '/order?step=additionally',
       text: 'Дополнительно',
-      disabled: true,
+      disabled: !modelCompleted,
     },
     {
       href: '/order?step=total',
@@ -77,7 +80,7 @@ export function orderController(step: OrderStep, location: ILocation): IOrderCon
       },
       model: {
         name: 'Модель',
-        value: '',
+        value: model.replaceAll(' ', '\u00a0'),
         visible: step !== 'location' && locationCompleted,
       },
       color: {
@@ -98,25 +101,15 @@ export function orderController(step: OrderStep, location: ILocation): IOrderCon
         value: '',
         visible: false,
       },
-      tankFull: {
-        name: 'Полный бак',
-        value: false,
-        visible: false,
-      },
       babySeat: {
         name: 'Детское кресло',
-        value: false,
-        visible: false,
-      },
-      rightHandDrive: {
-        name: 'Правый руль',
         value: false,
         visible: false,
       },
     },
     completed: {
       location: locationCompleted,
-      model: false,
+      model: modelCompleted,
       additionally: false,
       total: false,
     },
