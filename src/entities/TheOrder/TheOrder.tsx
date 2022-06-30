@@ -1,11 +1,16 @@
 import { FC, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+// Store
+import { useStore } from 'effector-react';
+import { $storePrice } from '~processes/order/model/store';
+
 // Components
 import { AppButton } from '~shared/ui/AppButton';
 
 // Utils
 import { dateDifference } from '~shared/utils/dateDifference';
+import { getPrice } from '~shared/utils/getPrice';
 
 // Styles
 import cn from 'classnames';
@@ -22,6 +27,7 @@ interface TheOrderProps {
 }
 
 export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSettings }) => {
+  const storePrice = useStore($storePrice);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -97,8 +103,7 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
 
       <div className={cn(styles['order__price'])}>
         <span>Цена:&#160;</span>
-        <span>16 000</span>
-        <span>&#160;₽</span>
+        <span>{getPrice(storePrice)}</span>
       </div>
 
       <AppButton

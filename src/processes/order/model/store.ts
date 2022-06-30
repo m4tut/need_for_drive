@@ -5,6 +5,7 @@ import { setAddress, setAddressEvent } from './events/setAddress';
 import { setCity, setCityEvent } from './events/setCity';
 import { setOrderStep, setOrderStepEvent } from './events/setOrderStep';
 import { setModel, setModelEvent } from './events/setModel';
+import { setPrice, setPriceEvent } from './events/setPrice';
 
 // Functions
 import { getLocation } from '../functons/getLocation';
@@ -20,6 +21,11 @@ const location = getLocation();
 
 export const $storeOrderStep = createStore<OrderStep>('location').on(setOrderStep, (store, payload: OrderStep) =>
   setOrderStepEvent(payload)
+);
+
+export const $storePrice = createStore<number | [number, number]>([12000, 32000]).on(
+  setPrice,
+  (store, payload: number | [number, number]) => setPriceEvent(payload)
 );
 
 export const $storeCity = createStore<string>(location.city).on(setCity, (store, payload: string) =>
