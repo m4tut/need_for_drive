@@ -1,3 +1,13 @@
 .additionally {
-  
+  font-size: rem(14px);
+  font-weight: 300;
+
+  &__color {
+    margin-bottom: 32px;
+
+    &-group {
+      display: flex;
+      margin-top: 16px;
+    }
+  }
 }

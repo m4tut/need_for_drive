@@ -1,1 +1,1 @@
-export * from './Additionally';
+export * from './TheAdditionally';

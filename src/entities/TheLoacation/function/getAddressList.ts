@@ -12,7 +12,7 @@ export function getAddressList(): IAddress[] {
 
   const filteredData = dataFilter(CITYS, 'text', storageParse.city);
 
-  if (filteredData.length < 1) {
+  if (!filteredData) {
     return [];
   }
 

@@ -10,7 +10,7 @@
     font-size: rem(14px);
     line-height: rem(16px);
     font-weight: 700;
-    color: $text-color-gray;
+    color: $text-color-basic;
 
     list-style: none;
     white-space: nowrap;
@@ -51,6 +51,7 @@
       }
 
       &--disabled {
+        color: $text-color-gray;
         pointer-events: none;
       }
 

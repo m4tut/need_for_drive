@@ -4,9 +4,10 @@ import { FC, useState } from 'react';
 import { useStore } from 'effector-react';
 import { $storeModel } from '~processes/order/model/store';
 
-// Event
+// Events
 import { setModel as setModelEvent } from '~processes/order/model/events/setModel';
 import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
+import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
 
 // Components
 import { RadioOrChecboxGroup } from '~shared/ui/RadioOrChecboxGroup';
@@ -44,6 +45,7 @@ export const TheModel: FC<TheModelProps> = ({ className }) => {
   function selectCar(car: ICar) {
     setModelEvent(`${car.brend}, ${car.model}`);
     setPriceEvent(car.price);
+    setColorEvent('Любой');
   }
 
   return (

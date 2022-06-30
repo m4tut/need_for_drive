@@ -28,9 +28,11 @@ const btnSettings: IOrderBtnSettings = {
   disabled: true,
 };
 
-export function orderController(step: OrderStep, location: ILocation, model: string): IOrderController {
+export function orderController(step: OrderStep, location: ILocation, model: string, color: string): IOrderController {
   const locationCompleted = Boolean(location.city && location.address);
   const modelCompleted = locationCompleted && Boolean(model);
+  const modelVisible = step !== 'location' && locationCompleted;
+  const additionallyVisible = modelVisible && modelCompleted && step !== 'model';
 
   switch (step) {
     case 'location':
@@ -81,12 +83,12 @@ export function orderController(step: OrderStep, location: ILocation, model: str
       model: {
         name: 'Модель',
         value: model.replaceAll(' ', '\u00a0'),
-        visible: step !== 'location' && locationCompleted,
+        visible: modelVisible,
       },
       color: {
         name: 'Цвет',
-        value: '',
-        visible: false,
+        value: color,
+        visible: additionallyVisible,
       },
       rentalDuration: {
         name: 'Длительность аренды',
@@ -94,17 +96,17 @@ export function orderController(step: OrderStep, location: ILocation, model: str
           dateStart: undefined,
           dateEnd: undefined,
         },
-        visible: false,
+        visible: additionallyVisible,
       },
       rate: {
         name: 'Тариф',
         value: '',
-        visible: false,
+        visible: additionallyVisible,
       },
       babySeat: {
         name: 'Детское кресло',
         value: false,
-        visible: false,
+        visible: additionallyVisible,
       },
     },
     completed: {

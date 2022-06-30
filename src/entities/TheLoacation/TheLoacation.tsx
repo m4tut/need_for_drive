@@ -4,9 +4,10 @@ import { FC, useState } from 'react';
 import { useStore } from 'effector-react';
 import { $storeOrderLocation } from '~processes/order/model/store';
 
-// Event
+// Events
 import { setCity as setCityEvent } from '~processes/order/model/events/setCity';
 import { setAddress as setAddressEvent } from '~processes/order/model/events/setAddress';
+import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
 
 // Components
 import { AppMap } from '~shared/ui/AppMap';
@@ -56,14 +57,15 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
 
     if (!errorCity) {
       const cityData = dataFilter(CITYS, 'text', value)[0];
-      setCityEvent(value);
-      setAddressData(cityData.address);
       setZoom(11);
+      setAddressData(cityData.address);
+      setCityEvent(value);
     } else {
+      setZoom(11);
       setAddress('');
       setAddressData([]);
       setCityEvent('');
-      setZoom(11);
+      setPriceEvent([10000, 32000]);
     }
     setCoordinates(getCoordinates(value, storeOrderLocation.address));
   }
@@ -77,8 +79,9 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
       setAddressEvent(value);
       setZoom(14);
     } else {
-      setAddressEvent('');
       setZoom(11);
+      setAddressEvent('');
+      setPriceEvent([10000, 32000]);
     }
     setCoordinates(getCoordinates(storeOrderLocation.city, value));
   }
@@ -103,7 +106,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           placeholder="Выберете пункт выдачи"
           value={address}
           error={error.address}
-          disabled={addressData.length < 1}
+          disabled={!addressData.length}
           selectList={dataFilter(addressData, 'text', address)}
           handleChange={changeAddress}
         >

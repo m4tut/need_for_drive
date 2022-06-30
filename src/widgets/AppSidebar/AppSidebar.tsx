@@ -20,6 +20,11 @@ export const AppSidebar: FC<AppSidebarProps> = ({ className }) => {
   const [isMobile, setIsMobile] = useState<boolean>(true);
 
   function toggleSidebar() {
+    if (isOpenSidebar) {
+      document.body.style.overflowY = 'auto';
+    } else {
+      document.body.style.overflowY = 'hidden';
+    }
     setIsOpenSidebar(!isOpenSidebar);
   }
 

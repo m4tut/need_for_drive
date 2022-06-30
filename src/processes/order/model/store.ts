@@ -1,11 +1,12 @@
 import { createStore, combine } from 'effector';
 
-// Event
+// Events
 import { setAddress, setAddressEvent } from './events/setAddress';
 import { setCity, setCityEvent } from './events/setCity';
 import { setOrderStep, setOrderStepEvent } from './events/setOrderStep';
 import { setModel, setModelEvent } from './events/setModel';
 import { setPrice, setPriceEvent } from './events/setPrice';
+import { setColor, setColorEvent } from './events/setColor';
 
 // Functions
 import { getLocation } from '../functons/getLocation';
@@ -44,11 +45,16 @@ export const $storeModel = createStore<string>(getModel()).on(setModel, (store, 
   setModelEvent(payload)
 );
 
+export const $storeColor = createStore<string>('Любой').on(setColor, (store, payload: string) =>
+  setColorEvent(payload)
+);
+
 export const $storeOrder = combine(
   $storeOrderStep,
   $storeOrderLocation,
   $storeModel,
-  (orderStep, orderLocation, orderModel) => {
-    return orderController(orderStep, orderLocation, orderModel);
+  $storeColor,
+  (orderStep, orderLocation, orderModel, orderColor) => {
+    return orderController(orderStep, orderLocation, orderModel, orderColor);
   }
 );

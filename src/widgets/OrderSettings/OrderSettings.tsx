@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { $storeOrder } from '~processes/order/model/store';
 
-// Event
+// Events
 import { setOrderStep } from '~processes/order/model/events/setOrderStep';
 
 // Components

@@ -1,5 +1,5 @@
 .sidebar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -11,6 +11,7 @@
   transition: all 0.3s;
 
   @include mediaMin($mobile) {
+    position: fixed;
     width: 86px;
     height: 100%;
     padding: 29px 22px;
