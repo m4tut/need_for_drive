@@ -8,6 +8,7 @@ import { IOrder } from '~processes/order/interface/IOrder';
 import { IOrderBtnSettings } from '~entities/TheOrder';
 import { IBreadcrumb } from '~shared/ui/AppBreadcrumbs';
 import { ICar } from '~processes/order/interface/ICar';
+import { IAdditionally } from '~processes/order/interface/IAdditionally';
 
 // Types
 import { OrderStep } from '~processes/order/type/OrderStep';
@@ -30,7 +31,12 @@ const btnSettings: IOrderBtnSettings = {
   disabled: true,
 };
 
-export function orderController(step: OrderStep, location: ILocation, car: ICar, color: string): IOrderController {
+export function orderController(
+  step: OrderStep,
+  location: ILocation,
+  car: ICar,
+  additionally: IAdditionally
+): IOrderController {
   const locationCompleted = Boolean(location.city && location.address);
   const modelCompleted = locationCompleted && Boolean(car.model && car.brend);
   const modelVisible = step !== 'location' && locationCompleted;
@@ -89,7 +95,7 @@ export function orderController(step: OrderStep, location: ILocation, car: ICar,
       },
       color: {
         name: 'Цвет',
-        value: color,
+        value: additionally.color,
         visible: additionallyVisible,
       },
       rentalDuration: {

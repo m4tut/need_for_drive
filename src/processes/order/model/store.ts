@@ -12,6 +12,7 @@ import { setBrend, setBrendEvent } from './events/setBrend';
 // Functions
 import { getLocation } from '../functons/getLocation';
 import { getCar } from '../functons/getCar';
+import { getAdditionally } from '../functons/getAdditionally';
 
 // Controller
 import { orderController } from './controller/orderController';
@@ -21,6 +22,7 @@ import { OrderStep } from '../type/OrderStep';
 
 const location = getLocation();
 const car = getCar();
+const additionally = getAdditionally();
 
 export const $storeOrderStep = createStore<OrderStep>('location').on(setOrderStep, (store, payload: OrderStep) =>
   setOrderStepEvent(payload)
@@ -55,16 +57,20 @@ export const $storeCar = combine($storeBrend, $storeModel, (brend, model) => {
   return { brend, model };
 });
 
-export const $storeColor = createStore<string>('Любой').on(setColor, (store, payload: string) =>
+export const $storeColor = createStore<string>(additionally.color).on(setColor, (store, payload: string) =>
   setColorEvent(payload)
 );
+
+export const $storeAdditionally = combine($storeColor, (color) => {
+  return { color };
+});
 
 export const $storeOrder = combine(
   $storeOrderStep,
   $storeOrderLocation,
   $storeCar,
-  $storeColor,
-  (orderStep, orderLocation, orderCar, orderColor) => {
-    return orderController(orderStep, orderLocation, orderCar, orderColor);
+  $storeAdditionally,
+  (orderStep, orderLocation, orderCar, orderAdditionally) => {
+    return orderController(orderStep, orderLocation, orderCar, orderAdditionally);
   }
 );

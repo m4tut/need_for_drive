@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 // Store
 import { useStore } from 'effector-react';
-import { $storeModel } from '~processes/order/model/store';
+import { $storeAdditionally, $storeCar } from '~processes/order/model/store';
 
 // Events
 import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
@@ -27,24 +27,27 @@ interface TheAdditionallyProps {
 }
 
 export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
-  const storeModel = useStore($storeModel);
+  const storeCar = useStore($storeCar);
+  const storeAdditionally = useStore($storeAdditionally);
   const [startDate, setStartDate] = useState<Date | null>();
   const [endDate, setEndDate] = useState<Date | null>();
 
-  const colorsGroup = initGroupColor(storeModel);
+  const colorsGroup = initGroupColor(storeCar);
 
   return (
     <div className={cn(className, styles['additionally'])}>
-      <div className={cn(styles['additionally__color'])}>
-        <div>Цвет</div>
-        <RadioOrChecboxGroup
-          className={cn(styles['additionally__color-group'])}
-          group={colorsGroup}
-          groupName="carColor"
-          initValue="all"
-          handleChange={setColorEvent}
-        />
-      </div>
+      {colorsGroup.length > 2 && (
+        <div className={cn(styles['additionally__color'])}>
+          <div>Цвет</div>
+          <RadioOrChecboxGroup
+            className={cn(styles['additionally__color-group'])}
+            group={colorsGroup}
+            groupName="carColor"
+            initValue={storeAdditionally.color ? storeAdditionally.color : 'all'}
+            handleChange={setColorEvent}
+          />
+        </div>
+      )}
 
       <div className={cn(styles['additionally__calendar'])}>
         <div>Дата аренды</div>
