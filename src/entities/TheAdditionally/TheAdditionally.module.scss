@@ -2,12 +2,35 @@
   font-size: rem(14px);
   font-weight: 300;
 
-  &__color {
+  &__color,
+  &__calendar {
     margin-bottom: 32px;
+  }
 
+  &__color {
     &-group {
       display: flex;
       margin-top: 16px;
+    }
+  }
+
+  &__calendar {
+    &-block {
+      max-width: 250px;
+      margin-top: 16px;
+
+      &-item {
+        display: flex;
+
+        &:first-child {
+          padding-left: 9px;
+          margin-bottom: 12px;
+        }
+
+        & > span {
+          margin-right: 3px;
+        }
+      }
     }
   }
 }

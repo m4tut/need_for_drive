@@ -1,0 +1,81 @@
+@import 'react-datepicker/dist/react-datepicker.css';
+
+.react-datepicker {
+  &__header {
+    background-color: $background-color-gray-light;
+  }
+
+  &__triangle {
+    &::after {
+      border-bottom-color: $border-color-gray-light !important;
+    }
+  }
+
+  &__time-list {
+    width: 99% !important;
+
+    &-item {
+      &--selected {
+        background-color: $background-color-accent-green !important;
+      }
+    }
+  }
+
+  &__input-container {
+    padding: 0 8px 3px 8px;
+    border-bottom: 1px solid $border-color-gray;
+
+    input {
+      font-weight: 300;
+      color: $text-color-basic;
+
+      &::placeholder {
+        color: $text-color-gray;
+      }
+    }
+  }
+
+  &__close-icon {
+    &::after {
+      height: 8px;
+      width: 8px;
+
+      padding: 0;
+
+      font-size: 18px;
+      color: $text-color-basic;
+
+      border-radius: 0;
+      background-color: transparent;
+      cursor: url('../../images/svg/cursor/pointer.svg'), pointer;
+
+      transition: color 0.3s;
+    }
+
+    &:hover {
+      &::after {
+        color: $text-color-gray;
+      }
+    }
+  }
+
+  &__day {
+    border-radius: 0.3rem;
+
+    &--selected,
+    &--keyboard-selected,
+    &--in-selecting-range,
+    &--in-range {
+      background-color: $background-color-accent-green;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: mix(black, $background-color-accent-green, 20);
+      }
+    }
+
+    &--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+      background-color: rgba($background-color-accent-green, 0.5);
+    }
+  }
+}
