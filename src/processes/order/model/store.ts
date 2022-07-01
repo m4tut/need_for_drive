@@ -7,10 +7,11 @@ import { setOrderStep, setOrderStepEvent } from './events/setOrderStep';
 import { setModel, setModelEvent } from './events/setModel';
 import { setPrice, setPriceEvent } from './events/setPrice';
 import { setColor, setColorEvent } from './events/setColor';
+import { setBrend, setBrendEvent } from './events/setBrend';
 
 // Functions
 import { getLocation } from '../functons/getLocation';
-import { getModel } from '../functons/getModel';
+import { getCar } from '../functons/getCar';
 
 // Controller
 import { orderController } from './controller/orderController';
@@ -19,6 +20,7 @@ import { orderController } from './controller/orderController';
 import { OrderStep } from '../type/OrderStep';
 
 const location = getLocation();
+const car = getCar();
 
 export const $storeOrderStep = createStore<OrderStep>('location').on(setOrderStep, (store, payload: OrderStep) =>
   setOrderStepEvent(payload)
@@ -41,9 +43,17 @@ export const $storeOrderLocation = combine($storeCity, $storeAddress, (city, add
   return { city, address };
 });
 
-export const $storeModel = createStore<string>(getModel()).on(setModel, (store, payload: string) =>
+export const $storeBrend = createStore<string>(car.brend).on(setBrend, (store, payload: string) =>
+  setBrendEvent(payload)
+);
+
+export const $storeModel = createStore<string>(car.model).on(setModel, (store, payload: string) =>
   setModelEvent(payload)
 );
+
+export const $storeCar = combine($storeBrend, $storeModel, (brend, model) => {
+  return { brend, model };
+});
 
 export const $storeColor = createStore<string>('Любой').on(setColor, (store, payload: string) =>
   setColorEvent(payload)
@@ -52,9 +62,9 @@ export const $storeColor = createStore<string>('Любой').on(setColor, (store
 export const $storeOrder = combine(
   $storeOrderStep,
   $storeOrderLocation,
-  $storeModel,
+  $storeCar,
   $storeColor,
-  (orderStep, orderLocation, orderModel, orderColor) => {
-    return orderController(orderStep, orderLocation, orderModel, orderColor);
+  (orderStep, orderLocation, orderCar, orderColor) => {
+    return orderController(orderStep, orderLocation, orderCar, orderColor);
   }
 );

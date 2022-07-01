@@ -1,11 +1,13 @@
 // Function
 import { getFullLocation } from '~processes/order/functons/getFullLocation';
+import { getFullCar } from '~processes/order/functons/getFullCar';
 
 // Interface
 import { ILocation } from '~processes/order/interface/ILoacation';
 import { IOrder } from '~processes/order/interface/IOrder';
 import { IOrderBtnSettings } from '~entities/TheOrder';
 import { IBreadcrumb } from '~shared/ui/AppBreadcrumbs';
+import { ICar } from '~processes/order/interface/ICar';
 
 // Types
 import { OrderStep } from '~processes/order/type/OrderStep';
@@ -28,9 +30,9 @@ const btnSettings: IOrderBtnSettings = {
   disabled: true,
 };
 
-export function orderController(step: OrderStep, location: ILocation, model: string, color: string): IOrderController {
+export function orderController(step: OrderStep, location: ILocation, car: ICar, color: string): IOrderController {
   const locationCompleted = Boolean(location.city && location.address);
-  const modelCompleted = locationCompleted && Boolean(model);
+  const modelCompleted = locationCompleted && Boolean(car.model && car.brend);
   const modelVisible = step !== 'location' && locationCompleted;
   const additionallyVisible = modelVisible && modelCompleted && step !== 'model';
 
@@ -82,7 +84,7 @@ export function orderController(step: OrderStep, location: ILocation, model: str
       },
       model: {
         name: 'Модель',
-        value: model.replaceAll(' ', '\u00a0'),
+        value: getFullCar(car),
         visible: modelVisible,
       },
       color: {

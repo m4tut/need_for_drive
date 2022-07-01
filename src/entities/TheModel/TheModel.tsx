@@ -2,9 +2,10 @@ import { FC, useState } from 'react';
 
 // Store
 import { useStore } from 'effector-react';
-import { $storeModel } from '~processes/order/model/store';
+import { $storeBrend, $storeModel } from '~processes/order/model/store';
 
 // Events
+import { setBrend as setBrendEvent } from '~processes/order/model/events/setBrend';
 import { setModel as setModelEvent } from '~processes/order/model/events/setModel';
 import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
 import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
@@ -31,6 +32,7 @@ interface TheModelProps {
 }
 
 export const TheModel: FC<TheModelProps> = ({ className }) => {
+  const storeBrend = useStore($storeBrend);
   const storeModel = useStore($storeModel);
   const [filter, setFilter] = useState<string>('all');
 
@@ -43,7 +45,8 @@ export const TheModel: FC<TheModelProps> = ({ className }) => {
   }
 
   function selectCar(car: ICar) {
-    setModelEvent(`${car.brend}, ${car.model}`);
+    setBrendEvent(car.brend);
+    setModelEvent(car.model);
     setPriceEvent(car.price);
     setColorEvent('Любой');
   }
@@ -64,7 +67,7 @@ export const TheModel: FC<TheModelProps> = ({ className }) => {
               handleClick={selectCar}
               key={car.brend + car.model}
               car={car}
-              active={storeModel === `${car.brend}, ${car.model}`}
+              active={storeModel === car.model && storeBrend === car.brend}
             />
           );
         })}
