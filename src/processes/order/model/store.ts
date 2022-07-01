@@ -1,3 +1,5 @@
+import { setEndDate, setEndDateEvent } from './events/setEndDate';
+import { setStartDate, setStartDateEvent } from './events/setStartDate';
 import { createStore, combine } from 'effector';
 
 // Events
@@ -61,8 +63,22 @@ export const $storeColor = createStore<string>(additionally.color).on(setColor, 
   setColorEvent(payload)
 );
 
-export const $storeAdditionally = combine($storeColor, (color) => {
-  return { color };
+export const $storeStartDate = createStore<Date | null>(additionally.rentalDuration.startDate).on(
+  setStartDate,
+  (store, payload: Date | null) => setStartDateEvent(payload)
+);
+
+export const $storeEndDate = createStore<Date | null>(additionally.rentalDuration.endDate).on(
+  setEndDate,
+  (store, payload: Date | null) => setEndDateEvent(payload)
+);
+
+export const $storeDateInterval = combine($storeStartDate, $storeEndDate, (startDate, endDate) => {
+  return { startDate, endDate };
+});
+
+export const $storeAdditionally = combine($storeColor, $storeDateInterval, (color, rentalDuration) => {
+  return { color, rentalDuration };
 });
 
 export const $storeOrder = combine(

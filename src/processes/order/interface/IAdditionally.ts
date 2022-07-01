@@ -1,8 +1,8 @@
-import { IRentalDuration } from './IDate';
+import { IRentalDuration } from './IRentalDuration';
 
 export interface IAdditionally {
   color: string;
-  // rentalDuration: IRentalDuration;
+  rentalDuration: IRentalDuration;
   // rate: string;
   // babySeat: boolean;
 }

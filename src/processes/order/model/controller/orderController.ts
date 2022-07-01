@@ -1,6 +1,7 @@
 // Function
 import { getFullLocation } from '~processes/order/functons/getFullLocation';
 import { getFullCar } from '~processes/order/functons/getFullCar';
+import { getFullRentalDuration } from '~processes/order/functons/getFullRentalDuration';
 
 // Interface
 import { ILocation } from '~processes/order/interface/ILoacation';
@@ -100,10 +101,7 @@ export function orderController(
       },
       rentalDuration: {
         name: 'Длительность аренды',
-        value: {
-          dateStart: undefined,
-          dateEnd: undefined,
-        },
+        value: getFullRentalDuration(additionally.rentalDuration),
         visible: additionallyVisible,
       },
       rate: {

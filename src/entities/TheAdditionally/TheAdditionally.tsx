@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 // Store
 import { useStore } from 'effector-react';
@@ -6,6 +6,8 @@ import { $storeAdditionally, $storeCar } from '~processes/order/model/store';
 
 // Events
 import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
+import { setStartDate as setStartDateEvent } from '~processes/order/model/events/setStartDate';
+import { setEndDate as setEndDateEvent } from '~processes/order/model/events/setEndDate';
 
 // Components
 import { RadioOrChecboxGroup } from '~shared/ui/RadioOrChecboxGroup';
@@ -29,10 +31,17 @@ interface TheAdditionallyProps {
 export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
   const storeCar = useStore($storeCar);
   const storeAdditionally = useStore($storeAdditionally);
-  const [startDate, setStartDate] = useState<Date | null>();
-  const [endDate, setEndDate] = useState<Date | null>();
 
   const colorsGroup = initGroupColor(storeCar);
+
+  function setEndDate(date: Date | null) {
+    if (date && storeAdditionally.rentalDuration.startDate && date > storeAdditionally.rentalDuration.startDate) {
+      setEndDateEvent(date);
+      return;
+    }
+
+    setEndDateEvent(null);
+  }
 
   return (
     <div className={cn(className, styles['additionally'])}>
@@ -43,7 +52,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
             className={cn(styles['additionally__color-group'])}
             group={colorsGroup}
             groupName="carColor"
-            initValue={storeAdditionally.color ? storeAdditionally.color : 'all'}
+            initValue={storeAdditionally.color ? storeAdditionally.color : 'Любой'}
             handleChange={setColorEvent}
           />
         </div>
@@ -55,12 +64,12 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
           <div className={cn(styles['additionally__calendar-block-item'])}>
             <span>C</span>
             <ReactDatePicker
-              selected={startDate}
+              selected={storeAdditionally.rentalDuration.startDate}
               selectsStart
-              startDate={startDate}
-              endDate={endDate}
+              startDate={storeAdditionally.rentalDuration.startDate}
+              endDate={storeAdditionally.rentalDuration.endDate}
               onChange={(date) => {
-                setStartDate(date);
+                setStartDateEvent(date);
               }}
               calendarStartDay={1}
               locale={getCalendarLocale(DAYS_CALENDAR['ru'], MONTH_CALENDAR['ru'])}
@@ -68,28 +77,28 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
               placeholderText="Введите дату и время"
               showTimeSelect
               timeIntervals={15}
-              timeFormat="hh:mm"
-              dateFormat="dd.mm.yyyy hh:mm"
+              timeFormat="HH:mm"
+              dateFormat="dd.mm.yyyy HH:mm"
               isClearable
             />
           </div>
           <div className={cn(styles['additionally__calendar-block-item'])}>
             <span>По</span>
             <ReactDatePicker
-              selected={endDate}
+              selected={storeAdditionally.rentalDuration.endDate}
               onChange={(date) => setEndDate(date)}
               selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
+              startDate={storeAdditionally.rentalDuration.startDate}
+              endDate={storeAdditionally.rentalDuration.endDate}
+              minDate={storeAdditionally.rentalDuration.startDate}
               calendarStartDay={1}
               locale={getCalendarLocale(DAYS_CALENDAR['ru'], MONTH_CALENDAR['ru'])}
               timeCaption="Время"
               placeholderText="Введите дату и время"
               showTimeSelect
               timeIntervals={15}
-              timeFormat="hh:mm"
-              dateFormat="dd.mm.yyyy hh:mm"
+              timeFormat="HH:mm"
+              dateFormat="dd.mm.yyyy HH:mm"
               isClearable
             />
           </div>

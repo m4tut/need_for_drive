@@ -6,14 +6,14 @@ import { getAdditionally } from '~processes/order/functons/getAdditionally';
 // Interface
 import { IAdditionally } from '~processes/order/interface/IAdditionally';
 
-export const setColor = createEvent<string>();
+export const setEndDate = createEvent<Date | null>();
 
-export function setColorEvent(payload: string): string {
+export function setEndDateEvent(payload: Date | null): Date | null {
   const additionally = getAdditionally();
 
   const newAdditionally: IAdditionally = {
-    color: payload,
-    rentalDuration: additionally.rentalDuration,
+    color: additionally.color,
+    rentalDuration: { startDate: additionally.rentalDuration.startDate, endDate: payload },
   };
 
   localStorage.setItem('additionally', JSON.stringify(newAdditionally));

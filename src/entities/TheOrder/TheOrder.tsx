@@ -75,17 +75,7 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
           const value = item.value;
           let selected;
 
-          if (typeof value === 'object' && (key as keyof IOrder) === 'rentalDuration') {
-            const dateDiff = value.dateStart && value.dateEnd && dateDifference(value.dateStart, value.dateEnd);
-
-            selected = dateDiff && (
-              <>
-                {dateDiff.days ? <span>{dateDiff.days}д&#160;</span> : ''}
-                {dateDiff.hours ? <span>{dateDiff.hours}ч</span> : ''}
-                {dateDiff.minutes ? <span>{dateDiff.minutes}&#160;м</span> : ''}
-              </>
-            );
-          } else if (typeof value === 'boolean') {
+          if (typeof value === 'boolean') {
             selected = value ? 'Да' : 'Нет';
           } else {
             selected = value;
