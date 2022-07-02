@@ -38,7 +38,7 @@ export const RadioOrChecbox: FC<RadioOrChecboxProps> = ({
         name={name}
         type={type}
         value={value}
-        checked={checked}
+        checked={type !== 'checkbox' ? checked : undefined}
         onChange={({ target }) => {
           onChange(target.value);
         }}

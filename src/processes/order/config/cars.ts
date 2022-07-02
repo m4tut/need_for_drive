@@ -1,9 +1,9 @@
-import { ICar } from '../interface/ICar';
+import { ICar } from '../../../entities/TheModel/interface/ICar';
 
-import elantra from './../../../assets/images/cars/elantra.png';
-import i30n from './../../../assets/images/cars/i30n.png';
-import creta from './../../../assets/images/cars/creta.png';
-import sonata from './../../../assets/images/cars/sonata.png';
+import elantra from '~assets/images/cars/elantra.png';
+import i30n from '~assets/images/cars/i30n.png';
+import creta from '~assets/images/cars/creta.png';
+import sonata from '~assets/images/cars/sonata.png';
 
 export const CARS: ICar[] = [
   {

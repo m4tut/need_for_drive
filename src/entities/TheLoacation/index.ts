@@ -1,4 +1,4 @@
 export * from './interface/ICity';
 export * from './interface/IAddress';
-export * from './config/citys';
+export * from '../../processes/order/config/citys';
 export * from './TheLoacation';

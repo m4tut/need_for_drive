@@ -3,21 +3,25 @@
   font-weight: 300;
 
   &__color,
-  &__calendar {
+  &__calendar,
+  &__rate,
+  &__service {
     margin-bottom: 32px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
   }
 
   &__color {
     &-group {
       display: flex;
-      margin-top: 16px;
     }
   }
 
   &__calendar {
     &-block {
       max-width: 250px;
-      margin-top: 16px;
 
       &-item {
         display: flex;

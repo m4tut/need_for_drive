@@ -25,7 +25,7 @@ import cn from 'classnames';
 import styles from './TheLoacation.module.scss';
 
 // Config
-import { CITYS } from './config/citys';
+import { CITYS } from '../../processes/order/config/citys';
 
 // Interface
 import { IAddress } from './interface/IAddress';

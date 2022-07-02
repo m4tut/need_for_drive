@@ -15,7 +15,7 @@ import { RadioOrChecboxGroup } from '~shared/ui/RadioOrChecboxGroup';
 import { TheModelCard } from './TheModelCard';
 
 // Config
-import { CARS } from './config/cars';
+import { CARS } from '../../processes/order/config/cars';
 
 // Styles
 import cn from 'classnames';
@@ -25,7 +25,7 @@ import styles from './TheModel.module.scss';
 import { ICar } from './interface/ICar';
 
 // Types
-import { FILTER_GROUP } from './config/filterGroup';
+import { FILTER_GROUP } from '../../processes/order/config/filterGroup';
 
 interface TheModelProps {
   className?: string;

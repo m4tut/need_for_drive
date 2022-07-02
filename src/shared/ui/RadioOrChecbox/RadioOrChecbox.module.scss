@@ -44,4 +44,28 @@
       border: 3px solid $border-color-accent-green;
     }
   }
+
+  input:checked + &__label--checkbox {
+    position: relative;
+    color: $text-color-basic;
+
+    &::before {
+      border: 1px solid $border-color-accent-green;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      z-index: 100;
+
+      display: block;
+      width: 13px;
+      height: 10px;
+
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMyAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xLjYyNSAzLjMzMzMzTDAgNUw0Ljg3NSAxMEwxMyAxLjY2NjY3TDExLjM3NSAwTDQuODc1IDYuNjY2NjdMMS42MjUgMy4zMzMzM1oiIGZpbGw9IiMxMjEyMTIiLz4KPC9zdmc+Cg==);
+      background-repeat: no-repeat;
+    }
+  }
 }

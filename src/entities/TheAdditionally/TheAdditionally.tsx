@@ -19,6 +19,8 @@ import { getCalendarLocale } from '~processes/lang/function/getCalendarLocale';
 
 // Config
 import { DAYS_CALENDAR, MONTH_CALENDAR } from '~processes/lang/config/localeCalendar';
+import { RATES } from '../../processes/order/config/rate';
+import { SERVICE } from '~processes/order/config/service';
 
 // Styles
 import cn from 'classnames';
@@ -47,19 +49,19 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
     <div className={cn(className, styles['additionally'])}>
       {colorsGroup.length > 2 && (
         <div className={cn(styles['additionally__color'])}>
-          <div>Цвет</div>
+          <div className={cn(styles['additionally__title'])}>Цвет</div>
           <RadioOrChecboxGroup
             className={cn(styles['additionally__color-group'])}
             group={colorsGroup}
             groupName="carColor"
-            initValue={storeAdditionally.color ? storeAdditionally.color : 'Любой'}
+            initValue={storeAdditionally.color}
             handleChange={setColorEvent}
           />
         </div>
       )}
 
       <div className={cn(styles['additionally__calendar'])}>
-        <div>Дата аренды</div>
+        <div className={cn(styles['additionally__title'])}>Дата аренды</div>
         <div className={cn(styles['additionally__calendar-block'])}>
           <div className={cn(styles['additionally__calendar-block-item'])}>
             <span>C</span>
@@ -99,10 +101,32 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
               timeIntervals={15}
               timeFormat="HH:mm"
               dateFormat="dd.mm.yyyy HH:mm"
-              isClearable
+              isClearable={!!storeAdditionally.rentalDuration.endDate}
             />
           </div>
         </div>
+      </div>
+
+      <div className={cn(styles['additionally__rate'])}>
+        <div className={cn(styles['additionally__title'])}>Тариф</div>
+        <RadioOrChecboxGroup
+          className={cn(styles['additionally__rate-group'])}
+          group={RATES}
+          groupName="rate"
+          initValue={'ggg'}
+          handleChange={() => {}}
+        />
+      </div>
+
+      <div className={cn(styles['additionally__service'])}>
+        <div className={cn(styles['additionally__title'])}>Доп услуги</div>
+        <RadioOrChecboxGroup
+          className={cn(styles['additionally__service-group'])}
+          group={SERVICE}
+          type="checkbox"
+          groupName="service"
+          handleChange={() => {}}
+        />
       </div>
     </div>
   );

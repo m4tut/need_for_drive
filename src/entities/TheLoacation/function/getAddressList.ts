@@ -1,5 +1,5 @@
 import { dataFilter } from './dataFilter';
-import { CITYS } from '../config/citys';
+import { CITYS } from '../../../processes/order/config/citys';
 import { IAddress } from '../interface/IAddress';
 
 export function getAddressList(): IAddress[] {

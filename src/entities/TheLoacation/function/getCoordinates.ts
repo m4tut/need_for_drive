@@ -1,4 +1,4 @@
-import { CITYS } from './../config/citys';
+import { CITYS } from '../../../processes/order/config/citys';
 import { dataFilter } from '~entities/TheLoacation/function/dataFilter';
 
 export function getCoordinates(city: string, address: string): [number, number] {
