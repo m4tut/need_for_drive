@@ -32,7 +32,7 @@ export const $storeOrderStep = createStore<OrderStep>('location').on(setOrderSte
   setOrderStepEvent(payload)
 );
 
-export const $storePrice = createStore<number | [number, number]>([12000, 32000]).on(
+export const $storePrice = createStore<number | [number, number]>([2200, 5200]).on(
   setPrice,
   (store, payload: number | [number, number]) => setPriceEvent(payload)
 );

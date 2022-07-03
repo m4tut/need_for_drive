@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 // Store
 import { useStore } from 'effector-react';
@@ -10,7 +10,6 @@ import { setStartDate as setStartDateEvent } from '~processes/order/model/events
 import { setEndDate as setEndDateEvent } from '~processes/order/model/events/setEndDate';
 import { setRate as setRateEvent } from '~processes/order/model/events/setRate';
 import { setBabySeat as setBabySeatEvent } from '~processes/order/model/events/setBabySeat';
-import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
 
 // Components
 import { RadioOrChecboxGroup } from '~shared/ui/RadioOrChecboxGroup';
@@ -20,8 +19,6 @@ import { RadioOrChecbox } from '~shared/ui/RadioOrChecbox';
 // Functions
 import { initGroupColor } from './function/initGroupColors';
 import { getCalendarLocale } from '~processes/lang/function/getCalendarLocale';
-import { getCar } from './function/getCar';
-import { dateDifference } from '~shared/utils/dateDifference';
 
 // Config
 import { DAYS_CALENDAR, MONTH_CALENDAR } from '~processes/lang/config/localeCalendar';
@@ -49,33 +46,6 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
 
     setEndDateEvent(null);
   }
-
-  function initPrice() {
-    const car = getCar(storeCar.brend, storeCar.model);
-
-    if (!car || !storeAdditionally.rentalDuration.startDate || !storeAdditionally.rentalDuration.endDate) {
-      return;
-    }
-
-    const price = typeof car.price === 'number' ? car.price : car.price.reduce((a, b) => a + b) / 2;
-    const time = dateDifference(storeAdditionally.rentalDuration.startDate, storeAdditionally.rentalDuration.endDate);
-
-    if (storeAdditionally.rate === 'На сутки, 1999 ₽/сутки') {
-      const ratePrice = 1999;
-      const newPrice = price + ratePrice * time.days + (time.hours || time.minutes ? ratePrice : 0);
-
-      setPriceEvent(newPrice);
-    }
-    if (storeAdditionally.rate === 'Поминутно, 5₽/мин') {
-      const ratePrice = 5;
-      const newPrice = price + (time.days * 24 + time.hours) * 60 * ratePrice;
-      setPriceEvent(newPrice);
-    }
-  }
-
-  useEffect(() => {
-    initPrice();
-  });
 
   return (
     <div className={cn(className, styles['additionally'])}>
@@ -154,14 +124,14 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
       <div className={cn(styles['additionally__service'])}>
         <div className={cn(styles['additionally__title'])}>Доп услуги</div>
         <RadioOrChecbox
-          id="Детское кресло, 500р"
+          id="Детское кресло"
           name="babySeat"
-          value={'500 rub'}
+          value="Детское кресло"
           type="checkbox"
           checked={storeAdditionally.babySeat}
           handleChange={(value) => setBabySeatEvent(Boolean(value))}
         >
-          Детское кресло, 500р
+          Детское кресло
         </RadioOrChecbox>
       </div>
     </div>

@@ -41,16 +41,14 @@ export function orderController(
   const locationCompleted = Boolean(location.city && location.address);
   const modelCompleted = locationCompleted && Boolean(car.model && car.brend);
   const modelVisible = step !== 'location' && locationCompleted;
-  const additionallyVisible = modelVisible && modelCompleted && step !== 'model';
+  const additionallyVisible = modelCompleted && step !== 'model';
   const additionallyCompleted =
-    modelVisible &&
     modelCompleted &&
     Boolean(
       additionally.color &&
         additionally.rentalDuration.endDate &&
         additionally.rentalDuration.startDate &&
-        additionally.rate &&
-        additionally.babySeat
+        additionally.rate
     );
 
   switch (step) {
@@ -134,7 +132,7 @@ export function orderController(
       location: locationCompleted,
       model: modelCompleted,
       additionally: additionallyCompleted,
-      total: false,
+      total: localStorage.getItem('confirmation') === 'true',
     },
     btnSettings,
     breadcrumbs,
