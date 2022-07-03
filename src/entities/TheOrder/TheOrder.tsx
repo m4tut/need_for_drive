@@ -73,19 +73,12 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
 
           const name = item.name;
           const value = item.value;
-          let selected;
-
-          if (typeof value === 'boolean') {
-            selected = value ? 'Да' : 'Нет';
-          } else {
-            selected = value;
-          }
 
           return (
             <li key={key} className={cn(styles['order__list-item'])}>
               <span className={cn(styles['order__list-item-name'])}>{name}</span>
               <span className={cn(styles['order__list-item-dashed'])} />
-              <span className={cn(styles['order__list-item-selected'])}>{selected}</span>
+              <span className={cn(styles['order__list-item-selected'])}>{value}</span>
             </li>
           );
         })}

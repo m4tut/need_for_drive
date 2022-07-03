@@ -37,4 +37,12 @@
       }
     }
   }
+
+  &__rate {
+    &-group {
+      & > div {
+        margin-bottom: 8px;
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 // Store
 import { useStore } from 'effector-react';
@@ -8,19 +8,24 @@ import { $storeAdditionally, $storeCar } from '~processes/order/model/store';
 import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
 import { setStartDate as setStartDateEvent } from '~processes/order/model/events/setStartDate';
 import { setEndDate as setEndDateEvent } from '~processes/order/model/events/setEndDate';
+import { setRate as setRateEvent } from '~processes/order/model/events/setRate';
+import { setBabySeat as setBabySeatEvent } from '~processes/order/model/events/setBabySeat';
+import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
 
 // Components
 import { RadioOrChecboxGroup } from '~shared/ui/RadioOrChecboxGroup';
 import ReactDatePicker from 'react-datepicker';
+import { RadioOrChecbox } from '~shared/ui/RadioOrChecbox';
 
 // Functions
 import { initGroupColor } from './function/initGroupColors';
 import { getCalendarLocale } from '~processes/lang/function/getCalendarLocale';
+import { getCar } from './function/getCar';
+import { dateDifference } from '~shared/utils/dateDifference';
 
 // Config
 import { DAYS_CALENDAR, MONTH_CALENDAR } from '~processes/lang/config/localeCalendar';
 import { RATES } from '../../processes/order/config/rate';
-import { SERVICE } from '~processes/order/config/service';
 
 // Styles
 import cn from 'classnames';
@@ -45,6 +50,33 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
     setEndDateEvent(null);
   }
 
+  function initPrice() {
+    const car = getCar(storeCar.brend, storeCar.model);
+
+    if (!car || !storeAdditionally.rentalDuration.startDate || !storeAdditionally.rentalDuration.endDate) {
+      return;
+    }
+
+    const price = typeof car.price === 'number' ? car.price : car.price.reduce((a, b) => a + b) / 2;
+    const time = dateDifference(storeAdditionally.rentalDuration.startDate, storeAdditionally.rentalDuration.endDate);
+
+    if (storeAdditionally.rate === 'На сутки, 1999 ₽/сутки') {
+      const ratePrice = 1999;
+      const newPrice = price + ratePrice * time.days + (time.hours || time.minutes ? ratePrice : 0);
+
+      setPriceEvent(newPrice);
+    }
+    if (storeAdditionally.rate === 'Поминутно, 5₽/мин') {
+      const ratePrice = 5;
+      const newPrice = price + (time.days * 24 + time.hours) * 60 * ratePrice;
+      setPriceEvent(newPrice);
+    }
+  }
+
+  useEffect(() => {
+    initPrice();
+  });
+
   return (
     <div className={cn(className, styles['additionally'])}>
       {colorsGroup.length > 2 && (
@@ -68,6 +100,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
             <ReactDatePicker
               selected={storeAdditionally.rentalDuration.startDate}
               selectsStart
+              minDate={new Date()}
               startDate={storeAdditionally.rentalDuration.startDate}
               endDate={storeAdditionally.rentalDuration.endDate}
               onChange={(date) => {
@@ -113,20 +146,23 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
           className={cn(styles['additionally__rate-group'])}
           group={RATES}
           groupName="rate"
-          initValue={'ggg'}
-          handleChange={() => {}}
+          initValue={storeAdditionally.rate}
+          handleChange={(value) => setRateEvent(value)}
         />
       </div>
 
       <div className={cn(styles['additionally__service'])}>
         <div className={cn(styles['additionally__title'])}>Доп услуги</div>
-        <RadioOrChecboxGroup
-          className={cn(styles['additionally__service-group'])}
-          group={SERVICE}
+        <RadioOrChecbox
+          id="Детское кресло, 500р"
+          name="babySeat"
+          value={'500 rub'}
           type="checkbox"
-          groupName="service"
-          handleChange={() => {}}
-        />
+          checked={storeAdditionally.babySeat}
+          handleChange={(value) => setBabySeatEvent(Boolean(value))}
+        >
+          Детское кресло, 500р
+        </RadioOrChecbox>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ export const CARS: ICar[] = [
   {
     brend: 'Hyundai',
     model: 'Elantra',
-    price: [12000, 25000],
+    price: [1200, 2500],
     colors: ['Зеленый', 'Серый'],
     images: elantra,
     type: 'economy',
@@ -17,7 +17,7 @@ export const CARS: ICar[] = [
   {
     brend: 'Hyundai',
     model: 'i30 N',
-    price: [10000, 25000],
+    price: [1000, 2500],
     colors: ['Синий', 'Черный'],
     images: i30n,
     type: 'economy',
@@ -25,7 +25,7 @@ export const CARS: ICar[] = [
   {
     brend: 'Hyundai',
     model: 'Сreta',
-    price: [14000, 32000],
+    price: [1400, 3200],
     colors: ['Белый', 'Оранжевый'],
     images: creta,
     type: 'premium',
@@ -33,7 +33,7 @@ export const CARS: ICar[] = [
   {
     brend: 'Hyundai',
     model: 'Sonata',
-    price: [14000, 32000],
+    price: [1400, 3200],
     colors: ['Темно синий', 'Белый', 'Черный'],
     images: sonata,
     type: 'premium',

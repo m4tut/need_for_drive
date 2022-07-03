@@ -3,7 +3,12 @@ import { IAdditionally } from '../interface/IAdditionally';
 export function getAdditionally(): IAdditionally {
   const storage = localStorage.getItem('additionally');
 
-  const initObj: IAdditionally = { color: '', rentalDuration: { startDate: null, endDate: null } };
+  const initObj: IAdditionally = {
+    color: 'Любой',
+    rentalDuration: { startDate: null, endDate: null },
+    rate: '7 rub/мин',
+    babySeat: false,
+  };
 
   if (!storage) {
     localStorage.setItem('additionally', JSON.stringify(initObj));

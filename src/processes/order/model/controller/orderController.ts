@@ -42,6 +42,16 @@ export function orderController(
   const modelCompleted = locationCompleted && Boolean(car.model && car.brend);
   const modelVisible = step !== 'location' && locationCompleted;
   const additionallyVisible = modelVisible && modelCompleted && step !== 'model';
+  const additionallyCompleted =
+    modelVisible &&
+    modelCompleted &&
+    Boolean(
+      additionally.color &&
+        additionally.rentalDuration.endDate &&
+        additionally.rentalDuration.startDate &&
+        additionally.rate &&
+        additionally.babySeat
+    );
 
   switch (step) {
     case 'location':
@@ -56,7 +66,12 @@ export function orderController(
 
     case 'additionally':
       btnSettings.text = 'Итого';
-      btnSettings.disabled = true;
+      btnSettings.disabled = !additionallyCompleted;
+      break;
+
+    case 'total':
+      btnSettings.text = 'Заказать';
+      btnSettings.disabled = false;
       break;
   }
 
@@ -78,7 +93,7 @@ export function orderController(
     {
       href: '/order?step=total',
       text: 'Итого',
-      disabled: true,
+      disabled: !additionallyCompleted,
     },
   ];
 
@@ -106,19 +121,19 @@ export function orderController(
       },
       rate: {
         name: 'Тариф',
-        value: '',
+        value: additionally.rate.split(', ')[0].replaceAll(' ', '\u00a0'),
         visible: additionallyVisible,
       },
       babySeat: {
         name: 'Детское кресло',
-        value: false,
+        value: additionally.babySeat ? 'Да' : 'Нет',
         visible: additionallyVisible,
       },
     },
     completed: {
       location: locationCompleted,
       model: modelCompleted,
-      additionally: false,
+      additionally: additionallyCompleted,
       total: false,
     },
     btnSettings,

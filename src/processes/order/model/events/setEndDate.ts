@@ -14,6 +14,8 @@ export function setEndDateEvent(payload: Date | null): Date | null {
   const newAdditionally: IAdditionally = {
     color: additionally.color,
     rentalDuration: { startDate: additionally.rentalDuration.startDate, endDate: payload },
+    rate: additionally.rate,
+    babySeat: additionally.babySeat,
   };
 
   localStorage.setItem('additionally', JSON.stringify(newAdditionally));
