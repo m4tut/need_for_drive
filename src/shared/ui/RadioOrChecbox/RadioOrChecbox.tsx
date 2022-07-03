@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
 // Styles
 import cn from 'classnames';
@@ -22,10 +22,13 @@ export const RadioOrChecbox: FC<RadioOrChecboxProps> = ({
   name,
   value,
   type = 'radio',
-  checked,
+  checked = false,
   handleChange,
 }) => {
+  const [checkedInput, setCheckedInput] = useState(checked);
+
   function onChange(str: string) {
+    setCheckedInput(!checkedInput);
     if (typeof handleChange === 'function') {
       handleChange(str);
     }
@@ -38,7 +41,7 @@ export const RadioOrChecbox: FC<RadioOrChecboxProps> = ({
         name={name}
         type={type}
         value={value}
-        checked={type !== 'checkbox' ? checked : undefined}
+        checked={type === 'checkbox' ? checkedInput : checked}
         onChange={({ target }) => {
           onChange(target.value);
         }}

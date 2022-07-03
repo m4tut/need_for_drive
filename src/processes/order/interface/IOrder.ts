@@ -10,5 +10,5 @@ export interface IOrder {
   color: OrderItem<string>;
   rentalDuration: OrderItem<string>;
   rate: OrderItem<string>;
-  babySeat: OrderItem<boolean>;
+  babySeat: OrderItem<string>;
 }

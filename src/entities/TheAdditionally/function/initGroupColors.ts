@@ -1,6 +1,6 @@
 import { ICar } from '~processes/order/interface/ICar';
 import { IGroup } from '~shared/ui/RadioOrChecboxGroup';
-import { getCarColor } from './getCarColor';
+import { getCar } from './getCar';
 
 export function initGroupColor(car: ICar) {
   const anyColor: IGroup[] = [{ id: 'Любой', value: 'Любой', text: 'Любой' }];
@@ -9,13 +9,13 @@ export function initGroupColor(car: ICar) {
     return anyColor;
   }
 
-  const carColors = getCarColor(car.brend, car.model);
+  const carSearch = getCar(car.brend, car.model);
 
-  if (!carColors.length) {
+  if (!(carSearch && carSearch.colors.length)) {
     return anyColor;
   }
 
-  const groupColors: IGroup[] = carColors.map((color) => {
+  const groupColors: IGroup[] = carSearch.colors.map((color: string) => {
     return {
       id: color,
       value: color,

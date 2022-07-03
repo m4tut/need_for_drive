@@ -1,16 +1,21 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Store
 import { useStore } from 'effector-react';
-import { $storePrice } from '~processes/order/model/store';
+import { $storeAdditionally, $storeCar, $storePrice } from '~processes/order/model/store';
+
+// Event
+import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
 
 // Components
 import { AppButton } from '~shared/ui/AppButton';
+import { AppModal } from '~shared/ui/AppModal';
 
 // Utils
 import { dateDifference } from '~shared/utils/dateDifference';
 import { getPrice } from '~shared/utils/getPrice';
+import { getCar } from '~entities/TheAdditionally/function/getCar';
 
 // Styles
 import cn from 'classnames';
@@ -19,7 +24,6 @@ import styles from './TheOrder.module.scss';
 // Interface
 import { IOrder } from '~processes/order/interface/IOrder';
 import { IOrderBtnSettings } from './interface/IOrderBtnSettings';
-
 interface TheOrderProps {
   className?: string;
   orderPoints: IOrder;
@@ -28,11 +32,15 @@ interface TheOrderProps {
 
 export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSettings }) => {
   const storePrice = useStore($storePrice);
+  const storeCar = useStore($storeCar);
+  const storeAdditionally = useStore($storeAdditionally);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   function confirmation() {
+    setIsOpenModal(false);
+    localStorage.setItem('confirmation', JSON.stringify(true));
     navigate('/order?step=completed');
   }
 
@@ -59,6 +67,33 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
     }
   }
 
+  function initPrice() {
+    const car = getCar(storeCar.brend, storeCar.model);
+
+    if (!car || !storeAdditionally.rentalDuration.startDate || !storeAdditionally.rentalDuration.endDate) {
+      return;
+    }
+
+    const price = typeof car.price === 'number' ? car.price : car.price.reduce((a, b) => a + b) / 2;
+    const time = dateDifference(storeAdditionally.rentalDuration.startDate, storeAdditionally.rentalDuration.endDate);
+
+    if (storeAdditionally.rate === 'На сутки, 1999 ₽/сутки') {
+      const ratePrice = 1999;
+      const newPrice = price + ratePrice * time.days + (time.hours || time.minutes ? ratePrice : 0);
+
+      setPriceEvent(newPrice);
+    }
+    if (storeAdditionally.rate === 'Поминутно, 5₽/мин') {
+      const ratePrice = 5;
+      const newPrice = price + (time.days * 24 + time.hours) * 60 * ratePrice;
+      setPriceEvent(newPrice);
+    }
+  }
+
+  useEffect(() => {
+    initPrice();
+  });
+
   return (
     <div className={cn(className, styles['order'])}>
       <h2 className={cn(styles['order__title'])}>Ваш заказ:</h2>
@@ -73,19 +108,12 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
 
           const name = item.name;
           const value = item.value;
-          let selected;
-
-          if (typeof value === 'boolean') {
-            selected = value ? 'Да' : 'Нет';
-          } else {
-            selected = value;
-          }
 
           return (
             <li key={key} className={cn(styles['order__list-item'])}>
               <span className={cn(styles['order__list-item-name'])}>{name}</span>
               <span className={cn(styles['order__list-item-dashed'])} />
-              <span className={cn(styles['order__list-item-selected'])}>{selected}</span>
+              <span className={cn(styles['order__list-item-selected'])}>{value}</span>
             </li>
           );
         })}
@@ -104,6 +132,24 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
       >
         {btnSettings.text}
       </AppButton>
+
+      <AppModal isOpen={isOpenModal} handleOpenOrClose={setIsOpenModal}>
+        <div className={cn(styles['order__confirmation'])}>
+          <h3 className={cn(styles['order__confirmation-title'])}>Подтвердить заказ</h3>
+          <div className={cn(styles['order__confirmation-block'])}>
+            <AppButton className={cn(styles['order__confirmation-block-btn'])} handleClick={confirmation}>
+              Подтвердить
+            </AppButton>
+            <AppButton
+              className={cn(styles['order__confirmation-block-btn'])}
+              handleClick={() => setIsOpenModal(false)}
+              variant="red"
+            >
+              Вернуться
+            </AppButton>
+          </div>
+        </div>
+      </AppModal>
     </div>
   );
 };

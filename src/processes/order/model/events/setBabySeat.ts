@@ -6,16 +6,16 @@ import { getAdditionally } from '~processes/order/functons/getAdditionally';
 // Interface
 import { IAdditionally } from '~processes/order/interface/IAdditionally';
 
-export const setStartDate = createEvent<Date | null>();
+export const setBabySeat = createEvent<boolean>();
 
-export function setStartDateEvent(payload: Date | null): Date | null {
+export function setBabySeatEvent(payload: boolean): boolean {
   const additionally = getAdditionally();
 
   const newAdditionally: IAdditionally = {
     color: additionally.color,
-    rentalDuration: { startDate: payload, endDate: additionally.rentalDuration.endDate },
+    rentalDuration: additionally.rentalDuration,
     rate: additionally.rate,
-    babySeat: additionally.babySeat,
+    babySeat: payload,
   };
 
   localStorage.setItem('additionally', JSON.stringify(newAdditionally));

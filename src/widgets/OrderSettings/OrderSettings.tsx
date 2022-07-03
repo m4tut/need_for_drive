@@ -31,14 +31,11 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (
-      storeOrder.completed.location &&
-      storeOrder.completed.model &&
-      storeOrder.completed.additionally &&
-      storeOrder.completed.total &&
-      location.search !== '?step=completed'
-    ) {
+    console.log();
+
+    if (storeOrder.completed.total && location.search !== '?step=completed') {
       navigate('/order?step=completed');
+      return;
     }
 
     switch (location.search) {
@@ -48,17 +45,17 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
         }
         break;
       case '?step=additionally':
-        if (!storeOrder.completed.location) {
+        if (!storeOrder.completed.model) {
           navigate('/order?step=model');
         }
         break;
       case '?step=total':
-        if (!storeOrder.completed.location) {
+        if (!storeOrder.completed.additionally) {
           navigate('/order?step=additionally');
         }
         break;
       default:
-        if (location.search !== '?step=location') {
+        if (location.search !== '?step=location' && location.search !== '?step=completed') {
           navigate('/order?step=location');
         }
         break;
@@ -78,6 +75,9 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
         return <TheAdditionally />;
       case '?step=total':
         setOrderStep('total');
+        return <TheTotal />;
+      case '?step=completed':
+        setOrderStep('completed');
         return <TheTotal />;
     }
   };

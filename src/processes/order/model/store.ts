@@ -1,5 +1,3 @@
-import { setEndDate, setEndDateEvent } from './events/setEndDate';
-import { setStartDate, setStartDateEvent } from './events/setStartDate';
 import { createStore, combine } from 'effector';
 
 // Events
@@ -10,6 +8,10 @@ import { setModel, setModelEvent } from './events/setModel';
 import { setPrice, setPriceEvent } from './events/setPrice';
 import { setColor, setColorEvent } from './events/setColor';
 import { setBrend, setBrendEvent } from './events/setBrend';
+import { setRate, setRateEvent } from './events/setRate';
+import { setEndDate, setEndDateEvent } from './events/setEndDate';
+import { setStartDate, setStartDateEvent } from './events/setStartDate';
+import { setBabySeat, setBabySeatEvent } from './events/setBabySeat';
 
 // Functions
 import { getLocation } from '../functons/getLocation';
@@ -30,7 +32,7 @@ export const $storeOrderStep = createStore<OrderStep>('location').on(setOrderSte
   setOrderStepEvent(payload)
 );
 
-export const $storePrice = createStore<number | [number, number]>([12000, 32000]).on(
+export const $storePrice = createStore<number | [number, number]>([2200, 5200]).on(
   setPrice,
   (store, payload: number | [number, number]) => setPriceEvent(payload)
 );
@@ -77,9 +79,23 @@ export const $storeDateInterval = combine($storeStartDate, $storeEndDate, (start
   return { startDate, endDate };
 });
 
-export const $storeAdditionally = combine($storeColor, $storeDateInterval, (color, rentalDuration) => {
-  return { color, rentalDuration };
-});
+export const $storeRate = createStore<string>(additionally.rate).on(setRate, (store, payload: string) =>
+  setRateEvent(payload)
+);
+
+export const $storeBabySeat = createStore<boolean>(additionally.babySeat).on(setBabySeat, (store, payload: boolean) =>
+  setBabySeatEvent(payload)
+);
+
+export const $storeAdditionally = combine(
+  $storeColor,
+  $storeDateInterval,
+  $storeRate,
+  $storeBabySeat,
+  (color, rentalDuration, rate, babySeat) => {
+    return { color, rentalDuration, rate, babySeat };
+  }
+);
 
 export const $storeOrder = combine(
   $storeOrderStep,

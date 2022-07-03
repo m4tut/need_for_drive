@@ -65,7 +65,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
       setAddress('');
       setAddressData([]);
       setCityEvent('');
-      setPriceEvent([10000, 32000]);
+      setPriceEvent([1000, 3200]);
     }
     setCoordinates(getCoordinates(value, storeOrderLocation.address));
   }
@@ -81,7 +81,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
     } else {
       setZoom(11);
       setAddressEvent('');
-      setPriceEvent([10000, 32000]);
+      setPriceEvent([1000, 3200]);
     }
     setCoordinates(getCoordinates(storeOrderLocation.city, value));
   }

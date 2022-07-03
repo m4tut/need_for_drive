@@ -14,6 +14,8 @@ export function setColorEvent(payload: string): string {
   const newAdditionally: IAdditionally = {
     color: payload,
     rentalDuration: additionally.rentalDuration,
+    rate: additionally.rate,
+    babySeat: additionally.babySeat,
   };
 
   localStorage.setItem('additionally', JSON.stringify(newAdditionally));
