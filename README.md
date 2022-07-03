@@ -4,9 +4,10 @@
 - Архитектура [feature-sliced](https://feature-sliced.design/)
 - Препроцессор [sass](https://sass-lang.com/documentation)
 - [typescript](https://www.typescriptlang.org/docs/handbook/react.html)
-- [axios](https://axios-http.com/docs/intro)
 - [effector](https://effector.dev/ru/)
 - [react-transition-group](https://reactcommunity.org/react-transition-group/)
+- [react-datepicker](https://reactdatepicker.com/)
+- [react-yandex-maps](https://react-yandex-maps.vercel.app/?path=/story/getting-started--page)
 
 ## Команды:
 
