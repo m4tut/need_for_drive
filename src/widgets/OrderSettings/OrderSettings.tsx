@@ -31,8 +31,6 @@ export const OrderSettings: FC<OrderSettingsProps> = ({ className }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log();
-
     if (storeOrder.completed.total && location.search !== '?step=completed') {
       navigate('/order?step=completed');
       return;

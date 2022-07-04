@@ -50,50 +50,62 @@ export function orderController(
         additionally.rentalDuration.startDate &&
         additionally.rate
     );
+  const totalCompleted = localStorage.getItem('confirmation') === 'true';
 
   switch (step) {
     case 'location':
       btnSettings.text = 'Выбрать модель';
       btnSettings.disabled = !locationCompleted;
+      btnSettings.variant = 'lightgreen';
       break;
 
     case 'model':
       btnSettings.text = 'Дополнительно';
       btnSettings.disabled = !modelCompleted;
+      btnSettings.variant = 'lightgreen';
       break;
 
     case 'additionally':
       btnSettings.text = 'Итого';
       btnSettings.disabled = !additionallyCompleted;
+      btnSettings.variant = 'lightgreen';
       break;
 
     case 'total':
       btnSettings.text = 'Заказать';
       btnSettings.disabled = false;
+      btnSettings.variant = 'lightgreen';
+      break;
+    case 'completed':
+      btnSettings.text = 'Отменить';
+      btnSettings.disabled = false;
+      btnSettings.variant = 'red';
       break;
   }
 
-  const breadcrumbs = [
-    {
-      href: '/order?step=location',
-      text: 'Местоположение',
-    },
-    {
-      href: '/order?step=model',
-      text: 'Модель',
-      disabled: !locationCompleted,
-    },
-    {
-      href: '/order?step=additionally',
-      text: 'Дополнительно',
-      disabled: !modelCompleted,
-    },
-    {
-      href: '/order?step=total',
-      text: 'Итого',
-      disabled: !additionallyCompleted,
-    },
-  ];
+  const breadcrumbs = totalCompleted
+    ? [{ text: 'Заказ номер RU58491823' }]
+    : [
+        {
+          href: '/order?step=location',
+          text: 'Местоположение',
+        },
+        {
+          href: '/order?step=model',
+          text: 'Модель',
+          disabled: !locationCompleted,
+        },
+        {
+          href: '/order?step=additionally',
+          text: 'Дополнительно',
+          disabled: !modelCompleted,
+        },
+        {
+          href: '/order?step=total',
+          text: 'Итого',
+          disabled: !additionallyCompleted,
+        },
+      ];
 
   return {
     order: {
@@ -132,7 +144,7 @@ export function orderController(
       location: locationCompleted,
       model: modelCompleted,
       additionally: additionallyCompleted,
-      total: localStorage.getItem('confirmation') === 'true',
+      total: totalCompleted,
     },
     btnSettings,
     breadcrumbs,

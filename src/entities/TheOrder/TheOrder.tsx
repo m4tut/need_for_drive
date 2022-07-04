@@ -7,6 +7,12 @@ import { $storeAdditionally, $storeCar, $storePrice } from '~processes/order/mod
 
 // Event
 import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
+import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
+import { setBrend as setBrendEvent } from '~processes/order/model/events/setBrend';
+import { setModel as setModelEvent } from '~processes/order/model/events/setModel';
+import { setEndDate as setEndDateEvent } from '~processes/order/model/events/setEndDate';
+import { setStartDate as setStartDateEvent } from '~processes/order/model/events/setStartDate';
+import { setOrderStep as setOrderStepEvent } from '~processes/order/model/events/setOrderStep';
 
 // Components
 import { AppButton } from '~shared/ui/AppButton';
@@ -62,7 +68,15 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
         setIsOpenModal(true);
         break;
       case '?step=completed':
-        console.log('отменить заказ');
+        localStorage.setItem('confirmation', JSON.stringify(false));
+        setColorEvent('Любой');
+        setPriceEvent([2200, 5200]);
+        setBrendEvent('');
+        setModelEvent('');
+        setEndDateEvent(null);
+        setStartDateEvent(null);
+        setOrderStepEvent('location');
+        navigate('/order?step=location');
         break;
     }
   }

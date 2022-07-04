@@ -1,3 +1,37 @@
 .total {
-  
+  @include mediaMin($tablet) {
+    display: flex;
+    justify-content: space-between;
+    max-width: 736px;
+  }
+
+  &__content {
+    &-complite {
+      font-size: rem(24px);
+      line-height: rem(28px);
+      font-weight: 400;
+    }
+
+    &-title {
+      font-size: rem(18px);
+      line-height: rem(21px);
+      font-weight: 400;
+
+      margin-bottom: 8px;
+    }
+
+    &-number {
+      width: max-content;
+      padding: 4px 8px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      border: 1px solid $border-color-gray;
+      border-radius: 4px;
+    }
+
+    &-text {
+      font-size: rem(14px);
+      font-weight: 700;
+    }
+  }
 }

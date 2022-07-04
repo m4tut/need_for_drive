@@ -11,15 +11,15 @@ export function initGroupColor(car: ICar) {
 
   const carSearch = getCar(car.brend, car.model);
 
-  if (!(carSearch && carSearch.colors.length)) {
+  if (!(carSearch && carSearch.carInfo)) {
     return anyColor;
   }
 
-  const groupColors: IGroup[] = carSearch.colors.map((color: string) => {
+  const groupColors: IGroup[] = carSearch.carInfo.map((info) => {
     return {
-      id: color,
-      value: color,
-      text: color,
+      id: info.color,
+      value: info.color,
+      text: info.color,
     };
   });
 
