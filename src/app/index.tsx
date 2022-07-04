@@ -17,11 +17,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <IntlProvider
-        textComponent={Fragment}
-        locale={locale}
-        messages={messages[locale]}
-      >
+      <IntlProvider textComponent={Fragment} locale={locale} messages={messages[locale]}>
         <Suspense fallback={<AppSpin color="#0ec261" />}>
           <Routes>
             {ROUTES.map((route) => (

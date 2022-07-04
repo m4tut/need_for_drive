@@ -1,10 +1,10 @@
-import { togleLang, togleLangEvent } from './events/togleLang';
+import { setLang, setLangEvent } from './events/setLang';
 import { createStore } from 'effector';
 import { Langs } from '../type/langs';
 
 const lang = localStorage.getItem('lang');
 
 export const $storeLang = createStore<Langs>(lang && (lang === 'ru' || lang === 'en') ? lang : 'ru').on(
-  togleLang,
-  (store: Langs) => togleLangEvent()
+  setLang,
+  (store: Langs, payload: Langs) => setLangEvent(payload)
 );
