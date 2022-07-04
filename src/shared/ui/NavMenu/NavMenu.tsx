@@ -3,6 +3,9 @@ import { FC } from 'react';
 // Components
 import { NavLink } from 'react-router-dom';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Config
 import { NAVIGATION } from '~shared/navigation';
 
@@ -23,7 +26,7 @@ export const NavMenu: FC<NavMenuProps> = ({ className }) => {
           return (
             <li key={item.href} className={cn(styles['nav-menu__list-item'])}>
               <NavLink className={({ isActive }) => (isActive ? styles['active'] : '')} to={item.href}>
-                {item.name}
+                {translate(item.name)}
               </NavLink>
             </li>
           );

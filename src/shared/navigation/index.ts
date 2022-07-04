@@ -2,19 +2,19 @@ import { INavigation } from './types';
 
 export const NAVIGATION: INavigation[] = [
   {
-    name: 'Парковка',
+    name: 'menuItem_1',
     href: '/parking',
   },
   {
-    name: 'Страховка',
+    name: 'menuItem_2',
     href: '/insurance',
   },
   {
-    name: 'Бензин',
+    name: 'menuItem_3',
     href: '/petrol',
   },
   {
-    name: 'Обслуживание',
+    name: 'menuItem_4',
     href: '/service',
   },
 ];

@@ -4,6 +4,9 @@ import { FC } from 'react';
 import { Container } from '~shared/layouts/Container';
 import { AppLink } from '~shared/ui/AppLink/AppLink';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Styles
 import cn from 'classnames';
 import styles from './Error404.module.scss';
@@ -16,9 +19,9 @@ const Error404: FC = () => {
     <Container className={cn(styles['error'])}>
       <div className={cn(styles['error__content'])}>
         <img src={error404} alt="error404" />
-        <h1>ОШИБКА 404</h1>
+        <h1>{translate('error')} 404</h1>
         <AppLink href="/" variant="green">
-          Вернуться на главную
+          {translate('goHome')}
         </AppLink>
       </div>
     </Container>

@@ -4,8 +4,10 @@ export default {
     carsharing: 'Carsharing',
     toBook: 'To book',
     more: 'More',
+    error: 'Error',
+    goHome: 'Go back to the main page',
 
-    'Поминутная аренда авто твоего города': 'Minute-by-minute car rental in your city',
+    perMinuteRent: 'Minute-by-minute car rental in your city',
 
     homeSlideTitle_1: 'Free parking',
     homeSlideDescription_1:

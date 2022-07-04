@@ -20,6 +20,9 @@ import { RadioOrChecbox } from '~shared/ui/RadioOrChecbox';
 import { initGroupColor } from './function/initGroupColors';
 import { getCalendarLocale } from '~processes/lang/function/getCalendarLocale';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Config
 import { DAYS_CALENDAR, MONTH_CALENDAR } from '~processes/lang/config/localeCalendar';
 import { RATES } from '../../processes/order/config/rate';
