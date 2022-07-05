@@ -54,30 +54,30 @@ export function orderController(
 
   switch (step) {
     case 'location':
-      btnSettings.text = 'Выбрать модель';
+      btnSettings.text = 'selectModel';
       btnSettings.disabled = !locationCompleted;
       btnSettings.variant = 'lightgreen';
       break;
 
     case 'model':
-      btnSettings.text = 'Дополнительно';
+      btnSettings.text = 'optional';
       btnSettings.disabled = !modelCompleted;
       btnSettings.variant = 'lightgreen';
       break;
 
     case 'additionally':
-      btnSettings.text = 'Итого';
+      btnSettings.text = 'total';
       btnSettings.disabled = !additionallyCompleted;
       btnSettings.variant = 'lightgreen';
       break;
 
     case 'total':
-      btnSettings.text = 'Заказать';
+      btnSettings.text = 'toOrder';
       btnSettings.disabled = false;
       btnSettings.variant = 'lightgreen';
       break;
     case 'completed':
-      btnSettings.text = 'Отменить';
+      btnSettings.text = 'cancel';
       btnSettings.disabled = false;
       btnSettings.variant = 'red';
       break;
@@ -88,21 +88,21 @@ export function orderController(
     : [
         {
           href: '/order?step=location',
-          text: 'Местоположение',
+          text: 'location',
         },
         {
           href: '/order?step=model',
-          text: 'Модель',
+          text: 'model',
           disabled: !locationCompleted,
         },
         {
           href: '/order?step=additionally',
-          text: 'Дополнительно',
+          text: 'optional',
           disabled: !modelCompleted,
         },
         {
           href: '/order?step=total',
-          text: 'Итого',
+          text: 'total',
           disabled: !additionallyCompleted,
         },
       ];
@@ -110,33 +110,33 @@ export function orderController(
   return {
     order: {
       location: {
-        name: 'Пункт выдачи',
+        name: 'pointOfIssue',
         value: getFullLocation(location),
         visible: true,
       },
       model: {
-        name: 'Модель',
+        name: 'model',
         value: getFullCar(car),
         visible: modelVisible,
       },
       color: {
-        name: 'Цвет',
+        name: 'color',
         value: additionally.color,
         visible: additionallyVisible,
       },
       rentalDuration: {
-        name: 'Длительность аренды',
+        name: 'rentalDuration',
         value: getFullRentalDuration(additionally.rentalDuration),
         visible: additionallyVisible,
       },
       rate: {
-        name: 'Тариф',
+        name: 'rate',
         value: additionally.rate.split(', ')[0].replaceAll(' ', '\u00a0'),
         visible: additionallyVisible,
       },
       babySeat: {
-        name: 'Детское кресло',
-        value: additionally.babySeat ? 'Да' : 'Нет',
+        name: 'childSeat',
+        value: additionally.babySeat ? 'yes' : 'not',
         visible: additionallyVisible,
       },
     },

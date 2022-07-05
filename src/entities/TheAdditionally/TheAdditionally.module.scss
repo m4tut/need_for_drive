@@ -25,9 +25,9 @@
 
       &-item {
         display: flex;
+        justify-content: flex-end;
 
         &:first-child {
-          padding-left: 9px;
           margin-bottom: 12px;
         }
 

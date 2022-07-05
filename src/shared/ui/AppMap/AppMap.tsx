@@ -1,6 +1,10 @@
 import { FC } from 'react';
 import { FullscreenControl, Map, Placemark, YMaps, ZoomControl } from 'react-yandex-maps';
 
+// Store
+import { useStore } from 'effector-react';
+import { $storeLang } from '~processes/lang/model/store';
+
 // Config
 import { options } from './config/options';
 
@@ -23,6 +27,10 @@ interface MapProps {
 }
 
 export const AppMap: FC<MapProps> = ({ className, center, zoom = 12, handleClickPlacemark, placemark }) => {
+  const lolcale = useStore($storeLang);
+
+  const langYMaps = lolcale === 'ru' ? 'ru_RU' : 'en_US';
+
   function onClickPlacemark(address: string) {
     if (typeof handleClickPlacemark === 'function') {
       handleClickPlacemark(address);
@@ -30,7 +38,7 @@ export const AppMap: FC<MapProps> = ({ className, center, zoom = 12, handleClick
   }
 
   return (
-    <YMaps>
+    <YMaps key={lolcale} query={{ lang: langYMaps }}>
       <Map
         className={cn(className, styles['map'])}
         defaultState={{

@@ -3,17 +3,17 @@ import { IGroup } from '~shared/ui/RadioOrChecboxGroup';
 export const FILTER_GROUP: IGroup[] = [
   {
     id: 'allModel',
-    text: ' Все\u00a0модели',
+    text: 'allModel',
     value: 'all',
   },
   {
     id: 'economyModel',
-    text: 'Эконом',
+    text: 'economy',
     value: 'economy',
   },
   {
     id: 'premiumModel',
-    text: 'Премиум',
+    text: 'premium',
     value: 'premium',
   },
 ];

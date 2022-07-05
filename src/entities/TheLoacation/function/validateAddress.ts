@@ -2,17 +2,17 @@ import { IAddress } from '../interface/IAddress';
 
 export function validateAddress(pointOfIssue: IAddress[], value: string) {
   if (!value) {
-    return 'Выберете пункт выдачи';
+    return 'selectAddres';
   }
 
   const pointOfIssueFiltered = pointOfIssue.filter((item) => item.text.toLowerCase().includes(value.toLowerCase()));
 
   if (!pointOfIssueFiltered.length) {
-    return 'Пункт выдачи по указанному адресу отсутствует';
+    return 'pointOfIssueError';
   }
 
   if (pointOfIssueFiltered[0].text.toLowerCase() !== value.toLowerCase()) {
-    return 'Введите адрес полностью';
+    return 'pointOfIssueErrorСomplete';
   }
 
   return '';

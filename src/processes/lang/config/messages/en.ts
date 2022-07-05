@@ -3,6 +3,7 @@ export default {
     lang: 'Рус',
     carsharing: 'Carsharing',
     toBook: 'To book',
+    toOrder: 'To order',
     more: 'More',
     error: 'Error',
     goHome: 'Go back to the main page',
@@ -32,14 +33,52 @@ export default {
 
     city: 'City',
     cityPlaceholder: 'Start typing the name of the city',
-    pointOfIssue: 'Point of issue',
+    pointOfIssue: 'Point\u00a0of\u00a0issue',
     pointOfIssuePlaceholder: 'Start typing issue place name',
     cityError: 'There are no pickup points in this city',
-    cityErrorСomplete: 'Enter city name',
+    cityErrorСomplete: 'Enter city name in full',
 
     pointOfIssueError: 'There is no pickup point at the specified address',
-    pointOfIssueErrorСomplete: 'Enter the address of the pickup point',
+    pointOfIssueErrorСomplete: 'Enter full address',
 
+    selectCity: 'Choose city',
+    selectAddres: 'Select a pickup point',
     selectMap: 'Select on the map:',
+    selectModel: 'Select model',
+
+    allModel: 'All\u00a0models',
+    economy: 'Economy',
+    premium: 'Premium',
+
+    color: 'Color',
+    rentalDate: 'Rental date',
+    rate: 'Rate',
+    additionalServices: 'Additional services',
+    childSeat: 'Child seat',
+    from: 'From',
+    by: 'By',
+    any: 'Any',
+    green: 'Green',
+    gray: 'Grey',
+    blue: 'Blue',
+    black: 'Black',
+    white: 'White',
+    red: 'Red',
+
+    rateMin: 'Per minute, 5₽/min',
+    rateDate: 'For a day, 1999 ₽/day',
+
+    availableFrom: 'Available from',
+    price: 'Price',
+    confirm: 'Confirm',
+    confirmOrder: 'Confirm the order',
+    return: 'Return',
+    rentalDuration: 'Rental duration',
+
+    yes: 'Yes',
+    not: 'Not',
+
+    cancel: 'Cancel',
+    yourOrderConfirmed: 'Your order has been confirmed',
   },
 };

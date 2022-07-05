@@ -3,6 +3,9 @@ import { FC } from 'react';
 // Components
 import { NavLink, useLocation } from 'react-router-dom';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Styles
 import cn from 'classnames';
 import styles from './AppBreadcrumbs.module.scss';
@@ -39,10 +42,10 @@ export const AppBreadcrumbs: FC<AppBreadcrumbsProps> = ({ className, breadcrumbs
             >
               {breadcrumb.href ? (
                 <NavLink to={breadcrumb.href} className={cn(initActiveClass(breadcrumb.href))}>
-                  {breadcrumb.text}
+                  {translate(breadcrumb.text)}
                 </NavLink>
               ) : (
-                <span>{breadcrumb.text}</span>
+                <span>{translate(breadcrumb.text)}</span>
               )}
             </li>
           );

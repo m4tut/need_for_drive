@@ -3,6 +3,7 @@ export default {
     lang: 'Eng',
     carsharing: 'Каршеринг',
     toBook: 'Забронировать',
+    toOrder: 'Заказать',
     more: 'Подробнее',
     error: 'Ошибка',
     goHome: 'Вернуться на главную',
@@ -33,14 +34,52 @@ export default {
 
     city: 'Город',
     cityPlaceholder: 'Начните вводить название города',
-    pointOfIssue: 'Пункт выдачи',
+    pointOfIssue: 'Пункт\u00a0выдачи',
     pointOfIssuePlaceholder: 'Начните вводить название пункта выдачи',
     cityError: 'Пункты выдачи в этом городе отсутствуют',
-    cityErrorСomplete: 'Введите название города',
+    cityErrorСomplete: 'Введите название города полностью',
 
     pointOfIssueError: 'Пункт выдачи по указанному адресу отсутствует',
-    pointOfIssueErrorСomplete: 'Введите адрес пункта выдачи',
+    pointOfIssueErrorСomplete: 'Введите адрес полностью',
 
+    selectCity: 'Выберете город',
+    selectAddres: 'Выберете пункт выдачи',
     selectMap: 'Выбрать на карте:',
+    selectModel: 'Выбрать модель',
+
+    allModel: 'Все\u00a0модели',
+    economy: 'Эконом',
+    premium: 'Премиум',
+
+    color: 'Цвет',
+    rentalDate: 'Дата аренды',
+    rate: 'Тариф',
+    additionalServices: 'Доп услуги',
+    childSeat: 'Детское кресло',
+    from: 'C',
+    by: 'По',
+    any: 'Любой',
+    green: 'Зеленый',
+    gray: 'Серый',
+    blue: 'Синий',
+    black: 'Черный',
+    white: 'Белый',
+    red: 'Красный',
+
+    rateMin: 'Поминутно, 5₽/мин',
+    rateDate: 'На сутки, 1999 ₽/сутки',
+
+    availableFrom: 'Доступна с',
+    price: 'Цена',
+    confirm: 'Подтвердить',
+    confirmOrder: 'Подтвердить заказ',
+    return: 'Вернуться',
+    rentalDuration: 'Длительность аренды',
+
+    yes: 'Да',
+    not: 'Нет',
+
+    cancel: 'Отменить',
+    yourOrderConfirmed: 'Ваш заказ подтвержден',
   },
 };

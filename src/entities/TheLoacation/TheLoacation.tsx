@@ -20,6 +20,9 @@ import { getAddressList } from './function/getAddressList';
 import { dataFilter } from './function/dataFilter';
 import { getCoordinates } from './function/getCoordinates';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Styles
 import cn from 'classnames';
 import styles from './TheLoacation.module.scss';
@@ -98,7 +101,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           selectList={dataFilter(CITYS, 'text', city)}
           handleChange={changeCity}
         >
-          Город
+          {translate('city')}
         </InputSelect>
 
         <InputSelect
@@ -110,12 +113,12 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           selectList={dataFilter(addressData, 'text', address)}
           handleChange={changeAddress}
         >
-          Пункт&#160;выдачи
+          {translate('pointOfIssue')}
         </InputSelect>
       </form>
 
       <div className={cn(styles['location__map'])}>
-        <div className={cn(styles['location__map-text'])}>Выбрать на карте:</div>
+        <div className={cn(styles['location__map-text'])}>{translate('selectMap')}</div>
         <AppMap center={coordinates} placemark={addressData} zoom={zoom} handleClickPlacemark={changeAddress} />
       </div>
     </div>

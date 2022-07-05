@@ -3,6 +3,9 @@ import { FC, HTMLInputTypeAttribute, ReactNode } from 'react';
 // Components
 import { CSSTransition } from 'react-transition-group';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Styles
 import cn from 'classnames';
 import styles from './AppInput.module.scss';
@@ -80,7 +83,7 @@ export const AppInput: FC<AppInputProps> = ({
             onBlur={onBlur}
           />
           <CSSTransition in={!!error} timeout={300} classNames="fade" unmountOnExit>
-            <span className={cn(styles['input__label-field-error'])}>{errorMessage}</span>
+            <span className={cn(styles['input__label-field-error'])}>{errorMessage && translate(errorMessage)}</span>
           </CSSTransition>
         </span>
       </label>

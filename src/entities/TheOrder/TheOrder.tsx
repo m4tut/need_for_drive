@@ -22,6 +22,7 @@ import { AppModal } from '~shared/ui/AppModal';
 import { dateDifference } from '~shared/utils/dateDifference';
 import { getPrice } from '~shared/utils/getPrice';
 import { getCar } from '~entities/TheAdditionally/function/getCar';
+import translate from '~processes/lang/utils/translate';
 
 // Styles
 import cn from 'classnames';
@@ -110,7 +111,7 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
 
   return (
     <div className={cn(className, styles['order'])}>
-      <h2 className={cn(styles['order__title'])}>Ваш заказ:</h2>
+      <h2 className={cn(styles['order__title'])}>{translate('yourOrder')}:</h2>
 
       <ul className={cn(styles['order__list'])}>
         {Object.keys(orderPoints).map((key) => {
@@ -125,16 +126,16 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
 
           return (
             <li key={key} className={cn(styles['order__list-item'])}>
-              <span className={cn(styles['order__list-item-name'])}>{name}</span>
+              <span className={cn(styles['order__list-item-name'])}>{translate(name)}</span>
               <span className={cn(styles['order__list-item-dashed'])} />
-              <span className={cn(styles['order__list-item-selected'])}>{value}</span>
+              <span className={cn(styles['order__list-item-selected'])}>{translate(value)}</span>
             </li>
           );
         })}
       </ul>
 
       <div className={cn(styles['order__price'])}>
-        <span>Цена:&#160;</span>
+        <span>{translate('price')}:&#160;</span>
         <span>{getPrice(storePrice)}</span>
       </div>
 
@@ -144,22 +145,22 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
         variant={btnSettings.variant}
         disabled={btnSettings.disabled}
       >
-        {btnSettings.text}
+        {translate(btnSettings.text)}
       </AppButton>
 
       <AppModal isOpen={isOpenModal} handleOpenOrClose={setIsOpenModal}>
         <div className={cn(styles['order__confirmation'])}>
-          <h3 className={cn(styles['order__confirmation-title'])}>Подтвердить заказ</h3>
+          <h3 className={cn(styles['order__confirmation-title'])}>{translate('confirmOrder')}</h3>
           <div className={cn(styles['order__confirmation-block'])}>
             <AppButton className={cn(styles['order__confirmation-block-btn'])} handleClick={confirmation}>
-              Подтвердить
+              {translate('confirm')}
             </AppButton>
             <AppButton
               className={cn(styles['order__confirmation-block-btn'])}
               handleClick={() => setIsOpenModal(false)}
               variant="red"
             >
-              Вернуться
+              {translate('return')}
             </AppButton>
           </div>
         </div>

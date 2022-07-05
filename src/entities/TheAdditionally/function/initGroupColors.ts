@@ -3,7 +3,7 @@ import { IGroup } from '~shared/ui/RadioOrChecboxGroup';
 import { getCar } from './getCar';
 
 export function initGroupColor(car: ICar) {
-  const anyColor: IGroup[] = [{ id: 'Любой', value: 'Любой', text: 'Любой' }];
+  const anyColor: IGroup[] = [{ id: 'Любой', value: 'Любой', text: 'any' }];
 
   if (!car.model || !car.brend) {
     return anyColor;

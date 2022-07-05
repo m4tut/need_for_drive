@@ -1,6 +1,10 @@
 @import 'react-datepicker/dist/react-datepicker.css';
 
 .react-datepicker {
+  &-wrapper {
+    max-width: 215px;
+  }
+
   &__header {
     background-color: $background-color-gray-light;
   }

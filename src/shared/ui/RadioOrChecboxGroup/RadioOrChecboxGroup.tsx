@@ -3,6 +3,9 @@ import { FC, useState } from 'react';
 // Components
 import { RadioOrChecbox } from '~shared/ui/RadioOrChecbox';
 
+// Utils
+import translate from '~processes/lang/utils/translate';
+
 // Styles
 import cn from 'classnames';
 import styles from './RadioOrChecboxGroup.module.scss';
@@ -50,7 +53,7 @@ export const RadioOrChecboxGroup: FC<RadioOrChecboxGroupProps> = ({
             checked={filter === item.value}
             handleChange={changeFilter}
           >
-            {item.text}
+            {translate(item.text)}
           </RadioOrChecbox>
         );
       })}

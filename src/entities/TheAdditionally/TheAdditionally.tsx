@@ -3,6 +3,7 @@ import { FC } from 'react';
 // Store
 import { useStore } from 'effector-react';
 import { $storeAdditionally, $storeCar } from '~processes/order/model/store';
+import { $storeLang } from '~processes/lang/model/store';
 
 // Events
 import { setColor as setColorEvent } from '~processes/order/model/events/setColor';
@@ -31,11 +32,15 @@ import { RATES } from '../../processes/order/config/rate';
 import cn from 'classnames';
 import styles from './TheAdditionally.module.scss';
 
+// Types
+import { Langs } from '~processes/lang/type/langs';
+
 interface TheAdditionallyProps {
   className?: string;
 }
 
 export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
+  const lolcale: Langs = useStore($storeLang);
   const storeCar = useStore($storeCar);
   const storeAdditionally = useStore($storeAdditionally);
 
@@ -54,7 +59,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
     <div className={cn(className, styles['additionally'])}>
       {colorsGroup.length > 2 && (
         <div className={cn(styles['additionally__color'])}>
-          <div className={cn(styles['additionally__title'])}>Цвет</div>
+          <div className={cn(styles['additionally__title'])}>{translate('color')}</div>
           <RadioOrChecboxGroup
             className={cn(styles['additionally__color-group'])}
             group={colorsGroup}
@@ -66,10 +71,10 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
       )}
 
       <div className={cn(styles['additionally__calendar'])}>
-        <div className={cn(styles['additionally__title'])}>Дата аренды</div>
+        <div className={cn(styles['additionally__title'])}>{translate('rentalDate')}</div>
         <div className={cn(styles['additionally__calendar-block'])}>
           <div className={cn(styles['additionally__calendar-block-item'])}>
-            <span>C</span>
+            <span>{translate('from')}</span>
             <ReactDatePicker
               selected={storeAdditionally.rentalDuration.startDate}
               selectsStart
@@ -80,7 +85,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
                 setStartDateEvent(date);
               }}
               calendarStartDay={1}
-              locale={getCalendarLocale(DAYS_CALENDAR['ru'], MONTH_CALENDAR['ru'])}
+              locale={getCalendarLocale(DAYS_CALENDAR[lolcale], MONTH_CALENDAR[lolcale])}
               timeCaption="Время"
               placeholderText="Введите дату и время"
               showTimeSelect
@@ -91,7 +96,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
             />
           </div>
           <div className={cn(styles['additionally__calendar-block-item'])}>
-            <span>По</span>
+            <span>{translate('by')}</span>
             <ReactDatePicker
               selected={storeAdditionally.rentalDuration.endDate}
               onChange={(date) => setEndDate(date)}
@@ -100,7 +105,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
               endDate={storeAdditionally.rentalDuration.endDate}
               minDate={storeAdditionally.rentalDuration.startDate}
               calendarStartDay={1}
-              locale={getCalendarLocale(DAYS_CALENDAR['ru'], MONTH_CALENDAR['ru'])}
+              locale={getCalendarLocale(DAYS_CALENDAR[lolcale], MONTH_CALENDAR[lolcale])}
               timeCaption="Время"
               placeholderText="Введите дату и время"
               showTimeSelect
@@ -114,7 +119,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
       </div>
 
       <div className={cn(styles['additionally__rate'])}>
-        <div className={cn(styles['additionally__title'])}>Тариф</div>
+        <div className={cn(styles['additionally__title'])}>{translate('rate')}</div>
         <RadioOrChecboxGroup
           className={cn(styles['additionally__rate-group'])}
           group={RATES}
@@ -125,7 +130,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
       </div>
 
       <div className={cn(styles['additionally__service'])}>
-        <div className={cn(styles['additionally__title'])}>Доп услуги</div>
+        <div className={cn(styles['additionally__title'])}>{translate('additionalServices')}</div>
         <RadioOrChecbox
           id="Детское кресло"
           name="babySeat"
@@ -134,7 +139,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
           checked={storeAdditionally.babySeat}
           handleChange={(value) => setBabySeatEvent(Boolean(value))}
         >
-          Детское кресло
+          {translate('childSeat')}
         </RadioOrChecbox>
       </div>
     </div>
