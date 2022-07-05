@@ -52,6 +52,8 @@ export function orderController(
     );
   const totalCompleted = localStorage.getItem('confirmation') === 'true';
 
+  console.log(additionally.babySeat);
+
   switch (step) {
     case 'location':
       btnSettings.text = 'selectModel';
@@ -131,7 +133,7 @@ export function orderController(
       },
       rate: {
         name: 'rate',
-        value: additionally.rate.split(', ')[0].replaceAll(' ', '\u00a0'),
+        value: additionally.rate,
         visible: additionallyVisible,
       },
       babySeat: {

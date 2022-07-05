@@ -137,7 +137,7 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
           value="Детское кресло"
           type="checkbox"
           checked={storeAdditionally.babySeat}
-          handleChange={(value) => setBabySeatEvent(Boolean(value))}
+          handleToggle={(status) => setBabySeatEvent(status)}
         >
           {translate('childSeat')}
         </RadioOrChecbox>

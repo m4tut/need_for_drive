@@ -65,6 +65,8 @@ export default {
     white: 'White',
     red: 'Red',
 
+    rateMinShort: 'Per\u00a0minute',
+    rateDateShort: 'For\u00a0a\u00a0day',
     rateMin: 'Per minute, 5₽/min',
     rateDate: 'For a day, 1999 ₽/day',
 

@@ -66,6 +66,8 @@ export default {
     white: 'Белый',
     red: 'Красный',
 
+    rateMinShort: 'Поминутно',
+    rateDateShort: 'На\u00a0сутки',
     rateMin: 'Поминутно, 5₽/мин',
     rateDate: 'На сутки, 1999 ₽/сутки',
 

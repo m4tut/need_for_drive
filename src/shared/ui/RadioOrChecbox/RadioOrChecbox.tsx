@@ -13,6 +13,7 @@ interface RadioOrChecboxProps {
   type?: 'radio' | 'checkbox';
   checked?: boolean;
   handleChange?: (value: string) => void;
+  handleToggle?: (status: boolean) => void;
 }
 
 export const RadioOrChecbox: FC<RadioOrChecboxProps> = ({
@@ -24,13 +25,20 @@ export const RadioOrChecbox: FC<RadioOrChecboxProps> = ({
   type = 'radio',
   checked = false,
   handleChange,
+  handleToggle,
 }) => {
   const [checkedInput, setCheckedInput] = useState(checked);
 
   function onChange(str: string) {
-    setCheckedInput(!checkedInput);
     if (typeof handleChange === 'function') {
       handleChange(str);
+    }
+  }
+
+  function toggle() {
+    setCheckedInput(!checkedInput);
+    if (typeof handleToggle === 'function') {
+      handleToggle(!checkedInput);
     }
   }
 
@@ -45,6 +53,7 @@ export const RadioOrChecbox: FC<RadioOrChecboxProps> = ({
         onChange={({ target }) => {
           onChange(target.value);
         }}
+        onClick={toggle}
       />
       <label
         className={cn(

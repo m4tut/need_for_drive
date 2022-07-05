@@ -6,7 +6,7 @@ export function getAdditionally(): IAdditionally {
   const initObj: IAdditionally = {
     color: 'Любой',
     rentalDuration: { startDate: null, endDate: null },
-    rate: 'Поминутно, 5₽/мин',
+    rate: 'rateMinShort',
     babySeat: false,
   };
 

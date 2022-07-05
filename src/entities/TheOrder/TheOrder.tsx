@@ -92,13 +92,13 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
     const price = typeof car.price === 'number' ? car.price : car.price.reduce((a, b) => a + b) / 2;
     const time = dateDifference(storeAdditionally.rentalDuration.startDate, storeAdditionally.rentalDuration.endDate);
 
-    if (storeAdditionally.rate === 'На сутки, 1999 ₽/сутки') {
+    if (storeAdditionally.rate === 'rateDateShort') {
       const ratePrice = 1999;
       const newPrice = price + ratePrice * time.days + (time.hours || time.minutes ? ratePrice : 0);
 
       setPriceEvent(newPrice);
     }
-    if (storeAdditionally.rate === 'Поминутно, 5₽/мин') {
+    if (storeAdditionally.rate === 'rateMinShort') {
       const ratePrice = 5;
       const newPrice = price + (time.days * 24 + time.hours) * 60 * ratePrice;
       setPriceEvent(newPrice);
@@ -126,9 +126,9 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
 
           return (
             <li key={key} className={cn(styles['order__list-item'])}>
-              <span className={cn(styles['order__list-item-name'])}>{translate(name)}</span>
+              <span className={cn(styles['order__list-item-name'])}>{name ? translate(name) : name}</span>
               <span className={cn(styles['order__list-item-dashed'])} />
-              <span className={cn(styles['order__list-item-selected'])}>{translate(value)}</span>
+              <span className={cn(styles['order__list-item-selected'])}>{value ? translate(value) : value}</span>
             </li>
           );
         })}
