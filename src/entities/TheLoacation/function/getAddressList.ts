@@ -1,8 +1,13 @@
+// Functions
 import { dataFilter } from './dataFilter';
-import { CITYS } from '../../../processes/order/config/citys';
-import { IAddress } from '../interface/IAddress';
 
-export function getAddressList(): IAddress[] {
+// Config
+import { CITYS } from '~processes/order/config/citys';
+
+// Interface
+import { IPointOfIssue } from '../interface/IPointOfIssue';
+
+export function getAddressList(): IPointOfIssue[] {
   const storage = localStorage.getItem('location');
   const storageParse = storage ? JSON.parse(storage) : '';
 
@@ -10,7 +15,7 @@ export function getAddressList(): IAddress[] {
     return [];
   }
 
-  const filteredData = dataFilter(CITYS, 'text', storageParse.city);
+  const filteredData = dataFilter(CITYS, storageParse.city);
 
   if (!filteredData) {
     return [];

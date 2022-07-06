@@ -1,6 +1,10 @@
-import { ISelect } from '~shared/ui/AppSelect';
-import { ICity } from '../interface/ICity';
+import { IAddress } from '../interface/IAddress';
+import { IPointOfIssue } from '../interface/IPointOfIssue';
 
-export function dataFilter<T extends ISelect | ICity>(data: T[], key: keyof ISelect, str: string): T[] {
-  return data.filter((item) => item[key].toLowerCase().includes(str.toLowerCase()));
+export function dataFilter<T extends IAddress | IPointOfIssue>(data: T[], str: string): T[] {
+  return data.filter(
+    (item) =>
+      item.value['ru'].toLowerCase().includes(str.toLowerCase()) ||
+      item.value['en'].toLowerCase().includes(str.toLowerCase())
+  );
 }

@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Store
 import { useStore } from 'effector-react';
-import { $storeAdditionally, $storeCar, $storePrice } from '~processes/order/model/store';
+import { $storeOrderLocation, $storeAdditionally, $storeCar, $storePrice } from '~processes/order/model/store';
+import { $storeLang } from '~processes/lang/model/store';
 
 // Event
 import { setPrice as setPriceEvent } from '~processes/order/model/events/setPrice';
@@ -13,16 +14,24 @@ import { setModel as setModelEvent } from '~processes/order/model/events/setMode
 import { setEndDate as setEndDateEvent } from '~processes/order/model/events/setEndDate';
 import { setStartDate as setStartDateEvent } from '~processes/order/model/events/setStartDate';
 import { setOrderStep as setOrderStepEvent } from '~processes/order/model/events/setOrderStep';
+import { setCity as setCityEvent } from '~processes/order/model/events/setCity';
+import { setAddress as setAddressEvent } from '~processes/order/model/events/setAddress';
 
 // Components
 import { AppButton } from '~shared/ui/AppButton';
 import { AppModal } from '~shared/ui/AppModal';
+
+// Function
+import { dataFilter } from '~entities/TheLoacation/function/dataFilter';
 
 // Utils
 import { dateDifference } from '~shared/utils/dateDifference';
 import { getPrice } from '~shared/utils/getPrice';
 import { getCar } from '~entities/TheAdditionally/function/getCar';
 import translate from '~processes/lang/utils/translate';
+
+// Config
+import { CITYS } from '~processes/order/config/citys';
 
 // Styles
 import cn from 'classnames';
@@ -31,6 +40,7 @@ import styles from './TheOrder.module.scss';
 // Interface
 import { IOrder } from '~processes/order/interface/IOrder';
 import { IOrderBtnSettings } from './interface/IOrderBtnSettings';
+
 interface TheOrderProps {
   className?: string;
   orderPoints: IOrder;
@@ -38,12 +48,30 @@ interface TheOrderProps {
 }
 
 export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSettings }) => {
+  const locale = useStore($storeLang);
+  const storeOrderLocation = useStore($storeOrderLocation);
   const storePrice = useStore($storePrice);
   const storeCar = useStore($storeCar);
   const storeAdditionally = useStore($storeAdditionally);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useMemo(() => {
+    const cityFilter = dataFilter(CITYS, storeOrderLocation.city);
+
+    if (!cityFilter.length) {
+      return;
+    }
+
+    setCityEvent(cityFilter[0].value[locale]);
+
+    const addressFilter = dataFilter(cityFilter[0].address, storeOrderLocation.address);
+
+    if (addressFilter.length) {
+      setAddressEvent(addressFilter[0].value[locale]);
+    }
+  }, [locale]);
 
   function confirmation() {
     setIsOpenModal(false);

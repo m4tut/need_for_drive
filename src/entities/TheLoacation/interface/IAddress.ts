@@ -1,5 +1,10 @@
-import { ISelect } from '~shared/ui/AppSelect';
+import { IPointOfIssue } from './IPointOfIssue';
 
-export interface IAddress extends ISelect {
+export interface IAddress {
+  value: {
+    ru: string;
+    en: string;
+  };
+  address: IPointOfIssue[];
   coordinates: [number, number];
 }

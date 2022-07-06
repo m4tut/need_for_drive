@@ -23,6 +23,7 @@ import { orderController } from './controller/orderController';
 
 // Types
 import { OrderStep } from '../type/OrderStep';
+import { $storeLang } from '~processes/lang/model/store';
 
 const location = getLocation();
 const car = getCar();
@@ -98,11 +99,12 @@ export const $storeAdditionally = combine(
 );
 
 export const $storeOrder = combine(
+  $storeLang,
   $storeOrderStep,
   $storeOrderLocation,
   $storeCar,
   $storeAdditionally,
-  (orderStep, orderLocation, orderCar, orderAdditionally) => {
-    return orderController(orderStep, orderLocation, orderCar, orderAdditionally);
+  (storeLang, orderStep, orderLocation, orderCar, orderAdditionally) => {
+    return orderController(storeLang, orderStep, orderLocation, orderCar, orderAdditionally);
   }
 );

@@ -1,10 +1,12 @@
 import { setLang, setLangEvent } from './events/setLang';
 import { createStore } from 'effector';
+
+// Types
 import { Langs } from '../type/langs';
 
-const lang = localStorage.getItem('lang');
+// Functions
+import { getLang } from '../function/getLang';
 
-export const $storeLang = createStore<Langs>(lang && (lang === 'ru' || lang === 'en') ? lang : 'ru').on(
-  setLang,
-  (store: Langs, payload: Langs) => setLangEvent(payload)
-);
+const lang = getLang();
+
+export const $storeLang = createStore<Langs>(lang).on(setLang, (store: Langs, payload: Langs) => setLangEvent(payload));

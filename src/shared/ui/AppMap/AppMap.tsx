@@ -16,13 +16,13 @@ import styles from './AppMap.module.scss';
 import placemarkImg from '~assets/images/svg/placemark.png';
 
 // Interface
-import { IAddress } from '~entities/TheLoacation';
+import { IPointOfIssue } from '~entities/TheLoacation/interface/IPointOfIssue';
 
 interface MapProps {
   className?: string;
   center: [number, number];
   zoom?: number;
-  placemark?: IAddress[];
+  placemark?: IPointOfIssue[];
   handleClickPlacemark?: (address: string) => void;
 }
 
@@ -60,7 +60,7 @@ export const AppMap: FC<MapProps> = ({ className, center, zoom = 12, handleClick
         {placemark &&
           placemark.map((item) => (
             <Placemark
-              key={item.value}
+              key={item.value[lolcale]}
               modules={['geoObject.addon.balloon']}
               geometry={[...item.coordinates]}
               defaultOptions={{
@@ -70,11 +70,11 @@ export const AppMap: FC<MapProps> = ({ className, center, zoom = 12, handleClick
                 iconImageOffset: [-10, -10],
               }}
               properties={{
-                balloonContentHeader: item.text,
+                balloonContentHeader: item.value[lolcale],
                 balloonContent: `${item.coordinates[0]}, ${item.coordinates[1]}`,
               }}
               onClick={() => {
-                onClickPlacemark(item.text);
+                onClickPlacemark(item.value[lolcale]);
               }}
             />
           ))}

@@ -1,9 +1,10 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 // Store
 import { useStore } from 'effector-react';
 import { $storeOrderLocation } from '~processes/order/model/store';
+import { $storeLang } from '~processes/lang/model/store';
 
 // Events
 import { setCity as setCityEvent } from '~processes/order/model/events/setCity';
@@ -29,10 +30,10 @@ import cn from 'classnames';
 import styles from './TheLoacation.module.scss';
 
 // Config
-import { CITYS } from '../../processes/order/config/citys';
+import { CITYS } from '~processes/order/config/citys';
 
 // Interface
-import { IAddress } from './interface/IAddress';
+import { IPointOfIssue } from './interface/IPointOfIssue';
 
 interface IError {
   city: string;
@@ -45,23 +46,40 @@ interface TheLoacationProps {
 
 export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
   const intl = useIntl();
+  const locale = useStore($storeLang);
   const storeOrderLocation = useStore($storeOrderLocation);
-  const [city, setCity] = useState<string>(storeOrderLocation.city);
+  const [cityValue, setCityValue] = useState<string>(storeOrderLocation.city);
   const [address, setAddress] = useState<string>(storeOrderLocation.address);
-  const [addressData, setAddressData] = useState<IAddress[]>(getAddressList());
+  const [addressData, setAddressData] = useState<IPointOfIssue[]>(getAddressList());
   const [error, setError] = useState<IError>({ city: '', address: '' });
   const [zoom, setZoom] = useState<number>(storeOrderLocation.address ? 14 : 11);
   const [coordinates, setCoordinates] = useState<[number, number]>(
     getCoordinates(storeOrderLocation.city, storeOrderLocation.address)
   );
 
+  useMemo(() => {
+    const cityFilter = dataFilter(CITYS, cityValue);
+
+    if (!cityFilter.length) {
+      return;
+    }
+
+    setCityValue(cityFilter[0].value[locale]);
+
+    const addressFilter = dataFilter(cityFilter[0].address, address);
+
+    if (addressFilter.length) {
+      setAddress(addressFilter[0].value[locale]);
+    }
+  }, [locale]);
+
   function changeCity(value: string) {
-    setCity(value);
-    const errorCity = validateCity(CITYS, value);
+    setCityValue(value);
+    const errorCity = validateCity(CITYS, value, locale);
     setError({ ...error, city: errorCity });
 
     if (!errorCity) {
-      const cityData = dataFilter(CITYS, 'text', value)[0];
+      const cityData = dataFilter(CITYS, value)[0];
       setZoom(11);
       setAddressData(cityData.address);
       setCityEvent(value);
@@ -70,6 +88,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
       setAddress('');
       setAddressData([]);
       setCityEvent('');
+      setAddressEvent('');
       setPriceEvent([1000, 3200]);
     }
     setCoordinates(getCoordinates(value, storeOrderLocation.address));
@@ -77,7 +96,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
 
   function changeAddress(value: string) {
     setAddress(value);
-    const errorAddress = validateAddress(addressData, value);
+    const errorAddress = validateAddress(addressData, value, locale);
     setError({ ...error, address: errorAddress });
 
     if (!errorAddress) {
@@ -98,9 +117,14 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           className={cn(styles['location__form-city'])}
           name="city"
           placeholder={intl.formatMessage({ id: 'selectCity' })}
-          value={city}
+          value={cityValue}
           error={error.city}
-          selectList={dataFilter(CITYS, 'text', city)}
+          selectList={dataFilter(CITYS, cityValue).map((city) => {
+            return {
+              text: city.value[locale],
+              value: city.value[locale],
+            };
+          })}
           handleChange={changeCity}
         >
           {translate('city')}
@@ -112,7 +136,12 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
           value={address}
           error={error.address}
           disabled={!addressData.length}
-          selectList={dataFilter(addressData, 'text', address)}
+          selectList={dataFilter(addressData, address).map((city) => {
+            return {
+              text: city.value[locale],
+              value: city.value[locale],
+            };
+          })}
           handleChange={changeAddress}
         >
           {translate('pointOfIssue')}

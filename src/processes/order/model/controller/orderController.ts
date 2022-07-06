@@ -13,6 +13,7 @@ import { IAdditionally } from '~processes/order/interface/IAdditionally';
 
 // Types
 import { OrderStep } from '~processes/order/type/OrderStep';
+import { Langs } from '~processes/lang/type/langs';
 
 interface IOrderController {
   order: IOrder;
@@ -33,6 +34,7 @@ const btnSettings: IOrderBtnSettings = {
 };
 
 export function orderController(
+  lang: Langs,
   step: OrderStep,
   location: ILocation,
   car: ICar,
@@ -41,7 +43,7 @@ export function orderController(
   const locationCompleted = Boolean(location.city && location.address);
   const modelCompleted = locationCompleted && Boolean(car.model && car.brend);
   const modelVisible = step !== 'location' && locationCompleted;
-  const additionallyVisible = modelCompleted && step !== 'model';
+  const additionallyVisible = modelVisible && step !== 'model';
   const additionallyCompleted =
     modelCompleted &&
     Boolean(
@@ -51,8 +53,6 @@ export function orderController(
         additionally.rate
     );
   const totalCompleted = localStorage.getItem('confirmation') === 'true';
-
-  console.log(additionally.babySeat);
 
   switch (step) {
     case 'location':
@@ -128,7 +128,7 @@ export function orderController(
       },
       rentalDuration: {
         name: 'rentalDuration',
-        value: getFullRentalDuration(additionally.rentalDuration),
+        value: getFullRentalDuration(additionally.rentalDuration, lang),
         visible: additionallyVisible,
       },
       rate: {

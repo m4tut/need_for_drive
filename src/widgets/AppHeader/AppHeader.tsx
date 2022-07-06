@@ -3,9 +3,16 @@ import { FC } from 'react';
 // Store
 import { useStore } from 'effector-react';
 import { $storeCity } from '~processes/order/model/store';
+import { $storeLang } from '~processes/lang/model/store';
 
 // Components
 import { Link } from 'react-router-dom';
+
+// Functions
+import { dataFilter } from '~entities/TheLoacation/function/dataFilter';
+
+// Config
+import { CITYS } from '~entities/TheLoacation';
 
 // Styles
 import cn from 'classnames';
@@ -16,7 +23,9 @@ interface AppHeaderProps {
 }
 
 export const AppHeader: FC<AppHeaderProps> = ({ className }) => {
+  const locale = useStore($storeLang);
   const storeCity = useStore($storeCity);
+  const city = dataFilter(CITYS, storeCity);
 
   return (
     <header className={cn(className, styles['header'])}>
@@ -43,7 +52,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ className }) => {
           </svg>
         </div>
 
-        <span>{storeCity}</span>
+        <span>{city.length && city[0].value[locale]}</span>
       </div>
     </header>
   );
