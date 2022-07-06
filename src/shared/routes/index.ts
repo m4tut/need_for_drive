@@ -8,7 +8,7 @@ const Error404 = lazy(() => import('~pages/error404'));
 
 export const ROUTES: IRoutes[] = [
   {
-    path: '/',
+    path: '/need-for-drive',
     elements: Home,
   },
   {
