@@ -82,5 +82,7 @@ export default {
 
     cancel: 'Cancel',
     yourOrderConfirmed: 'Your order has been confirmed',
+    time: 'Time',
+    enterDateAndTime: 'Enter date and time',
   },
 };

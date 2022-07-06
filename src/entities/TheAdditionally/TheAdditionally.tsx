@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useIntl } from 'react-intl';
 
 // Store
 import { useStore } from 'effector-react';
@@ -40,6 +41,7 @@ interface TheAdditionallyProps {
 }
 
 export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
+  const intl = useIntl();
   const lolcale: Langs = useStore($storeLang);
   const storeCar = useStore($storeCar);
   const storeAdditionally = useStore($storeAdditionally);
@@ -86,8 +88,8 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
               }}
               calendarStartDay={1}
               locale={getCalendarLocale(DAYS_CALENDAR[lolcale], MONTH_CALENDAR[lolcale])}
-              timeCaption="Время"
-              placeholderText="Введите дату и время"
+              timeCaption={intl.formatMessage({ id: 'time' })}
+              placeholderText={intl.formatMessage({ id: 'enterDateAndTime' })}
               showTimeSelect
               timeIntervals={15}
               timeFormat="HH:mm"
@@ -106,8 +108,8 @@ export const TheAdditionally: FC<TheAdditionallyProps> = ({ className }) => {
               minDate={storeAdditionally.rentalDuration.startDate}
               calendarStartDay={1}
               locale={getCalendarLocale(DAYS_CALENDAR[lolcale], MONTH_CALENDAR[lolcale])}
-              timeCaption="Время"
-              placeholderText="Введите дату и время"
+              timeCaption={intl.formatMessage({ id: 'time' })}
+              placeholderText={intl.formatMessage({ id: 'enterDateAndTime' })}
               showTimeSelect
               timeIntervals={15}
               timeFormat="HH:mm"

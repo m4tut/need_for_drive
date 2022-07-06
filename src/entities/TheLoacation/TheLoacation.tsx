@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 // Store
 import { useStore } from 'effector-react';
@@ -43,6 +44,7 @@ interface TheLoacationProps {
 }
 
 export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
+  const intl = useIntl();
   const storeOrderLocation = useStore($storeOrderLocation);
   const [city, setCity] = useState<string>(storeOrderLocation.city);
   const [address, setAddress] = useState<string>(storeOrderLocation.address);
@@ -95,7 +97,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
         <InputSelect
           className={cn(styles['location__form-city'])}
           name="city"
-          placeholder="Выберете город"
+          placeholder={intl.formatMessage({ id: 'selectCity' })}
           value={city}
           error={error.city}
           selectList={dataFilter(CITYS, 'text', city)}
@@ -106,7 +108,7 @@ export const TheLoacation: FC<TheLoacationProps> = ({ className }) => {
 
         <InputSelect
           name="address"
-          placeholder="Выберете пункт выдачи"
+          placeholder={intl.formatMessage({ id: 'selectAddres' })}
           value={address}
           error={error.address}
           disabled={!addressData.length}

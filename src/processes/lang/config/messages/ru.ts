@@ -83,5 +83,8 @@ export default {
 
     cancel: 'Отменить',
     yourOrderConfirmed: 'Ваш заказ подтвержден',
+
+    time: 'Время',
+    enterDateAndTime: 'Введите дату и время',
   },
 };

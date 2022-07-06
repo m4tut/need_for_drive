@@ -70,7 +70,7 @@ export const TheOrder: FC<TheOrderProps> = ({ className, orderPoints, btnSetting
         break;
       case '?step=completed':
         localStorage.setItem('confirmation', JSON.stringify(false));
-        setColorEvent('Любой');
+        setColorEvent('any');
         setPriceEvent([2200, 5200]);
         setBrendEvent('');
         setModelEvent('');

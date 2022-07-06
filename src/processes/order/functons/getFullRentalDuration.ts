@@ -1,5 +1,5 @@
-import { dateDifference } from '~shared/utils/dateDifference';
 // Functions
+import { dateDifference } from '~shared/utils/dateDifference';
 
 // Interface
 import { IRentalDuration } from '../interface/IRentalDuration';

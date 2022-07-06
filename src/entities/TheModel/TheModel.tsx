@@ -48,7 +48,7 @@ export const TheModel: FC<TheModelProps> = ({ className }) => {
     setBrendEvent(car.brend);
     setModelEvent(car.model);
     setPriceEvent(car.price);
-    setColorEvent('Любой');
+    setColorEvent('any');
   }
 
   return (

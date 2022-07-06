@@ -4,7 +4,7 @@ export function getAdditionally(): IAdditionally {
   const storage = localStorage.getItem('additionally');
 
   const initObj: IAdditionally = {
-    color: 'Любой',
+    color: 'any',
     rentalDuration: { startDate: null, endDate: null },
     rate: 'rateMinShort',
     babySeat: false,

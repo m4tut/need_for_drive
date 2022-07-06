@@ -35,7 +35,7 @@ export const TheTotal: FC<TheTotalProps> = ({ className }) => {
           {car?.brend}, {car?.model}
         </h2>
         <div className={cn(styles['total__content-number'])}>
-          {$storeColor.getState() === 'Любой'
+          {$storeColor.getState() === 'any'
             ? car?.carInfo[Math.floor(Math.random() * car?.carInfo.length)].carNumber
             : car?.carInfo.filter((item) => item.color === $storeColor.getState())[0].carNumber}
         </div>
