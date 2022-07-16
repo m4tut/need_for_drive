@@ -20,7 +20,7 @@ const Error404: FC = () => {
       <div className={cn(styles['error__content'])}>
         <img src={error404} alt="error404" />
         <h1>{translate('error')} 404</h1>
-        <AppLink href="/" variant="green">
+        <AppLink href="/need-for-drive" variant="green">
           {translate('goHome')}
         </AppLink>
       </div>
